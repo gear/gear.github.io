@@ -1,16 +1,16 @@
 ---
 layout: page
-title: About the <font color=#941100>guy without Zekken </font>
-excerpt: "So Simple is a responsive Jekyll theme for your words and images."
+title: About the no Zekken guy
+excerpt: "This page tells a little information about me"
 modified: 2014-08-08T19:44:38.564948-04:00
 image:
   feature: KhongSaoDau.jpg
-  credit: Trieu Ngoc's Facebook
+  credit: Trieu Ngoc
 ---
 
-My name is Nguyen Thai Hoang or HoangNT for short. I enjoy practicing the art of Kendo and the art of Computer Science. Because I am not a highly intelligent person, so I always try to find the simplest way to learn and to explain something new.
+<a markdown="0" align="center" href="{{ site.url }}/hoangs-contact" class="btn-red">Call me maybe?</a>
 
-
+My name is Nguyen Thai Hoang or Hoang (ホアン) for short. I enjoy practicing the art of Kendo and the art of Computer Science. Because I am not a highly intelligent person, so I always try to find the simplest way to learn and to explain something new.
 
 # Looking for a simple, responsive, theme for your Jekyll powered blog? Well look no further. Here be **So Simple Theme**, the follow up to [**Minimal Mistakes**](http://mmistakes.github.io/minimal-mistakes) --- by designer slash illustrator [Michael Rose](http://mademistakes.com).
 

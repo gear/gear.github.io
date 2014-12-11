@@ -1,42 +1,53 @@
-# Site settings
-title: HoangNT Blog
-email: hoangnt@me.com
-description: "A little bit corner of my mind"
+# Site wide configuration
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary: 18bc9c #80B3FF
-  secondary: 2c3e50 #FD6E8A
-  secondary-dark: 233140 #A2122F
-  
-# Footer settings
-footer:
-  copyright: MiraMera Inc.
-  location: Hanoi - Vietnam
-  social: Infinity and beyond
-  credits: Jekyll and Freelancer Theme
+title: Things I Learn
+locale: en_US
+description: My name is Hoang. This is where I brag, I mean blog, about things that I have learned. Things like <font color="#941100">Lego</font>, <font color="#941100">Computer Science</font>, <font color="#941100">Technology</font> and others will be posted here.
+logo: site-logo.png
+search: true
+url:
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
-social:
-  - title: twitter
-    url: http://twitter.com/mirameka
-  - title: facebook
-    url: http://facebook.com/mirameka
-  - title: stack-overflow
-    url: http://stackoverflow.com/questions/tagged/mirameka
-  - title: bitbucket 
-    url: http://bitbucket.org/mirameka
-  - title: github
-    url: http://github.com/mirameka
 
-# Postal address (add as many lines as necessary)
-address:
-  - line: 48 Bach Mai Street
-  - line: Hanoi 10000, Vietnam
-  
-# Credits content
-credits: ''
+# Jekyll configuration
 
-# Build settings
-markdown: kramdown
-permalink: pretty
+permalink:   /:categories/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..2
+  use_coderay: false
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
+
+
+# Site owner
+owner:
+  name: Hoang Nguyen 
+  avatar: hoang-av.png 
+  email: hoangnt@me.com
+  disqus-shortname: HoangNT
+  twitter: #username
+  facebook: #username
+  github: #username
+  stackexchange: #http://stackoverflow.com/users/123456/username
+  linkedin: #username
+  instagram: #username
+  flickr: #username
+  tumblr: #username
+  google:
+    plus: #username
+    analytics:
+    verify:
+    ad-client:
+    ad-slot: 
+  bing-verify:

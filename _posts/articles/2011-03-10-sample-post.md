@@ -1,97 +1,23 @@
----
-layout: post
-title: Sample Post
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
-modified: 2013-05-31
-categories: articles
-tags: [sample-post]
-image:
-  feature: so-simple-sample-image-1.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
-comments: true
-share: true
-author: hoang_nt
----
+<div>There use of Generics:</div><div><ul><li>Using a generic class, like using ArrayList&lt;String&gt;</li><li>Writing generic code with simple &lt;T&gt; or &lt;?&gt; type parameter.</li><li>Writing generic code with a &lt;T extends Foo&gt; type parameter.</li></ul></div>
+<h1>Generic 1 — Use Generic Class</h1><div><ul><li>Many Java library classes have been made generic, so in stead of just raw Object, they can be used in a way that indicates the type of object they hold.</li></ul></div>
+```java
+ArrayList<String> string = new ArrayList<String>();
+strings.add("Hi");
+strings.add("there");
+String s = strings.get(0); // no cast required
+```
+<div><ul><li>The plain types such as List are known as&nbsp;<b>raw version</b>&nbsp;as it still works in Java but they just contain pointers of type Object. Raw version and generic can be assigned back and fort with a IDE warning. &nbsp;</li></ul></div>
+<h3>Boxing / Unboxing</h3><div><ul><li>Normally, it’s not possible to store int or boolean in an ArrayList since it can only store pointers to objects. ArrayList&lt;int&gt; should be ArrayList&lt;Integer&gt;</li><li>With Java 5 “auto boxing”, when the code needs an Integer but has an int, it automatically creates the Integer on the fly. “Auto unboxing” is to call intValue() on the fly when int is needed in place of an Integer (object).</li></ul><h3>Warning: Unboxing Does Not Work With == or !=</h3></div>
+```java
+List<Integer> a, b;     // two list of Integer a and b
+a.get(0) == b.get(0);   // this just compare two references (pointers)
+                        // Auto unboxing doesn't work here
+a.get(0).equals(b.get(0));  // This will properly compares int values
+// It works this way to remain compatible with the original definition of ==
+```
+<h3>Foreach Loop</h3>
+```java
+List<String> strings = ...
 
-Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.
-
-# Heading 1
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-###### Heading 6
-
-### Body text
-
-Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
-
-![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)
-{: .pull-right}
-
-*This is emphasized*. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H<sub>2</sub>O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times <cite>(That’s a citation)</cite>. <u>Underline</u>. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-
-HTML and <abbr title="cascading stylesheets">CSS<abbr> are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
-
-### Blockquotes
-
-> Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
-
-## List Types
-
-### Ordered Lists
-
-1. Item one
-   1. sub item one
-   2. sub item two
-   3. sub item three
-2. Item two
-
-### Unordered Lists
-
-* Item one
-* Item two
-* Item three
-
-## Tables
-
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|----
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=====
-| Foot1   | Foot2   | Foot3
-{: rules="groups"}
-
-## Code Snippets
-
-Syntax highlighting via Pygments
-
-{% highlight css %}
-#container {
-  float: left;
-  margin: 0 -240px 0 0;
-  width: 100%;
-}
-{% endhighlight %}
-
-Non Pygments code example
-
-    <div id="awesome">
-        <p>This is great isn't it?</p>
-    </div>
-
-## Buttons
-
-Make any link standout more when applying the `.btn` class.
-
-<div markdown="0"><a href="http://mademistakes.com" class="btn">This is a button</a></div>
+for (String s : strings)
+```

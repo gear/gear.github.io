@@ -1,53 +1,31 @@
-# Site wide configuration
+# Site settings
+title: "Carte Noire"
+email: jacob@jacobtomlinson.co.uk
+description: "A dark blog theme for Jekyll."
+baseurl: ""
+url: "http://carte-noire.jacobtomlinson.co.uk/"
+title_description: "A dark blog theme for Jekyll focusing on a clear reading experience. Large text and a narrow body makes carte noire a gorgeous read. With excellent code snippet support and integrated tools such as AddThis and Disqus giving your Jekyll blog all the functionality your users expect."
+title_image: "http://www.gravatar.com/avatar/00000000000000000000000000000000?s=500&d=mm"
+google_analytics: "UA-20365477-4"
+disqus_account: cartenoire
+github_repository: https://github.com/jacobtomlinson/carte-noire
+addthis_id: ra-513c6fa83da6ec67
+post_limit: 5
 
-title: Things I Learn
-locale: en_US
-description: My name is Hoang. This is where I brag, I mean blog, about things that I have learned. Things like <font color="#941100">Lego</font>, <font color="#941100">Computer Science</font>, <font color="#941100">Technology</font> and others will be posted here.
-logo: site-logo.png
-search: true
-url:
+# Social usernames/URLs
+twitter_username: _jacobtomlinson
+github_username:  jacobtomlinson
+linkedin_link: http://carte-noire.jacobtomlinson.co.uk/
+google_plus_link: http://carte-noire.jacobtomlinson.co.uk/
+stackoverflow_link: http://carte-noire.jacobtomlinson.co.uk/
 
+# Footer
+footer_left: "Made with <i class=\"fa fa-heart\"></i> by <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
+footer_right: "&lt;/&gt; on <a href=\"https://github.com/jacobtomlinson/carte-noire\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
 
-# Jekyll configuration
-
-permalink:   /:categories/:title/
-markdown:    kramdown
-highlighter: pygments
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
-  - jekyll-sitemap
-
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..2
-  use_coderay: false
-
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
-
-
-# Site owner
-owner:
-  name: Hoang Nguyen 
-  avatar: hoang-av.png 
-  email: hoangnt@me.com
-  disqus-shortname: HoangNT
-  twitter: #username
-  facebook: #username
-  github: #username
-  stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
-  instagram: #username
-  flickr: #username
-  tumblr: #username
-  google:
-    plus: #username
-    analytics:
-    verify:
-    ad-client:
-    ad-slot: 
-  bing-verify:
+# Build settings
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+permalink: pretty
+exclude: [vendor]

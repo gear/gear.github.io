@@ -1,30 +1,56 @@
-# So Simple Theme
+# Carte Noire
 
-Looking for a simple, responsive, theme for your Jekyll powered blog? Well look no further. Here be **So Simple Theme**, the followup to [**Minimal Mistakes**](http://mmistakes.github.io/minimal-mistakes/) -- by designer slash illustrator [Michael Rose](http://mademistakes.com).
+A simple Jekyll theme for blogging. Not named after the coffee.
 
-[![Build Status](https://travis-ci.org/mmistakes/so-simple-theme.svg?branch=master)](https://travis-ci.org/mmistakes/so-simple-theme)
+![Homepage](http://i.imgur.com/xlmHArV.png)
 
-## So Simple Theme is all about:
+### Article
+![Article](http://i.imgur.com/8rD8FfC.png)
 
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 9+ and all modern browsers.
-* Minimal embellishments and subtle animations.
-* Optional large feature images for posts and pages.
-* [Custom 404 page](http://mmistakes.github.io/so-simple-theme/404.html) to get you started.
-* [Simple site search](https://github.com/christian-fei/Simple-Jekyll-Search)
-* Support for Disqus Comments
+### Disqus Comments
+![Comments](http://i.imgur.com/TBZHQwF.png)
 
-![screenshot of So Simple Theme](http://mmistakes.github.io/so-simple-theme/images/so-simple-theme-preview.jpg)
+### Posts grouped by year
+![All Posts](http://i.imgur.com/9bNs2Sc.png)
 
-See a [live version of So Simple](http://mmistakes.github.io/so-simple-theme/) hosted on GitHub.
+### JavaScript Search
+![Search](http://i.imgur.com/yQqMeSl.png)
 
----
+### Menu by mmenu
+![Menu](http://i.imgur.com/SClrNSH.png)
 
-## Getting Started
+## Contact
+If you wish to contact me regarding this theme please raise an issue on GitHub,
+tweet me [@_jacobtomlinson](http://www.twitter.com/_jacobtomlinson) or email me
+[jacob@jacobtomlinson.co.uk](mailto:jacob@jacobtomlinson.co.uk).
 
-So Simple takes advantage of Sass and data files to make customizing easier. These features require Jekyll 2.x and will not work with older versions of Jekyll.
+## Contribution
+Pull requests are very welcome.
 
-To learn how to install and use this theme check out the [Setup Guide](http://mmistakes.github.io/so-simple-theme/theme-setup/) for more information.
+## Theme
+This jekyll theme has been created from scratch. Ideas and inspiration are taken
+from other places but the code is my own.
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mmistakes/so-simple-theme/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+## Tools and Libraries
+The following tools and libraries are used in this theme
 
+### JavaScript
+ * [jQuery](http://jquery.com/)
+ * [MMenu](http://mmenu.frebsite.nl/)
+ * [HighlightJS](https://highlightjs.org/)
+ * [Simple Jekyll Search](https://github.com/christian-fei/Simple-Jekyll-Search)
+
+### CSS
+ * [Bootstrap](http://getbootstrap.com/)
+ * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+
+### Social
+ * [AddThis](http://www.addthis.com/)
+ * [Disqus](https://disqus.com/)
+
+### Other
+ * [Real Favicon Generator](http://realfavicongenerator.net/)
+ * [Google Analytics](http://www.google.com/analytics/)
+
+## License
+The jekyll theme, HTML, CSS and JavaScript is licensed under GPLv3 (unless stated otherwise in the file).

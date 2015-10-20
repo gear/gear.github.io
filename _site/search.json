@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "Formal Language Theory - Regular Language",
+    "category" : "",
+    "tags"     : "formal language, theory, regular language, introduction, computer science, automata, DFA, NFA, Derivatives",
+    "url"      : "/jekyll/2015/10/20/formal-language-theory/",
+    "date"     : "2015-10-20 20:45:00 +0900"
+    } ,
+    
+  {
     "title"    : "Welcome to Carte Noire",
     "category" : "",
     "tags"     : "welcome, to, carte, noire",

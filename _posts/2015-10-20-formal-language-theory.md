@@ -18,5 +18,6 @@ tags:
  - Derivatives
 ---
 
-Hello, World.
+The topic of formal language theory is fantastic! I hope I can me smarter for this topic! \(12\lambda = 5 \times 9\).
+$$ \Sigma_{i = 0}^{n} = 5 $$
 

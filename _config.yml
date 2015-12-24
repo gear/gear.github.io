@@ -7,7 +7,7 @@ url: "http://gear.github.io/"
 title_description: "\"If you can't explain it, you don't understand it well enough\" - Albert Einstein. My blog is a place where I explain everything I have learned as simple as I can, so that anyone, including my future self, can understand."
 title_image: "./images/hoang-bio-photo.png"
 google_analytics: "UA-69058925-1"
-disqus_account: Hoang Nguyen
+disqus_account: hoangnt 
 github_repository: https://github.com/gear/
 addthis_id: 
 post_limit: 10

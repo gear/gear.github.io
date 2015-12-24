@@ -32,20 +32,10 @@
 <meta name="msapplication-config" content="{{ site.baseurl }}/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        extensions: ["tex2jax.js"],
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-            inlineMath: [ ['$', '$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
-            processEscapes: true
-        },
-        "HTML-CSS": { availableFonts: ["TeX"] }
-    });
-</script>
+{% if page.use_math %}
+	{% include mathjax_support %}
+{% endif %}
+
 {% if site.addthis_id %}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_id }}"></script>

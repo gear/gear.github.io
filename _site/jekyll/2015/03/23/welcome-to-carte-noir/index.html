@@ -34,15 +34,27 @@
 <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
 <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
-<script type="text/javascript"> async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>	
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+            inlineMath: [ ['$', '$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+            processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+</script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 </head>
 
 
     <body>
-
     <nav id="my-menu">
   <div>
     <p>Hoang NT</p>
@@ -108,15 +120,16 @@
       <div class="content-panel content">
         <span itemprop="articleBody"><p>Welcome to Carte Noire.</p>
 
-<p>Carte Noire began as a new theme for <a href="http://www.jacobtomlinson.co.uk/">my personal blog</a>, but has now taken
+<p>Carte Noire began as a new theme for <a href="http://www.jacobtomlinson.co.uk/">my personal blog</a>, but has now taken<br />
 on a life of its own as a free theme for Jekyll.</p>
 
-<p>The theme has been designed with simplicity and readability in mind. It makes
-use of third party services such as Disqus ad AddThis to ensure the blog has
-all the features you would expect from a dynamic application such as Wordpress
+<p>The theme has been designed with simplicity and readability in mind. It makes<br />
+use of third party services such as Disqus ad AddThis to ensure the blog has<br />
+all the features you would expect from a dynamic application such as Wordpress<br />
 but with the hosting and maintenance simplicity of Jekyll.</p>
 
 <p>Please use/copy/share Carte Noire!</p>
+
 </span>
 
         
@@ -132,11 +145,6 @@ but with the hosting and maintenance simplicity of Jekyll.</p>
 
       </div>
 
-      <div class="content-panel feedback">
-        I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/">@</a> or leave a comment below!
-      </div>
-
       
       <div class="content-panel comments">
         <div id="disqus_thread">
@@ -149,16 +157,16 @@ but with the hosting and maintenance simplicity of Jekyll.</p>
       <div class="content-panel related clearfix">
         
         <div class="related-header">
-          <a href="/jekyll/2015/10/20/formal-language-theory/">Read More</a>
+          <a href="/mathematics/2015/10/20/formal-language-theory/">Read More</a>
         </div>
           <div class="title">
-            <a href="/jekyll/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
+            <a href="/mathematics/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
           </div>
           <div class="excerpt">
              
               Introduction to Formal Language Theory. As taught in Fall 2015 Fundamental of Mathematical for Computer Science class by Professor Toshio Endo, Tokyo Institute of Techonology. This post is from the...
              
-            <a href="/jekyll/2015/10/20/formal-language-theory/">Continue Reading</a>
+            <a href="/mathematics/2015/10/20/formal-language-theory/">Continue Reading</a>
           </div>
         
         <hr />
@@ -173,7 +181,7 @@ but with the hosting and maintenance simplicity of Jekyll.</p>
         <div class="next previous-next">
           
           <p>
-            <a href="/jekyll/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
+            <a href="/mathematics/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
           </p>
           <p class="date">Published October 20, 2015</p>
           

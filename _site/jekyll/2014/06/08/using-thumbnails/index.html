@@ -34,15 +34,27 @@
 <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
 <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
-<script type="text/javascript"> async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>	
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+            inlineMath: [ ['$', '$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+            processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+</script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 </head>
 
 
     <body>
-
     <nav id="my-menu">
   <div>
     <p>Hoang NT</p>
@@ -97,38 +109,48 @@
       </div>
 
       <div class="content-panel content">
-        <span itemprop="articleBody"><p>Carte Noire is designed to start each article with an all-white image as a
-thumbnail. These are created by adding a <code>thumbnail</code> parameter to the article&#39;s
-<a href="http://jekyllrb.com/docs/frontmatter/">YAML frontmatter</a>. This thumbnail parameter is processed in one of two ways,
-images specified in <code>_data/thumbnails.yml</code> or using <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
+        <span itemprop="articleBody"><p>Carte Noire is designed to start each article with an all-white image as a<br />
+thumbnail. These are created by adding a <code class="highlighter-rouge">thumbnail</code> parameter to the article’s<br />
+<a href="http://jekyllrb.com/docs/frontmatter/">YAML frontmatter</a>. This thumbnail parameter is processed in one of two ways,<br />
+images specified in <code class="highlighter-rouge">_data/thumbnails.yml</code> or using <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
 
-<h2>Images</h2>
+<h2 id="images">Images</h2>
 
-<p>To use your own custom images as a thumbnail you must upload them to a web available
-location (I use <a href="http://imgur.com/">Imgur</a>) and then you need to add the url to <code>_data/thumbnail.yml</code>
+<p>To use your own custom images as a thumbnail you must upload them to a web available<br />
+location (I use <a href="http://imgur.com/">Imgur</a>) and then you need to add the url to <code class="highlighter-rouge">_data/thumbnail.yml</code><br />
 with an associated keyword.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">jekyll: "http://i.imgur.com/aRQcGSi.png"
-</code></pre></div>
-<p>You then add a <code>thumbnail</code> option to the article&#39;s frontmatter and provide the keyword
+
+<div class="highlighter-rouge"><pre class="highlight"><code>jekyll: "http://i.imgur.com/aRQcGSi.png"
+</code></pre>
+</div>
+
+<p>You then add a <code class="highlighter-rouge">thumbnail</code> option to the article’s frontmatter and provide the keyword<br />
 for that thumbnail.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">thumbnail: jekyll
-</code></pre></div>
-<p>This allows you to re-use thumbnails across multiple articles without having to
+
+<div class="highlighter-rouge"><pre class="highlight"><code>thumbnail: jekyll
+</code></pre>
+</div>
+
+<p>This allows you to re-use thumbnails across multiple articles without having to<br />
 specify the url each time.</p>
 
-<h2>Font Awesome</h2>
+<h2 id="font-awesome">Font Awesome</h2>
 
-<p>If jekyll can&#39;t find a corresponding image in your <code>thumbnail.yml</code> file then it
-will assume you want to use a Font Awesome icon instead. You can find the full
+<p>If jekyll can’t find a corresponding image in your <code class="highlighter-rouge">thumbnail.yml</code> file then it<br />
+will assume you want to use a Font Awesome icon instead. You can find the full<br />
 list of Font Awesome icons <a href="http://fortawesome.github.io/Font-Awesome/icons/">here</a>.</p>
 
-<p>So for example if your article is about android and you want to use the <a href="http://fortawesome.github.io/Font-Awesome/icon/android/">android icon</a>
+<p>So for example if your article is about android and you want to use the <a href="http://fortawesome.github.io/Font-Awesome/icon/android/">android icon</a><br />
 from font awesome you can just specify the following in your frontmatter.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">thumbnail: android
-</code></pre></div>
-<p>Then in the future if you decide you want to use your own android icon you can just
-add it to <code>_data/thumbnails.yml</code> which will override it for all articles using
+
+<div class="highlighter-rouge"><pre class="highlight"><code>thumbnail: android
+</code></pre>
+</div>
+
+<p>Then in the future if you decide you want to use your own android icon you can just<br />
+add it to <code class="highlighter-rouge">_data/thumbnails.yml</code> which will override it for all articles using<br />
 the android thumbnail.</p>
+
 </span>
 
         
@@ -144,11 +166,6 @@ the android thumbnail.</p>
 
       </div>
 
-      <div class="content-panel feedback">
-        I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/">@</a> or leave a comment below!
-      </div>
-
       
       <div class="content-panel comments">
         <div id="disqus_thread">
@@ -161,16 +178,16 @@ the android thumbnail.</p>
       <div class="content-panel related clearfix">
         
         <div class="related-header">
-          <a href="/jekyll/2015/10/20/formal-language-theory/">Read More</a>
+          <a href="/mathematics/2015/10/20/formal-language-theory/">Read More</a>
         </div>
           <div class="title">
-            <a href="/jekyll/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
+            <a href="/mathematics/2015/10/20/formal-language-theory/">Formal Language Theory - Regular Language</a>
           </div>
           <div class="excerpt">
              
               Introduction to Formal Language Theory. As taught in Fall 2015 Fundamental of Mathematical for Computer Science class by Professor Toshio Endo, Tokyo Institute of Techonology. This post is from the...
              
-            <a href="/jekyll/2015/10/20/formal-language-theory/">Continue Reading</a>
+            <a href="/mathematics/2015/10/20/formal-language-theory/">Continue Reading</a>
           </div>
         
         <hr />

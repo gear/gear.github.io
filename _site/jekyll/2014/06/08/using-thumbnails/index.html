@@ -96,48 +96,38 @@
       </div>
 
       <div class="content-panel content">
-        <span itemprop="articleBody"><p>Carte Noire is designed to start each article with an all-white image as a<br />
-thumbnail. These are created by adding a <code class="highlighter-rouge">thumbnail</code> parameter to the article’s<br />
-<a href="http://jekyllrb.com/docs/frontmatter/">YAML frontmatter</a>. This thumbnail parameter is processed in one of two ways,<br />
-images specified in <code class="highlighter-rouge">_data/thumbnails.yml</code> or using <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
+        <span itemprop="articleBody"><p>Carte Noire is designed to start each article with an all-white image as a
+thumbnail. These are created by adding a <code>thumbnail</code> parameter to the article&#39;s
+<a href="http://jekyllrb.com/docs/frontmatter/">YAML frontmatter</a>. This thumbnail parameter is processed in one of two ways,
+images specified in <code>_data/thumbnails.yml</code> or using <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
 
-<h2 id="images">Images</h2>
+<h2>Images</h2>
 
-<p>To use your own custom images as a thumbnail you must upload them to a web available<br />
-location (I use <a href="http://imgur.com/">Imgur</a>) and then you need to add the url to <code class="highlighter-rouge">_data/thumbnail.yml</code><br />
+<p>To use your own custom images as a thumbnail you must upload them to a web available
+location (I use <a href="http://imgur.com/">Imgur</a>) and then you need to add the url to <code>_data/thumbnail.yml</code>
 with an associated keyword.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll: "http://i.imgur.com/aRQcGSi.png"
-</code></pre>
-</div>
-
-<p>You then add a <code class="highlighter-rouge">thumbnail</code> option to the article’s frontmatter and provide the keyword<br />
+<div class="highlight"><pre><code class="language-" data-lang="">jekyll: "http://i.imgur.com/aRQcGSi.png"
+</code></pre></div>
+<p>You then add a <code>thumbnail</code> option to the article&#39;s frontmatter and provide the keyword
 for that thumbnail.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>thumbnail: jekyll
-</code></pre>
-</div>
-
-<p>This allows you to re-use thumbnails across multiple articles without having to<br />
+<div class="highlight"><pre><code class="language-" data-lang="">thumbnail: jekyll
+</code></pre></div>
+<p>This allows you to re-use thumbnails across multiple articles without having to
 specify the url each time.</p>
 
-<h2 id="font-awesome">Font Awesome</h2>
+<h2>Font Awesome</h2>
 
-<p>If jekyll can’t find a corresponding image in your <code class="highlighter-rouge">thumbnail.yml</code> file then it<br />
-will assume you want to use a Font Awesome icon instead. You can find the full<br />
+<p>If jekyll can&#39;t find a corresponding image in your <code>thumbnail.yml</code> file then it
+will assume you want to use a Font Awesome icon instead. You can find the full
 list of Font Awesome icons <a href="http://fortawesome.github.io/Font-Awesome/icons/">here</a>.</p>
 
-<p>So for example if your article is about android and you want to use the <a href="http://fortawesome.github.io/Font-Awesome/icon/android/">android icon</a><br />
+<p>So for example if your article is about android and you want to use the <a href="http://fortawesome.github.io/Font-Awesome/icon/android/">android icon</a>
 from font awesome you can just specify the following in your frontmatter.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>thumbnail: android
-</code></pre>
-</div>
-
-<p>Then in the future if you decide you want to use your own android icon you can just<br />
-add it to <code class="highlighter-rouge">_data/thumbnails.yml</code> which will override it for all articles using<br />
+<div class="highlight"><pre><code class="language-" data-lang="">thumbnail: android
+</code></pre></div>
+<p>Then in the future if you decide you want to use your own android icon you can just
+add it to <code>_data/thumbnails.yml</code> which will override it for all articles using
 the android thumbnail.</p>
-
 </span>
 
         
@@ -201,7 +191,7 @@ the android thumbnail.</p>
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 function disqus_config() { this.experiment.enable_scroll_container = true; }
-var disqus_shortname = "Hoang Nguyen"; // required: replace example with your forum shortname
+var disqus_shortname = "hoangnt"; // required: replace example with your forum shortname
 /* * * DON'T EDIT BELOW THIS LINE * * */
 (function() {
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -20,12 +20,13 @@ google_plus_link:
 stackoverflow_link: 
 
 # Footer
-footer_left: "Write with <i class=\"fa fa-heart\"></i> by Hoang Nguyen with theme from <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
+footer_left: "By Hoang Nguyen with theme from <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
 footer_right: "&lt;/&gt; on <a href=\"https://github.com/jacobtomlinson/carte-noire\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
 
 # Build settings
+markdown: 
 markdown: redcarpet
 redcarpet:
-    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "prettify"]
 permalink: pretty
 exclude: [vendor]

@@ -20,5 +20,5 @@ use_math: true
 ---
 
 The topic of formal language theory is fantastic! I hope I can me smarter for this topic!).
-`<script type="math/tex">a^2 + b^2 = c^2 + \mathsf{Data = PCs}</script>`
+$$a^2+b^2=c^2+\mathsf{Data = PCs}$$
 

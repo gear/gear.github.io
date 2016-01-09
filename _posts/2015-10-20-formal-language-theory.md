@@ -20,6 +20,16 @@ tags:
 use_math: true
 ---
 
-The topic of formal language theory is fantastic! I hope I can me smarter for this topic!).
+### How to describle a computer program/algorithm in general?
+
+In a computer's world, everything is a string of bits (for now). Therefore, a simple way to think about all operations is to use a string of *symbols* and some structured rules apply on the string (which makes a *language*). When I first started learning about this topic in class, I was confused by many mathematics notations and new terms. I think one of the reason is because most of the classes start with talking about alphabet, regular language, and defines regular language using inductive definition first!. Thanks to [Introduction to the Theory of
+Computation][1] by professor Michael Sipser, which define regular language based on **automata**, I am able to understand the material.
+
+### The journey starts with intitial state!
+
+Intuitively, an automaton (pl. automata) is an abstract *machine* that have states and its current state changes according to its previous state and input. Let's take the vending machine as an example. At the beginning, the machine stays in the *waiting* state. When you put some money in (some input!), the machine change to *counting_money* state, and if the money is sufficient (state change does not need input), the machine will change to *serving* state. Finally, it will
+return to *waiting* state for the next customer. To be used in formal proof, an automaton is defined as follow: 
+> 
+
 $$a^2+b^2=c^2+\mathsf{Data = PCs}$$
 

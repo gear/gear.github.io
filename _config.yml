@@ -15,12 +15,12 @@ post_limit: 10
 # Social usernames/URLs
 twitter_username: 
 github_username: gear 
-linkedin_link: jp.linkedin.com/in/hoang-nguyen-788035b5
+linkedin_link: "www.jp.linkedin.com/in/hoang-nguyen-788035b5"
 google_plus_link: 
 stackoverflow_link: 
 
 # Footer
-footer_left: "By Hoang Nguyen with theme from <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
+footer_left: "By HN with theme from <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
 footer_right: "&lt;/&gt; on <a href=\"https://github.com/jacobtomlinson/carte-noire\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
 
 # Build settings

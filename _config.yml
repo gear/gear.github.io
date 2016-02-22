@@ -1,15 +1,15 @@
 # general configuration
-url: https://gear.github.io
+url: http://excentris.net
 baseurl: ''
 
 # compass configuration
 compass:
   # an avatar or logo (optional)
-  logo: "/images/hoang-bio-photo.png"
+  logo: "/images/compass.png"
   # author will appear under the avatar (optional)
-  author: "Hoang NT"
+  author: "Compass"
   # tagline will appear under the title (optional)
-  tagline: "Hi! My name is Hoang. I am always curious."
+  tagline: "The <a href='http://jekyllrb.com'>Jekyll</a> theme for your personal landing page"
   # if include_content is true, the contents of the content.html include will be
   # added right above the generated item list, if present
   include_content: true

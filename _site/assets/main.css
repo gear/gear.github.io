@@ -99,13 +99,13 @@ footer {
   /* past 768px the layout is changed and the wrapper has a fixed width of 680px
   to accomodate both the header column and the content column */
   .wrapper {
-    width: 680px; }
+    width: 1360px; }
 
   /* the header column stays left and has a dynamic width with all contents
   aligned right */
   header {
     float: left;
-    width: 46%;
+    width: 20%;
     text-align: right; }
 
   .author-container h1,
@@ -114,6 +114,6 @@ footer {
     text-align: right; }
 
   main {
-    width: 46%;
-    margin-left: 54%;
+    width: 50%;
+    margin-left: 25%;
     padding: 0; } }

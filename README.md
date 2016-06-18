@@ -1,4 +1,10 @@
-# Jekyll with Compass theme 
+Lemma Theme
+===========
 
-This is the repository for my personal landing site. The site is built with Jekyll using [Compass](https://github.com/excentris/compass/) theme.
+Lemma is yet another simple responsive theme for Jekyll.
 
+
+License
+-------
+
+- MIT

@@ -4,7 +4,7 @@ bio:            'I go to my lab everyday.'
 description:    "This is Hoang NT's website where I write things about me."
 picture:        'assets/img/Logo.png'
 locale:         jp_JP
-url:            https://gear.github.io/
+url:            https://gear.github.io
 
 # Jekyll
 permalink:      /:title/

@@ -1,10 +1,10 @@
 # Site
-title:          Ramme
-bio:            'Just a simple Jekyll theme'
-description:    "Simple Jekyll theme for your blog by Taylan Tatlı"
+title:          Things about me
+bio:            'I go to my lab everyday.'
+description:    "This is Hoang NT's website where I write things about me."
 picture:        'assets/img/Logo.png'
-locale:         en_US
-url:            http://taylantatli.me/Ramme
+locale:         jp_JP
+url:            https://gear.github.io/
 
 # Jekyll
 permalink:      /:title/
@@ -24,7 +24,7 @@ sass:
 # if you don't have any of social below, comment the line.
 #email:
 twitter: username
-facebook: username
+facebook: popApple
 #google:
   #plus: #username
   #analytics:
@@ -32,7 +32,7 @@ facebook: username
   #ad-client:
   #ad-slot:
 #bing-verify:
-github: username
+github: gear
 stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
 linkedin: username
 #xing: username

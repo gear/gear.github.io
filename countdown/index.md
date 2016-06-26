@@ -1,5 +1,5 @@
 ---
 layout: countdown
-title: Ramen time
+title: 
 excerpt: "Hell yeah RAMEN!!!"
 ---

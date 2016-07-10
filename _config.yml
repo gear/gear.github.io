@@ -1,7 +1,7 @@
 # Site
-title:          Things about me
-bio:            'I go to my lab everyday.'
-description:    "This is Hoang NT's website where I write things about me."
+title:          What to learn next
+bio:            'I am pretty normal. I am NOT a fast learner, but a deep one.'
+description:    "This is Hoang's blog, where I write things."
 picture:        'assets/img/Logo.png'
 locale:         jp_JP
 url:            https://gear.github.io
@@ -22,8 +22,7 @@ sass:
 
 # Social
 # if you don't have any of social below, comment the line.
-#email:
-twitter: username
+email: hoangnt -letter 'a' with force shield- ai.cs.titech.ac.jp
 facebook: popApple
 #google:
   #plus: #username
@@ -33,26 +32,8 @@ facebook: popApple
   #ad-slot:
 #bing-verify:
 github: gear
-stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-linkedin: username
-#xing: username
-instagram: username
-lastfm: username
-tumblr: username
-#pinterest: username
-#foursquare: username
-steam: username
-#dribbble: username
-youtube: username
-#soundcloud: username
-#weibo: username
-#flickr: username
-#codepen: username
-
-# Paginate
-# if you don't need pagination, comment the *paginate* configs below
-# paginate: 5
-# paginate_path: "blog/:num/"
+linkedin: hoang-nt
+youtube: hoangnt.titech
 
 # Gems
 gems:

@@ -14,4 +14,4 @@ I enjoy proving theorems, and learning new (mostly computer related) skills.
 
 I think the most important thing in life is family and friends. 
       
-[Install Ramme](https://github.com/TaylanTatli/Ramme){: .btn}
+[This blog uses Ramme Theme](https://github.com/TaylanTatli/Ramme){: .btn}

@@ -1,0 +1,177 @@
+% resume.tex
+%
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003 David J. Grant <dgrant@ieee.org> http://www.davidgrant.ca
+% (c) 2007 Todd C. Miller <Todd.Miller@courtesan.com> http://www.courtesan.com/todd
+%
+%This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/1.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+\documentclass[letterpaper,11pt]{article}
+
+%-----------------------------------------------------------
+\usepackage[empty]{fullpage}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnam]{babel}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+
+
+\definecolor{mygrey}{gray}{0.90}
+\textheight=9.0in
+\raggedbottom
+%\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{0.375in}
+\addtolength{\textwidth}{0.5in}
+\addtolength{\topmargin}{-.375in}
+\addtolength{\textheight}{0.75in}
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+%-----------------------------------------------------------
+\begin{document}
+
+\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+\textbf{\LARGE Nguyen Thai Hoang}  & (+84) 090-4554-020 (mobile)\\
+48 Bach Mai Street &  hoangnt@me.com \\
+Hanoi, Vietnam \\
+\end{tabular*}
+\\
+
+\vspace{0.1in}
+
+\resheading{Education}
+\begin{itemize}
+% Bach Khoa
+\item
+	\ressubheading{Hanoi University of Science and Technology (Bach Khoa Hanoi)}{Hanoi, Vietnam}{B.S. in Electronics Engineering and Telecommunications}{Class of 2014 - K54}
+	\begin{itemize}
+		\item GPA 3.21 on a scale of 4.0
+	\end{itemize}
+% CSP
+\item
+	\ressubheading{HNUE High School for Gifted Students}{Hanoi, Vietnam}{Physics Class}{Class of 2009 - K40}
+
+\end{itemize}
+
+%\resheading{Relevant Coursework}
+%\begin{description}
+%\item[Electrical Engineering and Computer Science:]
+%Structure and Interpretation of Computer Programs,
+%Circuits and Electronics,
+%Artificial Intelligence,
+%Probabilistic Systems Analysis,
+%Laboratory in Software Engineering,
+%Computation Structures, 
+%Signals and Systems,
+%Introduction to Algorithms
+%\item[Mathematics:]
+%Single Variable Calculus,
+%Multi Variable Calculus,
+%Differential Equations,
+%Analysis,
+%Linear Algebra
+%\end{description}
+
+% \resheading{Awards and Honors}
+	% \begin{description}
+		% \resitem[2008] 7th rank among over 150 teams in scrimmages in 6.370, MIT's Programming Contest
+		% \resitem[2007] 6th place among 300 teams in America in the Microsoft College Puzzle Challenge
+		% \resitem[2006] 6th place among 210 teams in America in the Microsoft College Puzzle Challenge
+		% \resitem[2006] 3rd  place among 48 teams in 6.270, MIT's Autonomous Robot Design Competition
+		% \resitem[2005] 8th rank in the International Math Olympiad Training Camp, Mumbai, India 
+% \end{description}
+
+\resheading{Experience}
+\begin{itemize}
+% \item
+	% \ressubheading{National Aeronautics and Space Administration(NASA)}{Moffett Field, CA}{Summer Research Intern}{Summer 2007}
+	% \begin{itemize}
+		% \resitem{Worked with the Dynamic Air Configuration Group and the development of the Future ATM Concepts Evaluation Tool (FACET)}
+		% \resitem{Studied the feasibility of Air Traffic Freeways}
+		% \resitem{Studied the feasibility of Air Traffic Freeways, added new graphing modules to FACET}
+		% \resitem{Used Java and Matlab to write companion tools for FACET}
+	% \end{itemize}
+\item
+	\ressubheading{ESRC Laboratory, SET}{Hanoi, Vietnam}{Undergraduate Researcher}{March 2012 - August 2014}
+	\begin{itemize}
+		\resitem{Worked in the Embedded System and Reconfigurable Computing Laboratory (Room 618, Ta Quang Buu Library) in School of Electroncis and Telecommunications, with PhD candidate Nguyen Van Cuong and Associate Prof. Pham Ngoc Nam.}
+		\resitem{Design and implemented a traffic rating software using OpenCV platform. My software was able to rate current traffic video input and give out results as A to F levels of conjunction.}
+		\resitem{Received training in VLSI design based on Xilinx and Quartus FPGA platform.}
+		\resitem{Worked and practiced theory of Network on Chip. Designed a fully functional 2x3 Mesh network with Network Interface and Reconfiguration. My group's design is an optimized version of seniors in ESRC Lab's previous work. By applying pipeline technique, we are able to increase throughput of the Network Interface by 40\% compare to our seniors' version. Further more, the network itself can handle much more data due to new structure of our Mesh-Router.}
+	\end{itemize}
+
+\item
+	\ressubheading{Computer Science \& Machine Learnings}{Hanoi, Vietnam}{Self Learning From Online Courses}{2013 - Present}
+	\begin{itemize}
+		\resitem{Studied computer science courses from Coursera.org e.g. Stanford Algorithms Courses, Stanford Cryptography Courses, Stanford Machine Learning Courses, Stanford Natural Language Processing Course...}
+		\resitem{Practiced computer programming by doing assignments and projects provided by MIT OCW and Stanford Online Courses.}
+		\resitem{Learned to program in Objective-C and developing iOS applications from Stanford iTunes Course.}
+	\end{itemize}
+\end{itemize}
+
+\resheading{Technical Skills}
+\begin{itemize}
+\item
+\textbf{Hardware Description Languages:} Verilog HDL, VHDL.
+\item
+\textbf{Programming Languages:}  C/C++, MATLAB, Objective-C, familiar with Java, Python.
+\item
+\textbf{Operating Systems:} Unix/Linux based OS's.
+\end{itemize}
+
+\resheading{Other Skills}
+\begin{itemize}
+\item
+\textbf{Documents:} \LaTeX, Microsoft Office (2007,2010,2013), Adobe InDesign / Photoshop / Illustrator
+\item
+\textbf{Languages:} English (TOEFL iBT: 103 - Test date: Feb 22nd, 2014), Japanese (Beginner)
+\item
+\textbf{Operating Systems:} Unix/Linux based OS's
+\end{itemize}
+
+\resheading{Leadership and Service}
+\begin{itemize}
+\item
+\textbf{2009-2010} Freshman year class president. (Class BK05-K54)
+\item
+\textbf{2009-2010} Member of the Standing Committee of Ho Chi Minh Communist Youth Union of K54, HUST.
+\item
+\textbf{2012-2014} Senior member and manager of K54 in ESRC Laboratory.
+\end{itemize}
+
+\resheading{Interests and Hobbies}
+\begin{itemize}
+\item
+\textbf{Sports:} Kendo, running, swimming
+\item
+\textbf{Creative Activities:} LEGO building, making iOS games
+\end{itemize}
+
+\resheading{About me}
+
+\begin{minipage}{\textwidth}
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \vspace{-13pt}
+  \begin{center}
+    \includegraphics[width=0.2\textwidth]{4x6.png}
+  \end{center}
+  \vspace{-20pt}
+\end{wrapfigure}
+\vspace{1em}
+I was born and raised in Hanoi, capital of Vietnam. I did not show many potential as an elementary student, but thanks to my parent's consistency in educating me I was accepted in the Hanoi National University of Education's High School for Gifted Student. Later, I decided to choose Hanoi University of Science and Technology as a place to pursue higher education because I want to be an engineer. My ideology and personality was developed mostly during my university life. In my freshman year, I read "An Encouragement of Learning" written by Fukuzawa Yukichi. The book and Fukuzawa Yukichi's idea influence me deeply. I believe everyone, whoever has the desire, has the right to learn and the most powerful tool in life is the self-learning ability. Thanks to Coursera and MIT Open Course Ware, I had the opportunity to learn new knowledge that my university can not provide. I found myself with great interest in the Artificial Intelligence and Data Mining field and started to learn online courses in my leisured time. My dream is to be able to create an artificial brain that can learn and reason about real life situations. Besides learning, I am a quiet person with passion for Kendo. I enjoy practicing and thinking about Kendo almost all day because I find good qualities I wanted for myself when I do Kendo. Recently, my Kendo team was the runner-up in the 1st Morikawa Kendo Tournament in Hanoi. I also enjoy cycling and I hope one day I can cycle cross Vietnam and then cross Japan. My favorite quote is from a Disney animation film and from Walt Disney himself: "Keep moving forward".
+\end{minipage}
+
+\end{document}

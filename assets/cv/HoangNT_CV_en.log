@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.12)  11 JUL 2016 21:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.12)  12 JUL 2016 12:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -468,6 +468,10 @@ Package graphics Info: Driver file: pdftex.def on input line 94.
 \WF@everypar=\toks17
 Package: wrapfig 2003/01/31  v 3.6
 )
+
+LaTeX Warning: Unused global option(s):
+    [letter].
+
 (./HoangNT_CV_en.aux
 LaTeX Font Info:    Try loading font information for T5+cmr on input line 2.
 
@@ -559,7 +563,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 39.
 
-Overfull \hbox (33.78711pt too wide) in paragraph at lines 39--45
+Overfull \hbox (16.99998pt too wide) in paragraph at lines 39--45
 [][] 
  []
 
@@ -582,105 +586,61 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
 
-Overfull \hbox (8.02716pt too wide) in paragraph at lines 51--52
-[][] 
- []
-
-
-Overfull \hbox (8.02716pt too wide) in paragraph at lines 59--60
-[][] 
- []
-
-
-Overfull \hbox (8.02716pt too wide) in paragraph at lines 67--68
-[][] 
- []
-
-
-Overfull \hbox (23.0pt too wide) in paragraph at lines 101--102
+Overfull \hbox (23.0pt too wide) in paragraph at lines 73--74
 [][][][][][][] 
  []
 
 
-Overfull \hbox (8.02716pt too wide) in paragraph at lines 112--113
-[][] 
+Overfull \hbox (23.0pt too wide) in paragraph at lines 91--92
+[][][][][][][] 
  []
 
 
-Overfull \hbox (8.02716pt too wide) in paragraph at lines 121--122
-[][] 
- []
-
-
-Overfull \hbox (23.0pt too wide) in paragraph at lines 129--130
+Overfull \hbox (23.0pt too wide) in paragraph at lines 98--99
 [][][][][][][] 
  []
 
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (23.0pt too wide) in paragraph at lines 139--140
+Overfull \hbox (23.0pt too wide) in paragraph at lines 131--132
 [][][][][][][] 
  []
 
 
-Overfull \hbox (23.0pt too wide) in paragraph at lines 149--150
+Overfull \hbox (23.0pt too wide) in paragraph at lines 147--148
 [][][][][][][] 
  []
 
 
-Overfull \hbox (23.0pt too wide) in paragraph at lines 159--160
+Overfull \hbox (23.0pt too wide) in paragraph at lines 155--156
 [][][][][][][] 
  []
 
 
-Overfull \hbox (23.0pt too wide) in paragraph at lines 167--168
+Overfull \hbox (23.0pt too wide) in paragraph at lines 163--164
 [][][][][][][] 
- []
-
-
-LaTeX Warning: File `4x6.png' not found on input line 173.
-
-
-! Package pdftex.def Error: File `4x6.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.173 ...udegraphics[width=0.2\textwidth]{4x6.png}
-                                                  
-? R
-OK, entering \nonstopmode...
-LaTeX Font Info:    Try loading font information for T5+cmtt on input line 173.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/vntex/t5cmtt.fd
-File: t5cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-Overfull \hbox (17.0pt too wide) in paragraph at lines 169--180
-[]$[]$ 
  []
 
 [2] (./HoangNT_CV_en.aux) ) 
 Here is how much of TeX's memory you used:
- 2681 strings out of 493089
- 35913 string characters out of 6134842
- 105473 words of memory out of 5000000
- 6112 multiletter control sequences out of 15000+600000
- 14284 words of font info for 34 fonts, out of 8000000 for 9000
+ 2667 strings out of 493089
+ 35626 string characters out of 6134842
+ 105477 words of memory out of 5000000
+ 6104 multiletter control sequences out of 15000+600000
+ 13973 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,23p,1618b,298s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,7n,23p,501b,258s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/vntex
 /vnr/vnbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/vntex/vnr/vnbx1
 2.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr
 /local/texlive/2015/texmf-dist/fonts/type1/vntex/vnr/vnr8.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/vntex/vnr/vnti10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/vntex/vnr/vntt10.pfb>
-Output written on HoangNT_CV_en.pdf (2 pages, 66372 bytes).
+ve/2015/texmf-dist/fonts/type1/vntex/vnr/vnti10.pfb>
+Output written on HoangNT_CV_en.pdf (2 pages, 62634 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 35 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

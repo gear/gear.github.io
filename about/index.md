@@ -12,6 +12,4 @@ I like Japanese food, Japanese tradition, Japanese stories, Japanese people, and
      
 I enjoy proving theorems, and learning new (mostly computer related) skills.
 
-I think the most important thing in life is family and friends. 
-      
-[This blog uses Ramme Theme](https://github.com/TaylanTatli/Ramme){: .btn}
+My CV can be accessed [here](https://github.com/gear/gear.github.io/raw/master/assets/cv/HoangNT_CV.pdf)

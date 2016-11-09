@@ -1,11 +1,10 @@
 ---
 layout: page
-title: About me
-subtitle: La la la la la la la
+title: about me
+subtitle: la la la la la la la
 ---
 
-My name is Hoang NT, my friends call me "professor"... because I am (sadly) 
-the smallest guy in my gym group. These are things that I love:
+My name is Hoang NT, my friends call me "professor" because... I wear round glasses (well, it is not the reason I want, but the title I hope). These are things that I love:
 
 - Culture (esp. Japanese culture)
 - Hiking
@@ -23,6 +22,6 @@ about medical school all the time, for some
 reason, I enrolled in the physics program for gifted high school students. 
 Then later, I studied Electronics and Computer Science Engineering in college.
 Now, I am a master student at Tokyo Institute of Technology studing complex
-network and theoretical machine learning. I learn to be thankful for my journey
-until now.
+network and theoretical machine learning. I think my journey up until now seems
+quite messy, and I am trying to make it even messier.
 

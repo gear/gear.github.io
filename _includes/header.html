@@ -2,6 +2,15 @@
 
 {% if page.bigimg or page.title %}
 
+{% if include.type == "news" %}
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' href='css/reset.css'>
+  <link rel='stylesheet' href='css/style.css'>
+  <script src='js/modernizr.js'></script>
+</head>
+{% endif %}
+
 {% if page.bigimg %}
   <div id="header-big-imgs" data-num-img={% if page.bigimg.first %}{{ page.bigimg.size }}{% else %}1{% endif %}
     {% for bigimg in page.bigimg %}

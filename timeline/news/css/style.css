@@ -18,7 +18,7 @@ body {
   font-size: 100%;
   font-family: "Droid Serif", serif;
   color: #7f8c97;
-  background-color: #e9f0f5;
+  background-color: #ffffff;
 }
 
 a {
@@ -59,6 +59,7 @@ Modules - reusable parts of our design
 Main components 
 
 -------------------------------- */
+/*
 header {
   height: 200px;
   line-height: 200px;
@@ -70,6 +71,7 @@ header h1 {
   font-size: 18px;
   font-size: 1.125rem;
 }
+*/
 @media only screen and (min-width: 1170px) {
   header {
     height: 300px;

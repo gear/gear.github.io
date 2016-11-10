@@ -23,7 +23,7 @@ description: This place is where I write about my life
 
 # List of links in the navigation bar
 navbar-links:
-  News: "news"
+  News: "timeline"
   About Me: "aboutme"
   Posts:
     - Life journal: "blog"

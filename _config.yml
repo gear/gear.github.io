@@ -24,7 +24,7 @@ description: This place is where I write about my life
 # List of links in the navigation bar
 navbar-links:
   Git: "https://github.com/gear"
-  Posts: "/"
+  Posts: "http://gear.github.io"
     - Life journal: "blog"
     - Projects: "project"
     - Publication: "pubs"

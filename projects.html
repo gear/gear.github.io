@@ -6,7 +6,8 @@ subtitle: breaking things since 1993
 
 <div class="posts-list">
   {% for post in paginator.posts %}
-    {% if post-type == "project" %}
+    <p> {{post.type}} </p>
+    {% if post.type == "project" %}
       <article class="post-preview">
         <a href="{{ post.url | prepend: site.baseurl }}">
 	      <h2 class="post-title">{{ post.title }}</h2>
@@ -43,8 +44,6 @@ subtitle: breaking things since 1993
         </div>
         {% endif %}
       </article>
-    {% else $}
-      <p> Something is wrong </>
     {% endif %}
   {% endfor %}
 </div>

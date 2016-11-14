@@ -1,11 +1,12 @@
 ---
 layout: page
-title: gear's stuffs
-subtitle: I'm not a fast learner, but a deep one
+title: little pieces of knowledge
+subtitle: If you can't explain it simply, you don't understand it well enough - A.E.
 ---
 
 <div class="posts-list">
-  {% for post in paginator.posts %}
+  {% for post in site.posts %}
+  {% if post.type == "math" %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
 	  <h2 class="post-title">{{ post.title }}</h2>
@@ -43,20 +44,6 @@ subtitle: I'm not a fast learner, but a deep one
     {% endif %}
 
    </article>
+  {% endif %}
   {% endfor %}
 </div>
-
-{% if paginator.total_pages > 1 %}
-<ul class="pager main-pager">
-  {% if paginator.previous_page %}
-  <li class="previous">
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-  </li>
-  {% endif %}
-  {% if paginator.next_page %}
-  <li class="next">
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-  </li>
-  {% endif %}
-</ul>
-{% endif %}

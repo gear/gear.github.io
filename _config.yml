@@ -25,10 +25,10 @@ description: This place is where I write about my life
 navbar-links:
   Git: "https://github.com/gear"
   Posts:
-    - Life journal: "blog"
+    - Stuffs: "blog"
     - Projects: "projects"
-    - Publication: "pubs"
-    - Paper reading: "papers"
+    - Publications: "pubs"
+    - Tutorials: "tutorials"
   News: "timeline"
   About Me: "aboutme"
 

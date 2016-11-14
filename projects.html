@@ -7,7 +7,6 @@ subtitle: breaking things since 1993
 <div class="posts-list">
   {% for post in paginator.posts %}
     <p> {{post.type}} </p>
-    {% if post.type == "project" %}
       <article class="post-preview">
         <a href="{{ post.url | prepend: site.baseurl }}">
 	      <h2 class="post-title">{{ post.title }}</h2>
@@ -35,16 +34,16 @@ subtitle: breaking things since 1993
         <div class="blog-tags">
           Tags:
           {% if site.link-tags %}
-          {% for tag in post.tags %}
-          <a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
-          {% endfor %}
+            {% for tag in post.tags %}
+              <a href="{{ site.baseurl }}/tag/{{ tag }}">{{ tag }}</a>
+            {% endfor %}
           {% else %}
             {{ post.tags | join: ", " }}
           {% endif %}
         </div>
         {% endif %}
+
       </article>
-    {% endif %}
   {% endfor %}
 </div>
 

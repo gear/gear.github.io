@@ -26,7 +26,7 @@ navbar-links:
   Git: "https://github.com/gear"
   Posts:
     - Life journal: "blog"
-    - Projects: "project"
+    - Projects: "projects"
     - Publication: "pubs"
     - Paper reading: "papers"
   News: "timeline"

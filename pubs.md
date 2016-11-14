@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: my publications
 subtitle: Complex Network, Theoretical Machine Learning, Graphical Models
 ---

@@ -1,10 +1,10 @@
 ---
 layout: page
 title: about me
-subtitle: la la la la la la la
+subtitle: I am not a fast learner, but a deep one
 ---
 
-My name is Hoang NT, my friends call me "professor" because... I wear round glasses (well, it is not the reason I want, but the title I hope). These are things that I love:
+My name is Hoang NT, my friends call me "professor" because... I _look_ like one (fingers cross that I become one someday). These are things that I love:
 
 - Culture (esp. Japanese culture)
 - Hiking

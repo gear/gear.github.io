@@ -1,11 +1,10 @@
 @import url("pygment_highlights.css");
 
 /* --- Images --- */
-.half-res-img {
-  max-width:50%;
-  height: auto; 
-  margin-left: auto;
-  margin-right: auto;
+.center {
+    left: 50%;
+    margin-right: -50%:
+    transform: translate(-50%, -50%)
 }
 
 /* --- General --- */

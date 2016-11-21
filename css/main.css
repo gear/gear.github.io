@@ -1,9 +1,9 @@
 @import url("pygment_highlights.css");
 
 /* --- Images --- */
-.center {
+.center-small {
     position: relative;
-    top: 50%;
+    top: 100px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)

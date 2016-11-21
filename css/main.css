@@ -1,5 +1,13 @@
 @import url("pygment_highlights.css");
 
+/* --- Images --- */
+.half-res-img {
+  max-width:50%;
+  height: auto; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* --- General --- */
 
 body {

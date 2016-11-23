@@ -28,6 +28,7 @@ navbar-links:
     - Stuffs: "blog"
     - Projects: "projects"
     - Publications: "pubs"
+    - Coursework: "courses"
     - Tutorials: "tutorials"
   News: "timeline"
   About Me: "aboutme"

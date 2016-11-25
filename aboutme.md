@@ -4,7 +4,7 @@ title: about me
 subtitle: I am not a fast learner, but a deep one
 ---
 
-![Will you date me?]({{site.baseurl}}/img/myface.png)
+![Will you date me?]({{site.baseurl}}/img/myface.png){:width="30%"}
 
 My name is Hoang NT, my friends call me "professor" because... I _look_ like one (fingers cross that I become one someday). These are things that I love:
 
@@ -14,6 +14,8 @@ My name is Hoang NT, my friends call me "professor" because... I _look_ like one
 - Books
 - My family and friends
 - The sky (esp. in Tokyo)
+
+My CV can be found [here](http://gear.github.io/assets/cv/HoangNT_CV_new.pdf).
 
 ### my story
 

@@ -4,6 +4,8 @@ title: about me
 subtitle: I am not a fast learner, but a deep one
 ---
 
+![Will you date me?]({{site.baseurl}}/img/myface.png)
+
 My name is Hoang NT, my friends call me "professor" because... I _look_ like one (fingers cross that I become one someday). These are things that I love:
 
 - Culture (esp. Japanese culture)

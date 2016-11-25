@@ -24,7 +24,7 @@ description: My life and my understanding about the world
 # List of links in the navigation bar
 navbar-links:
   Git: "https://github.com/gear"
-  Posts:
+  Posts: "list"
     - Stuffs: "blog"
     - Projects: "projects"
     - Publications: "pubs"

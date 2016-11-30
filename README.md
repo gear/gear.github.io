@@ -11,6 +11,6 @@ My blog is based on Beautiful theme by Dean Attali.
 ## Content
 
 My blog is about my learning journey. I mostly write about theoretical computer science,
-machine learning, and graph theory. 
+machine learning, distributed algorithms, and graph theory. 
 
 **Active challenge: Write about one paper per week.**

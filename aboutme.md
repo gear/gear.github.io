@@ -27,6 +27,6 @@ Easten medical books and old physics books translated from Russian. Back in the 
 Newton and Eistein were my inspiration to study physics. During undergrad, I discovered
 the wonderful world of MIT OpenCourseWare, and my breath was taken away by lectures
 from Walter Lewin, Gilbert Strangs, and Pattrick Henry Winston. Today, I am doing my
-best to study with the hope that one day I can become a professor that can deliver
+best to study with the hope that one day I can become a professor who can deliver
 kick-ass lectures.
 

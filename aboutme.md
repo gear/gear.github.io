@@ -6,26 +6,27 @@ subtitle: I am not a fast learner, but a deep one
 
 ![Will you date me?]({{site.baseurl}}/img/myface.png){:width="20%" .center-small} 
 
-My name is Hoang NT (Nguyễn Thái Hoàng or Hoang Nguyen), my friends call me "professor" because... I _look_ like one (fingers cross that I become one someday). These are things that I love:
-
-- Culture (esp. Japanese culture)
-- Hiking
-- Theories (more like _understanding_ theories)
-- Books
-- My family and friends
-- The sky (esp. in Tokyo)
+My name is Hoang NT (Nguyễn Thái Hoàng or Hoang Nguyen), my friends call me "professor" because... I _look_ like one (I'll become one soon enough). 
 
 My CV can be found [here](http://gear.github.io/assets/cv/HoangNT_CV_new.pdf).
 
-### my story
+### blog post
+
+I write about my life and what I have learned. Posts by topics:
+
+- [Complex Networks]({{site.baseurl}}/cn/)
+- [Distributed Systems]({{site.baseurl}}/distsys/)
+- [Machine Learning]({{site.baseurl}}/ml/)
+- [Discrete Mathematics]({{site.baseurl}}/dmath/)
+
+### my short story
 
 I was born in Hanoi, Vietnam. Growing up I thought that I would become a doctor.
 Back then, due to the lack of child-friendly entertainment methods, I had to read
-Easten medical books and old physic books translated from Russian. Despite thinking
-about medical school all the time, for some 
-reason, I enrolled in the physics program for gifted high school students. 
-Then later, I studied Electronics and Computer Science Engineering in college.
-Now, I am a master student at Tokyo Institute of Technology studing complex
-network and theoretical machine learning. I think my journey up until now seems
-quite messy, and I am trying to make it even messier.
+Easten medical books and old physics books translated from Russian. Back in the days,
+Newton and Eistein were my inspiration to study physics. During undergrad, I discovered
+the wonderful world of MIT OpenCourseWare, and my breath was taken away by lectures
+from Walter Lewin, Gilbert Strangs, and Pattrick Henry Winston. Today, I am doing my
+best to study with the hope that one day I can become a professor that can deliver
+kick-ass lectures.
 

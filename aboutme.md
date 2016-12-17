@@ -9,6 +9,7 @@ subtitle: I am not a fast learner, but a deep one
 My name is Hoang NT (Nguyễn Thái Hoàng or Hoang Nguyen), my friends call me "professor" because... I _look_ like one (I'll become one soon enough). 
 
 My CV can be found [here](http://gear.github.io/assets/cv/HoangNT_CV_new.pdf).
+My course work can be found [here](http://gear.github.io/courses/).
 
 ### blog post
 

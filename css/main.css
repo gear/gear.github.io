@@ -592,7 +592,17 @@ table tr th :last-child,
 table tr td :last-child {
   margin-bottom: 0;
 }
+/* --- Pandas Dataframes --- */
+table.dataframe * {border-color: #c0c0c0 !important;}
+table.dataframe th{background: #eee;}
+table.dataframe td{text-align: right; min-width:5em;}
 
+table.dataframe-summary-row tr:last-child,
+table.dataframe-summary-col td:last-child{
+    background: #eee;
+    font-weight: 500;
+}
+/* --- Copied from HHammond - Pandas Table Summary --- */
 /* --- Code blocks --- */
 
 pre {
@@ -1015,14 +1025,3 @@ td.gutter {
   }
 }
 
-/* --- Pandas Dataframes --- */
-.dataframe * {border-color: #c0c0c0 !important;}
-.dataframe th{background: #eee;}
-.dataframe td{text-align: right; min-width:5em;}
-
-.dataframe-summary-row tr:last-child,
-.dataframe-summary-col td:last-child{
-    background: #eee;
-    font-weight: 500;
-}
-/* --- Copied from HHammond - Pandas Table Summary --- */

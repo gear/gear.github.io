@@ -45,6 +45,9 @@ subtitle: breaking things
 
    </article>
   {% endif %}
+  {% endfor %}
+     
+  {% for post in site.posts %}
   {% if post.type == "mini-project" %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">

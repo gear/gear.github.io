@@ -40,7 +40,7 @@ First, we import necessary packages:
 - `sklearn` for boston housing dataset and decision tree model.
 
 
-```python
+{% highlight python linenos %}
 # Importing a few necessary libraries
 import numpy as np
 import matplotlib.pyplot as pl
@@ -64,15 +64,15 @@ housing_prices = city_data.target
 housing_features = city_data.data
 
 print("Boston Housing dataset loaded successfully!")
-```
+{% endhighlight %}
 
     Boston Housing dataset loaded successfully!
 
 
-
-```python
+{% highlight python linenos %}
 city_data.feature_names
-```
+{% endhighlight %}
+
     array(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD',
            'TAX', 'PTRATIO', 'B', 'LSTAT'], 
           dtype='<U7')
@@ -80,7 +80,7 @@ city_data.feature_names
 I would like to see the data in a nice table format, so I load the data 
 into a `pandas.DataFrame` and printed the first five rows with `.head()`.
 
-```python
+{% highlight python linenos %}
 pdict = {'CRIM': city_data.data[:,0], 
          'ZN': city_data.data[:,1], 
          'INDUS': city_data.data[:,2], 
@@ -96,11 +96,11 @@ pdict = {'CRIM': city_data.data[:,0],
          'LSTAT': city_data.data[:,12], 
          'MEDV': city_data.target[:]}
 ptable = pd.DataFrame(pdict)
-```
+{% endhighlight %}
 
-```python
+{% highlight python linenos %}
 ptable.head()
-```
+{% endhighlight %}
 
 <div>
 <table border="1" class="dataframe">
@@ -221,7 +221,7 @@ Let's quickly investigate a few basic statistics about the dataset and
 look at the `CLIENT_FEATURES` to see how the data relates to it.
 
 
-```python
+{% highlight python linenos %}
 # Number of houses and features in the dataset
 total_houses, total_features = city_data.data.shape
 
@@ -249,7 +249,7 @@ print("Maximum house price:", maximum_price)
 print("Mean house price: {0:.3f}".format(mean_price))
 print("Median house price:", median_price)
 print("Standard deviation of house price: {0:.3f}".format(std_dev))
-```
+{% endhighlight %}
 
     Boston Housing dataset statistics (in $1000's):
     
@@ -275,10 +275,10 @@ Remember, you can **double click the text box below** to add your answer!
 *Using your client's feature set `CLIENT_FEATURES`, which values correspond with the features you've chosen above?*  
 **Hint: ** Run the code block below to see the client's data.
 
-
-```python
+{% highlight python linenos %}
 print CLIENT_FEATURES
-```
+{% endhighlight %}
+
 
 **Answer:**
 

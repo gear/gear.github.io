@@ -1,3 +1,9 @@
+---
+layout: post
+type: mini-project
+title: Mini project - Predicting Boston housing price
+subtitle: Cross validation and grid search
+---
 
 ## Dataset: Boston housing
 

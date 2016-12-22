@@ -1,10 +1,3 @@
----
-layout: post
-type: mini-project
-title: Mini project - Predicting Boston housing price
-subtitle: Decision Tree Regession model for predicting house price
----
-
 
 ## Dataset: Boston housing
 
@@ -40,7 +33,7 @@ First, we import necessary packages:
 - `sklearn` for boston housing dataset and decision tree model.
 
 
-{% highlight python linenos %}
+{% highlight python %}
 # Importing a few necessary libraries
 import numpy as np
 import matplotlib.pyplot as pl
@@ -69,18 +62,24 @@ print("Boston Housing dataset loaded successfully!")
     Boston Housing dataset loaded successfully!
 
 
-{% highlight python linenos %}
+
+{% highlight python %}
 city_data.feature_names
 {% endhighlight %}
+
+
+
 
     array(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD',
            'TAX', 'PTRATIO', 'B', 'LSTAT'], 
           dtype='<U7')
 
-I would like to see the data in a nice table format, so I load the data 
-into a `pandas.DataFrame` and printed the first five rows with `.head()`.
 
-{% highlight python linenos %}
+
+I would like to see the data in a nice table format, so I load the data into a `pandas.DataFrame` and printed the first five rows with `.head()`.
+
+
+{% highlight python %}
 pdict = {'CRIM': city_data.data[:,0], 
          'ZN': city_data.data[:,1], 
          'INDUS': city_data.data[:,2], 
@@ -98,9 +97,13 @@ pdict = {'CRIM': city_data.data[:,0],
 ptable = pd.DataFrame(pdict)
 {% endhighlight %}
 
-{% highlight python linenos %}
+
+{% highlight python %}
 ptable.head()
 {% endhighlight %}
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -217,11 +220,10 @@ ptable.head()
 
 ## Statistical Analysis and Data Exploration
 
-Let's quickly investigate a few basic statistics about the dataset and 
-look at the `CLIENT_FEATURES` to see how the data relates to it.
+Let's quickly investigate a few basic statistics about the dataset and look at the `CLIENT_FEATURES` to see how the data relates to it.
 
 
-{% highlight python linenos %}
+{% highlight python %}
 # Number of houses and features in the dataset
 total_houses, total_features = city_data.data.shape
 
@@ -262,50 +264,57 @@ print("Standard deviation of house price: {0:.3f}".format(std_dev))
     Standard deviation of house price: 9.188
 
 
-## Question 1
-As a reminder, you can view a description of the Boston Housing dataset [here](https://archive.ics.uci.edu/ml/datasets/Housing), where you can find the different features under **Attribute Information**. The `MEDV` attribute relates to the values stored in our `housing_prices` variable, so we do not consider that a feature of the data.
+By intuition, the top 3 deciding factors is crime rate (CRIM), proportion of blacks (B), and the accessibility to the highway (RAD).
 
-*Of the features available for each data point, choose three that you feel are significant and give a brief description for each of what they measure.*
+- **CRIM**: Area with low crime rate must have higher security, income, insurrance, and better life in general. Hence the price of houses must be affected by this factor.
+- **B**: Many people might think that area with many blacks will have be not so safe. Therefore the price might be higher for residence with smaller blacks porpotion. 
+- **RAD**: The accessibility to the highway might also be desirable as it is more convenient to go to work.
 
-Remember, you can **double click the text box below** to add your answer!
+Let's examine our client. There features we selected have the index `0` (CRIM), `8` (RAD), and `11` (B).
 
-**Answer: **
 
-## Question 2
-*Using your client's feature set `CLIENT_FEATURES`, which values correspond with the features you've chosen above?*  
-**Hint: ** Run the code block below to see the client's data.
-
-{% highlight python linenos %}
-print CLIENT_FEATURES
+{% highlight python %}
+print(CLIENT_FEATURES)
 {% endhighlight %}
 
-
-**Answer:**
-
-# Evaluating Model Performance
-In this second section of the project, you will begin to develop the tools necessary for a model to make a prediction. Being able to accurately evaluate each model's performance through the use of these tools helps to greatly reinforce the confidence in your predictions.
-
-## Step 2
-In the code block below, you will need to implement code so that the `shuffle_split_data` function does the following:
-- Randomly shuffle the input data `X` and target labels (housing values) `y`.
-- Split the data into training and testing subsets, holding 30% of the data for testing.
-
-If you use any functions not already acessible from the imported libraries above, remember to include your import statement below as well!   
-Ensure that you have executed the code block once you are done. You'll know the `shuffle_split_data` function is working if the statement *"Successfully shuffled and split the data!"* is printed.
+    [[11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]]
 
 
-```python
-# Put any import statements you need for this code block here
+
+{% highlight python %}
+print('Client CRIM = ' + str(CLIENT_FEATURES[0][0]))
+print('Client RAD = ' + str(CLIENT_FEATURES[0][8])) 
+print('Client B = ' + str(CLIENT_FEATURES[0][11]))
+{% endhighlight %}
+
+    Client CRIM = 11.95
+    Client RAD = 24
+    Client B = 332.09
+
+
+Our client's crime rate is quite high!
+
+## Picking evaluation method
+
+We first shuffle the data using `sklearn.utils.shuffle(*arrays, *options)`. This function will return new shuffled data and target arrays. Then we split data 70-30 to use for training and testing using `train_test_split(...)`.
+
+
+{% highlight python %}
+from sklearn.model_selection import train_test_split
+from sklearn.utils import shuffle
 
 def shuffle_split_data(X, y):
-    """ Shuffles and splits data into 70% training and 30% testing subsets,
-        then returns the training and testing subsets. """
+    """ 
+    Shuffles and splits data into 70% training and 30% testing subsets,
+    then returns the training and testing subsets. 
+    """
+    # Shuffled data
+    X_s, y_s = shuffle(X, y, random_state=0)
 
-    # Shuffle and split the data
-    X_train = None
-    y_train = None
-    X_test = None
-    y_test = None
+    # Split the data into training (70%) and testing (30%)
+    X_train, y_train, X_test, y_test = train_test_split(X_s, y_s,
+                                                        test_size=0.3,
+                                                        random_state=0)
 
     # Return the training and testing data subsets
     return X_train, y_train, X_test, y_test
@@ -313,74 +322,60 @@ def shuffle_split_data(X, y):
 
 # Test shuffle_split_data
 try:
-    X_train, y_train, X_test, y_test = shuffle_split_data(housing_features, housing_prices)
-    print "Successfully shuffled and split the data!"
+    X_train, y_train, X_test, y_test = shuffle_split_data(housing_features, 
+                                                          housing_prices)
+    print("Successfully shuffled and split the data!")
 except:
-    print "Something went wrong with shuffling and splitting the data."
-```
+    print("Something went wrong with shuffling and splitting the data.")
+{% endhighlight %}
 
-## Question 3
-*Why do we split the data into training and testing subsets for our model?*
-
-**Answer: **
-
-## Step 3
-In the code block below, you will need to implement code so that the `performance_metric` function does the following:
-- Perform a total error calculation between the true values of the `y` labels `y_true` and the predicted values of the `y` labels `y_predict`.
-
-You will need to first choose an appropriate performance metric for this problem. See [the sklearn metrics documentation](http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics) to view a list of available metric functions. **Hint: ** Look at the question below to see a list of the metrics that were covered in the supporting course for this project.
-
-Once you have determined which metric you will use, remember to include the necessary import statement as well!  
-Ensure that you have executed the code block once you are done. You'll know the `performance_metric` function is working if the statement *"Successfully performed a metric calculation!"* is printed.
+    Successfully shuffled and split the data!
 
 
-```python
-# Put any import statements you need for this code block here
+Splitting the data for training and testing allows us to evaluate our model by looking at the performance on training and testing data. The learning curves for training and testing show us if the model is underfitting (bias) or overfitting (variation).
+
+MSE or MAE are better choices for regression task. Metrics like accuracy, precision, recall, f1-score are often used for evaluating a classification problem.
+
+
+{% highlight python %}
+from sklearn.metrics import mean_absolute_error as MAE
+from sklearn.metrics import mean_squared_error as MSE
 
 def performance_metric(y_true, y_predict):
-    """ Calculates and returns the total error between true and predicted values
-        based on a performance metric chosen by the student. """
-
-    error = None
+    """ 
+    Calculates and returns the total error between true 
+    and predicted values
+    based on a performance metric chosen by the student. 
+    """
+    error = MSE(y_true, y_predict)
     return error
-
 
 # Test performance_metric
 try:
     total_error = performance_metric(y_train, y_train)
-    print "Successfully performed a metric calculation!"
+    print("Successfully performed a metric calculation!")
 except:
-    print "Something went wrong with performing a metric calculation."
-```
+    print("Something went wrong with performing a metric calculation.")
+{% endhighlight %}
 
-## Question 4
-*Which performance metric below did you find was most appropriate for predicting housing prices and analyzing the total error. Why?*
-- *Accuracy*
-- *Precision*
-- *Recall*
-- *F1 Score*
-- *Mean Squared Error (MSE)*
-- *Mean Absolute Error (MAE)*
-
-**Answer: **
-
-## Step 4 (Final Step)
-In the code block below, you will need to implement code so that the `fit_model` function does the following:
-- Create a scoring function using the same performance metric as in **Step 2**. See the [sklearn `make_scorer` documentation](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html).
-- Build a GridSearchCV object using `regressor`, `parameters`, and `scoring_function`. See the [sklearn documentation on GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html).
-
-When building the scoring function and GridSearchCV object, *be sure that you read the parameters documentation thoroughly.* It is not always the case that a default parameter for a function is the appropriate setting for the problem you are working on.
-
-Since you are using `sklearn` functions, remember to include the necessary import statements below as well!  
-Ensure that you have executed the code block once you are done. You'll know the `fit_model` function is working if the statement *"Successfully fit a model to the data!"* is printed.
+    Successfully performed a metric calculation!
 
 
-```python
-# Put any import statements you need for this code block
+As mentioned before, mean squared error (MSE) and mean absolute error (MAE) are both appropriate for predicting housing prices. MAE is robust to outlier but it is not always differentible for gradient methods. The advantage of MAE is the error output by this method is robust to outliers. However, the housing price target is the median value so it is not necessary to care much about outliers in our error function. Therefore, MAE is the most appropriate for predicting housing prices and analyzing the total error. 
 
-def fit_model(X, y):
-    """ Tunes a decision tree regressor model using GridSearchCV on the input data X 
-        and target labels y and returns this optimal model. """
+`fit_model` performs grid search cross validation and return the best estimator. [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html) is the object provided by `scikit-learn` to search for the best paratemeters using cross-validation and then return the best estimator. To use `GridSearchCV`, we need to pass the `estimator`, the dictionary containing the parameter grid `param_grid`, the [scrorer callable](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html) object `scoring`, and optionally the number of cross-validation fold `cv`.
+
+
+{% highlight python %}
+from sklearn.metrics import make_scorer
+from sklearn.model_selection import GridSearchCV
+
+def fit_model(X, y, fold=10):
+    """
+    Tunes a decision tree regressor 
+    model using GridSearchCV on the input data X 
+    and target labels y and returns this optimal model.
+    """
 
     # Create a decision tree regressor object
     regressor = DecisionTreeRegressor()
@@ -389,51 +384,51 @@ def fit_model(X, y):
     parameters = {'max_depth':(1,2,3,4,5,6,7,8,9,10)}
 
     # Make an appropriate scoring function
-    scoring_function = None
+    scoring_function = make_scorer(MSE)
 
     # Make the GridSearchCV object
-    reg = None
+    reg = GridSearchCV(regressor, parameters, 
+                       scoring_function, cv=fold)
 
-    # Fit the learner to the data to obtain the optimal model with tuned parameters
+    # Fit the learner to the data to obtain the optimal 
+    # model with tuned parameters
     reg.fit(X, y)
 
     # Return the optimal model
     return reg.best_estimator_
 
-
 # Test fit_model on entire dataset
 try:
     reg = fit_model(housing_features, housing_prices)
-    print "Successfully fit a model!"
+    print("Successfully fit a model!")
 except:
-    print "Something went wrong with fitting a model."
-```
+    print("Something went wrong with fitting a model.")
+{% endhighlight %}
 
-## Question 5
-*What is the grid search algorithm and when is it applicable?*
-
-**Answer: **
-
-## Question 6
-*What is cross-validation, and how is it performed on a model? Why would cross-validation be helpful when using grid search?*
-
-**Answer: **
-
-# Checkpoint!
-You have now successfully completed your last code implementation section. Pat yourself on the back! All of your functions written above will be executed in the remaining sections below, and questions will be asked about various results for you to analyze. To prepare the **Analysis** and **Prediction** sections, you will need to intialize the two functions below. Remember, there's no need to implement any more code, so sit back and execute the code blocks! Some code comments are provided if you find yourself interested in the functionality.
+    Successfully fit a model!
 
 
-```python
+Grid search algorithm is a brute-force hyper-parameter search for the best estimator configuration. Grid search algorithm is applicable when we need to find the best parameters for our learning model. This algorithm searches through all possible hyper-parameter configurations, evaluates the error of each configuration, then returns the best one. The exhaustive search guarantee the best model configuration is returned. However, due to the nature of a brute force algorithm, grid search might not be suitable for models with a large number of hyper-parameters or the hyper-parameters have large search spaces. 
+
+Cross-validation is a data reuse technique to maximize the usage of data for training and testing. Specifying an integer `k` in advanced, for each model, cross-validation scheme splits the given training data into k-fold, runs the training procedure k times with k-1 folds of data as training and the remaining 1 fold as testing data. The final error is then averaged for k folds. Based on this cross-validation error, we can evaluate our model for overfitting. In contrast, if we evaluate the error of our model on the training dataset, there is a high chance that the learning algorithm will overfit the data (it can just remember the exact input-output without generalizing the data). In grid search, each model's configuration might have different performance on the training dataset. Without cross-validation, the grid search algorithm might select the model configuration that best _overfits_ the data. On the other hand, with cross-validation, grid search can account for variation in the model's prediction and prevent overfitting.
+
+
+{% highlight python %}
 def learning_curves(X_train, y_train, X_test, y_test):
-    """ Calculates the performance of several models with varying sizes of training data.
-        The learning and testing error rates for each model are then plotted. """
+    """
+    Calculates the performance of several models with 
+    varying sizes of training data. The learning and testing 
+    error rates for each model are then plotted. 
+    """
     
-    print "Creating learning curve graphs for max_depths of 1, 3, 6, and 10. . ."
+    print("Creating learning curve graphs for max_depths \
+           of 1, 3, 6, and 10. . .")
     
     # Create the figure window
     fig = pl.figure(figsize=(10,8))
 
-    # We will vary the training set size so that we have 50 different sizes
+    # We will vary the training set size so that 
+    # we have 50 different sizes
     sizes = np.rint(np.linspace(1, len(X_train), 50)).astype(int)
     train_err = np.zeros(len(sizes))
     test_err = np.zeros(len(sizes))
@@ -443,17 +438,20 @@ def learning_curves(X_train, y_train, X_test, y_test):
         
         for i, s in enumerate(sizes):
             
-            # Setup a decision tree regressor so that it learns a tree with max_depth = depth
+            # Setup a decision tree regressor so that 
+            # it learns a tree with max_depth = depth
             regressor = DecisionTreeRegressor(max_depth = depth)
             
             # Fit the learner to the training data
             regressor.fit(X_train[:s], y_train[:s])
 
             # Find the performance on the training set
-            train_err[i] = performance_metric(y_train[:s], regressor.predict(X_train[:s]))
+            train_err[i] = performance_metric(y_train[:s], 
+                                              regressor.predict(X_train[:s]))
             
             # Find the performance on the testing set
-            test_err[i] = performance_metric(y_test, regressor.predict(X_test))
+            test_err[i] = performance_metric(y_test, 
+                                             regressor.predict(X_test))
 
         # Subplot the learning curve graph
         ax = fig.add_subplot(2, 2, k+1)
@@ -466,36 +464,44 @@ def learning_curves(X_train, y_train, X_test, y_test):
         ax.set_xlim([0, len(X_train)])
     
     # Visual aesthetics
-    fig.suptitle('Decision Tree Regressor Learning Performances', fontsize=18, y=1.03)
+    fig.suptitle('Decision Tree Regressor Learning Performances', 
+                 fontsize=18, y=1.03)
     fig.tight_layout()
     fig.show()
-```
+{% endhighlight %}
 
 
-```python
+{% highlight python %}
 def model_complexity(X_train, y_train, X_test, y_test):
-    """ Calculates the performance of the model as model complexity increases.
-        The learning and testing errors rates are then plotted. """
+    """ 
+    Calculates the performance of the model 
+    as model complexity increases. The learning and 
+    testing errors rates are then plotted. 
+    """
     
-    print "Creating a model complexity graph. . . "
+    print("Creating a model complexity graph. . . ")
 
-    # We will vary the max_depth of a decision tree model from 1 to 14
+    # We will vary the max_depth of a decision tree 
+    # model from 1 to 14
     max_depth = np.arange(1, 14)
     train_err = np.zeros(len(max_depth))
     test_err = np.zeros(len(max_depth))
 
     for i, d in enumerate(max_depth):
-        # Setup a Decision Tree Regressor so that it learns a tree with depth d
+        # Setup a Decision Tree Regressor so that it learns 
+        # a tree with depth d
         regressor = DecisionTreeRegressor(max_depth = d)
 
         # Fit the learner to the training data
         regressor.fit(X_train, y_train)
 
         # Find the performance on the training set
-        train_err[i] = performance_metric(y_train, regressor.predict(X_train))
+        train_err[i] = performance_metric(y_train, 
+                                          regressor.predict(X_train))
 
         # Find the performance on the testing set
-        test_err[i] = performance_metric(y_test, regressor.predict(X_test))
+        test_err[i] = performance_metric(y_test, 
+                                         regressor.predict(X_test))
 
     # Plot the model complexity graph
     pl.figure(figsize=(7, 5))
@@ -506,15 +512,61 @@ def model_complexity(X_train, y_train, X_test, y_test):
     pl.xlabel('Maximum Depth')
     pl.ylabel('Total Error')
     pl.show()
-```
+{% endhighlight %}
 
-# Analyzing Model Performance
-In this third section of the project, you'll take a look at several models' learning and testing error rates on various subsets of training data. Additionally, you'll investigate one particular algorithm with an increasing `max_depth` parameter on the full training set to observe how model complexity affects learning and testing errors. Graphing your model's performance based on varying criteria can be beneficial in the analysis process, such as visualizing behavior that may not have been apparent from the results alone.
+## Analyzing Model Performance
 
 
-```python
+{% highlight python %}
 learning_curves(X_train, y_train, X_test, y_test)
-```
+{% endhighlight %}
+
+    Creating learning curve graphs for max_depths            of 1, 3, 6, and 10. . .
+
+
+    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/utils/validation.py:395: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and will raise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+      DeprecationWarning)
+
+
+
+    ---------------------------------------------------------------------------
+
+    ValueError                                Traceback (most recent call last)
+
+    <ipython-input-26-6279604a59b5> in <module>()
+    ----> 1 learning_curves(X_train, y_train, X_test, y_test)
+    
+
+    <ipython-input-24-cedab86879a3> in learning_curves(X_train, y_train, X_test, y_test)
+         35             # Find the performance on the testing set
+         36             test_err[i] = performance_metric(y_test, 
+    ---> 37                                              regressor.predict(X_test))
+         38 
+         39         # Subplot the learning curve graph
+
+
+    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/tree/tree.py in predict(self, X, check_input)
+        402         """
+        403 
+    --> 404         X = self._validate_X_predict(X, check_input)
+        405         proba = self.tree_.predict(X)
+        406         n_samples = X.shape[0]
+
+
+    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/tree/tree.py in _validate_X_predict(self, X, check_input)
+        374                              "match the input. Model n_features is %s and "
+        375                              "input n_features is %s "
+    --> 376                              % (self.n_features_, n_features))
+        377 
+        378         return X
+
+
+    ValueError: Number of features of the model must match the input. Model n_features is 13 and input n_features is 354 
+
+
+
+    <matplotlib.figure.Figure at 0x7f646ab42320>
+
 
 ## Question 7
 *Choose one of the learning curve graphs that are created above. What is the max depth for the chosen model? As the size of the training set increases, what happens to the training error? What happens to the testing error?*
@@ -527,9 +579,9 @@ learning_curves(X_train, y_train, X_test, y_test)
 **Answer: **
 
 
-```python
+{% highlight python %}
 model_complexity(X_train, y_train, X_test, y_test)
-```
+{% endhighlight %}
 
 ## Question 9
 *From the model complexity graph above, describe the training and testing errors as the max depth increases. Based on your interpretation of the graph, which max depth results in a model that best generalizes the dataset? Why?*
@@ -546,9 +598,9 @@ In this final section of the project, you will make a prediction on the client's
 **Hint: ** Run the code block below to see the max depth produced by your optimized model.
 
 
-```python
+{% highlight python %}
 print "Final model has an optimal max_depth parameter of", reg.get_params()['max_depth']
-```
+{% endhighlight %}
 
 **Answer: **
 
@@ -558,10 +610,10 @@ print "Final model has an optimal max_depth parameter of", reg.get_params()['max
 **Hint: ** Run the code block below to have your parameter-tuned model make a prediction on the client's home.
 
 
-```python
+{% highlight python %}
 sale_price = reg.predict(CLIENT_FEATURES)
 print "Predicted value of client's home: {0:.3f}".format(sale_price[0])
-```
+{% endhighlight %}
 
 **Answer: **
 

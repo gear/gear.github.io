@@ -16,7 +16,7 @@ A description of the dataset can be found [here](https://archive.ics.uci.edu/ml/
 - RAD: Index of accessibility to radial highways.
 - TAX: Full-value property-tax rate per \$10,000.
 - PTRATIO: pupil-teacher ratio by town.
-- B: 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town.
+- B: $$1000 \times (Bk - 0.63)^2$$ where Bk is the proportion of blacks by town.
 - LSTAT: % lower status of the population.
 - MEDV: Median value of owner-occupied homes in \$1000's (usually the target).
 
@@ -33,7 +33,7 @@ First, we import necessary packages:
 - `sklearn` for boston housing dataset and decision tree model.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 # Importing a few necessary libraries
 import numpy as np
 import matplotlib.pyplot as pl
@@ -63,7 +63,7 @@ print("Boston Housing dataset loaded successfully!")
 
 
 
-{% highlight python %}
+{% highlight python linenos %}
 city_data.feature_names
 {% endhighlight %}
 
@@ -79,7 +79,7 @@ city_data.feature_names
 I would like to see the data in a nice table format, so I load the data into a `pandas.DataFrame` and printed the first five rows with `.head()`.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 pdict = {'CRIM': city_data.data[:,0], 
          'ZN': city_data.data[:,1], 
          'INDUS': city_data.data[:,2], 
@@ -98,7 +98,7 @@ ptable = pd.DataFrame(pdict)
 {% endhighlight %}
 
 
-{% highlight python %}
+{% highlight python linenos %}
 ptable.head()
 {% endhighlight %}
 
@@ -223,7 +223,7 @@ ptable.head()
 Let's quickly investigate a few basic statistics about the dataset and look at the `CLIENT_FEATURES` to see how the data relates to it.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 # Number of houses and features in the dataset
 total_houses, total_features = city_data.data.shape
 
@@ -273,7 +273,7 @@ By intuition, the top 3 deciding factors is crime rate (CRIM), proportion of bla
 Let's examine our client. There features we selected have the index `0` (CRIM), `8` (RAD), and `11` (B).
 
 
-{% highlight python %}
+{% highlight python linenos %}
 print(CLIENT_FEATURES)
 {% endhighlight %}
 
@@ -281,7 +281,7 @@ print(CLIENT_FEATURES)
 
 
 
-{% highlight python %}
+{% highlight python linenos %}
 print('Client CRIM = ' + str(CLIENT_FEATURES[0][0]))
 print('Client RAD = ' + str(CLIENT_FEATURES[0][8])) 
 print('Client B = ' + str(CLIENT_FEATURES[0][11]))
@@ -299,7 +299,7 @@ Our client's crime rate is quite high!
 We first shuffle the data using `sklearn.utils.shuffle(*arrays, *options)`. This function will return new shuffled data and target arrays. Then we split data 70-30 to use for training and testing using `train_test_split(...)`.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
@@ -337,7 +337,7 @@ Splitting the data for training and testing allows us to evaluate our model by l
 MSE or MAE are better choices for regression task. Metrics like accuracy, precision, recall, f1-score are often used for evaluating a classification problem.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 from sklearn.metrics import mean_absolute_error as MAE
 from sklearn.metrics import mean_squared_error as MSE
 
@@ -366,7 +366,7 @@ As mentioned before, mean squared error (MSE) and mean absolute error (MAE) are 
 `fit_model` performs grid search cross validation and return the best estimator. [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html) is the object provided by `scikit-learn` to search for the best paratemeters using cross-validation and then return the best estimator. To use `GridSearchCV`, we need to pass the `estimator`, the dictionary containing the parameter grid `param_grid`, the [scrorer callable](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html) object `scoring`, and optionally the number of cross-validation fold `cv`.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import GridSearchCV
 
@@ -413,7 +413,7 @@ Grid search algorithm is a brute-force hyper-parameter search for the best estim
 Cross-validation is a data reuse technique to maximize the usage of data for training and testing. Specifying an integer `k` in advanced, for each model, cross-validation scheme splits the given training data into k-fold, runs the training procedure k times with k-1 folds of data as training and the remaining 1 fold as testing data. The final error is then averaged for k folds. Based on this cross-validation error, we can evaluate our model for overfitting. In contrast, if we evaluate the error of our model on the training dataset, there is a high chance that the learning algorithm will overfit the data (it can just remember the exact input-output without generalizing the data). In grid search, each model's configuration might have different performance on the training dataset. Without cross-validation, the grid search algorithm might select the model configuration that best _overfits_ the data. On the other hand, with cross-validation, grid search can account for variation in the model's prediction and prevent overfitting.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 def learning_curves(X_train, y_train, X_test, y_test):
     """
     Calculates the performance of several models with 
@@ -471,7 +471,7 @@ def learning_curves(X_train, y_train, X_test, y_test):
 {% endhighlight %}
 
 
-{% highlight python %}
+{% highlight python linenos %}
 def model_complexity(X_train, y_train, X_test, y_test):
     """ 
     Calculates the performance of the model 
@@ -517,7 +517,7 @@ def model_complexity(X_train, y_train, X_test, y_test):
 ## Analyzing Model Performance
 
 
-{% highlight python %}
+{% highlight python linenos %}
 learning_curves(X_train, y_train, X_test, y_test)
 {% endhighlight %}
 
@@ -579,7 +579,7 @@ learning_curves(X_train, y_train, X_test, y_test)
 **Answer: **
 
 
-{% highlight python %}
+{% highlight python linenos %}
 model_complexity(X_train, y_train, X_test, y_test)
 {% endhighlight %}
 
@@ -598,7 +598,7 @@ In this final section of the project, you will make a prediction on the client's
 **Hint: ** Run the code block below to see the max depth produced by your optimized model.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 print "Final model has an optimal max_depth parameter of", reg.get_params()['max_depth']
 {% endhighlight %}
 
@@ -610,7 +610,7 @@ print "Final model has an optimal max_depth parameter of", reg.get_params()['max
 **Hint: ** Run the code block below to have your parameter-tuned model make a prediction on the client's home.
 
 
-{% highlight python %}
+{% highlight python linenos %}
 sale_price = reg.predict(CLIENT_FEATURES)
 print "Predicted value of client's home: {0:.3f}".format(sale_price[0])
 {% endhighlight %}

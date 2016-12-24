@@ -22,7 +22,7 @@ A description of the dataset can be found [here](https://archive.ics.uci.edu/ml/
 - RAD: Index of accessibility to radial highways.
 - TAX: Full-value property-tax rate per \$10,000.
 - PTRATIO: pupil-teacher ratio by town.
-- B: $$1000 \times (Bk - 0.63)^2$$ where Bk is the proportion of blacks by town.
+- B: 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town.
 - LSTAT: % lower status of the population.
 - MEDV: Median value of owner-occupied homes in \$1000's (usually the target).
 
@@ -318,7 +318,7 @@ def shuffle_split_data(X, y):
     X_s, y_s = shuffle(X, y, random_state=0)
 
     # Split the data into training (70%) and testing (30%)
-    X_train, y_train, X_test, y_test = train_test_split(X_s, y_s,
+    X_train, X_test, y_train, y_test = train_test_split(X_s, y_s,
                                                         test_size=0.3,
                                                         random_state=0)
 
@@ -333,9 +333,18 @@ try:
     print("Successfully shuffled and split the data!")
 except:
     print("Something went wrong with shuffling and splitting the data.")
+    
+print("Shape of training data: ", X_train.shape)
+print("Shape of training target: ", y_train.shape)
+print("Shape of testing data: ", X_test.shape)
+print("Shape of testing target: ", y_test.shape)
 {% endhighlight %}
 
     Successfully shuffled and split the data!
+    Shape of training data:  (354, 13)
+    Shape of training target:  (354,)
+    Shape of testing data:  (152, 13)
+    Shape of testing target:  (152,)
 
 
 Splitting the data for training and testing allows us to evaluate our model by looking at the performance on training and testing data. The learning curves for training and testing show us if the model is underfitting (bias) or overfitting (variation).
@@ -346,6 +355,9 @@ MSE or MAE are better choices for regression task. Metrics like accuracy, precis
 {% highlight python linenos %}
 from sklearn.metrics import mean_absolute_error as MAE
 from sklearn.metrics import mean_squared_error as MSE
+from sklearn.metrics import r2_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import accuracy_score
 
 def performance_metric(y_true, y_predict):
     """ 
@@ -353,7 +365,7 @@ def performance_metric(y_true, y_predict):
     and predicted values
     based on a performance metric chosen by the student. 
     """
-    error = MSE(y_true, y_predict)
+    error = MAE(y_true, y_predict)
     return error
 
 # Test performance_metric
@@ -367,16 +379,16 @@ except:
     Successfully performed a metric calculation!
 
 
-As mentioned before, mean squared error (MSE) and mean absolute error (MAE) are both appropriate for predicting housing prices. MAE is robust to outlier but it is not always differentible for gradient methods. The advantage of MAE is the error output by this method is robust to outliers. However, the housing price target is the median value so it is not necessary to care much about outliers in our error function. Therefore, MAE is the most appropriate for predicting housing prices and analyzing the total error. 
+As mentioned before, mean squared error (MSE) and mean absolute error (MAE) are both appropriate for predicting housing prices. MAE is robust to outlier but it is not always differentible for grtadient methods. In contrast, MSE is always differentible but it weights the high loss (outlier) heavily. Since Boston dataset contains many outliers, where housing price is high for some special reason, MAE is the most appropriate error evaluation.
 
-`fit_model` performs grid search cross validation and return the best estimator. [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html) is the object provided by `scikit-learn` to search for the best paratemeters using cross-validation and then return the best estimator. To use `GridSearchCV`, we need to pass the `estimator`, the dictionary containing the parameter grid `param_grid`, the [scrorer callable](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html) object `scoring`, and optionally the number of cross-validation fold `cv`.
+`fit_model` performs grid search cross validation and return the best estimator. [GridSearchCV](http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html) is the object provided by `scikit-learn` to search for the best paratemeters using cross-validation and then return the best estimator. To use `GridSearchCV`, we need to pass the `estimator`, the dictionary containing the parameter grid `param_grid`, the [scrorer callable](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html) object `scoring`, and optionally the number of cross-validation fold `cv`. Note that when we use error metrics (MAE, MSE, etc.), we need to specify `greater_is_better = False` in `make_scorer` function.
 
 
 {% highlight python linenos %}
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import GridSearchCV
 
-def fit_model(X, y, fold=10):
+def fit_model(X, y):
     """
     Tunes a decision tree regressor 
     model using GridSearchCV on the input data X 
@@ -390,11 +402,12 @@ def fit_model(X, y, fold=10):
     parameters = {'max_depth':(1,2,3,4,5,6,7,8,9,10)}
 
     # Make an appropriate scoring function
-    scoring_function = make_scorer(MSE)
+    scoring_function = make_scorer(performance_metric, 
+                                   greater_is_better=False)
 
     # Make the GridSearchCV object
     reg = GridSearchCV(regressor, parameters, 
-                       scoring_function, cv=fold)
+                       scoring_function)
 
     # Fit the learner to the data to obtain the optimal 
     # model with tuned parameters
@@ -427,8 +440,7 @@ def learning_curves(X_train, y_train, X_test, y_test):
     error rates for each model are then plotted. 
     """
     
-    print("Creating learning curve graphs for max_depths \
-           of 1, 3, 6, and 10. . .")
+    print("Creating learning curve graphs for max_depths of 1, 3, 6, and 10. . .")
     
     # Create the figure window
     fig = pl.figure(figsize=(10,8))
@@ -473,7 +485,7 @@ def learning_curves(X_train, y_train, X_test, y_test):
     fig.suptitle('Decision Tree Regressor Learning Performances', 
                  fontsize=18, y=1.03)
     fig.tight_layout()
-    fig.show()
+    pl.show()
 {% endhighlight %}
 
 
@@ -527,103 +539,61 @@ def model_complexity(X_train, y_train, X_test, y_test):
 learning_curves(X_train, y_train, X_test, y_test)
 {% endhighlight %}
 
-    Creating learning curve graphs for max_depths            of 1, 3, 6, and 10. . .
-
-
-    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/utils/validation.py:395: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and will raise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
+    Creating learning curve graphs for max_depths of 1, 3, 6, and 10. . .
 
 
 
-    ---------------------------------------------------------------------------
-
-    ValueError                                Traceback (most recent call last)
-
-    <ipython-input-26-6279604a59b5> in <module>()
-    ----> 1 learning_curves(X_train, y_train, X_test, y_test)
-    
-
-    <ipython-input-24-cedab86879a3> in learning_curves(X_train, y_train, X_test, y_test)
-         35             # Find the performance on the testing set
-         36             test_err[i] = performance_metric(y_test, 
-    ---> 37                                              regressor.predict(X_test))
-         38 
-         39         # Subplot the learning curve graph
+![png]({{site.baseurl}}/img/boston_housing_29_1.png)
 
 
-    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/tree/tree.py in predict(self, X, check_input)
-        402         """
-        403 
-    --> 404         X = self._validate_X_predict(X, check_input)
-        405         proba = self.tree_.predict(X)
-        406         n_samples = X.shape[0]
+The `learning_curves` function trains the input data with 4 different max-depth values and then plot the learning curves as above. The `DecisionTreeRegressor` models are trained on the training dataset with increasing data size (50 models in total). The error of prediction is then measured on the training data used (green line) and the testing data (blue line).
 
-
-    /home/hoangnt/anaconda3/envs/mlnano/lib/python3.5/site-packages/sklearn/tree/tree.py in _validate_X_predict(self, X, check_input)
-        374                              "match the input. Model n_features is %s and "
-        375                              "input n_features is %s "
-    --> 376                              % (self.n_features_, n_features))
-        377 
-        378         return X
-
-
-    ValueError: Number of features of the model must match the input. Model n_features is 13 and input n_features is 354 
-
-
-
-    <matplotlib.figure.Figure at 0x7f646ab42320>
-
-
-## Question 7
-*Choose one of the learning curve graphs that are created above. What is the max depth for the chosen model? As the size of the training set increases, what happens to the training error? What happens to the testing error?*
-
-**Answer: **
-
-## Question 8
-*Look at the learning curve graphs for the model with a max depth of 1 and a max depth of 10. When the model is using the full training set, does it suffer from high bias or high variance when the max depth is 1? What about when the max depth is 10?*
-
-**Answer: **
+`max_depth = 6` curve shows large variation as we increase the training data size. Throughout the training processes, the training error was small and it increased a little as the training size increased. At the same time, we can see the testing error had an overall downward trend, but no clear sign of convergence. Besides, the testing error has a large variation while the testing error is small hints that our model might overfit the training data.
 
 
 {% highlight python linenos %}
 model_complexity(X_train, y_train, X_test, y_test)
 {% endhighlight %}
 
-## Question 9
-*From the model complexity graph above, describe the training and testing errors as the max depth increases. Based on your interpretation of the graph, which max depth results in a model that best generalizes the dataset? Why?*
+    Creating a model complexity graph. . . 
 
-**Answer: **
 
-# Model Prediction
-In this final section of the project, you will make a prediction on the client's feature set using an optimized model from `fit_model`. When applying grid search along with cross-validation to optimize your model, it would typically be performed and validated on a training set and subsequently evaluated on a **dedicated test set**. In this project, the optimization below is performed on the *entire dataset* (as opposed to the training set you made above) due to the many outliers in the data. Using the entire dataset for training provides for a less volatile prediction at the expense of not testing your model's performance. 
 
-*To answer the following questions, it is recommended that you run the code blocks several times and use the median or mean value of the results.*
+![png]({{site.baseurl}}/img/boston_housing_32_1.png)
 
-## Question 10
-*Using grid search on the entire dataset, what is the optimal `max_depth` parameter for your model? How does this result compare to your intial intuition?*  
-**Hint: ** Run the code block below to see the max depth produced by your optimized model.
+
+The figure above shows the model compexity curve. The function `model_complexity` trains each learning models using the whole training data and then computes the error rate on training and testing error. When the `max_depth` is 1, both testing and training error is high. In this case, the model could not generalize the data well, lead to high bias. On the other hand, when `max_depth` is 10, we have a small training error, but large testing error. The model might overfitted the training data, hence high variance.
+
+Based on the model complexity curve, we can say the best `max_depth` value is probably within the range 4 to 8. Any value lower than 4 leads to high bias, while values larger than 8 lead to high variance.
+
+## Model Prediction
+
+In the previous code block, we have defined the function `fit_model` in which the `max_depth` is selected by `GridSearchCV`. As expected from observing the model compexity curve above, this function yields `max_depth` of 5 in MAE and MSE error metrics.
 
 
 {% highlight python linenos %}
-print "Final model has an optimal max_depth parameter of", reg.get_params()['max_depth']
+max_depths = []
+for _ in range(100):
+    reg = fit_model(housing_features, housing_prices)
+    max_depths.append(reg.get_params()['max_depth'])
+print("GridSearchCV max_depth result for DecisionTreeRegression model: ")
+print("Median:", np.median(max_depths))
+print("Mean:", np.mean(max_depths), ", Standard deviation:", np.std(max_depths))
 {% endhighlight %}
 
-**Answer: **
+    GridSearchCV max_depth result for DecisionTreeRegression model: 
+    Median: 5.0
+    Mean: 5.06 , Standard deviation: 1.1297787394
 
-## Question 11
-*With your parameter-tuned model, what is the best selling price for your client's home? How does this selling price compare to the basic statistics you calculated on the dataset?*  
 
-**Hint: ** Run the code block below to have your parameter-tuned model make a prediction on the client's home.
+The code block below gives the prediction for our client:
 
 
 {% highlight python linenos %}
 sale_price = reg.predict(CLIENT_FEATURES)
-print "Predicted value of client's home: {0:.3f}".format(sale_price[0])
+print("Predicted value of client's home: {0:.3f}".format(sale_price[0]))
 {% endhighlight %}
 
-**Answer: **
+    Predicted value of client's home: 20.766
 
-## Question 12 (Final Question):
-*In a few sentences, discuss whether you would use this model or not to predict the selling price of future clients' homes in the Greater Boston area.*
-
-**Answer: **
+Compared to the basic statistic, our client's home value is well below the mean and the median, but it is within the standard deriviation. Based on the learning and testing curves above, we can see that this model is about \$3,000 off in prediction on average. Compared to the \$20,000 price range, model is quite accurate. However, in order to put this model into real use, the human prediction error should be compared with this model. If this model perform better or similar to human error, I will definitely use this model as the tool for clients. Otherwise, this model can only serve as an reference point estimation for human evaluation. Personally I doubt human prediction and believes in statistics more. As mentioned in the book "Thinking fast and slow" by Daniel Kahneman, human judgements are biased.

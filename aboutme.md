@@ -16,9 +16,9 @@ My course work can be found [here](http://gear.github.io/courses/).
 I write about my life and what I have learned. Posts by topics:
 
 - [Complex Networks]({{site.baseurl}}/cn/)
-- [Distributed Systems]({{site.baseurl}}/distsys/)
 - [Machine Learning]({{site.baseurl}}/ml/)
 - [Discrete Mathematics]({{site.baseurl}}/dmath/)
+- [Distributed Systems]({{site.baseurl}}/distsys/)
 
 ### my short story
 

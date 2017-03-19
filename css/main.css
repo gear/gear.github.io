@@ -5,6 +5,13 @@
   display: block;
   margin: auto;
 }
+.img-circle {
+  border-radius: 40%;
+}
+.img-logo {
+  height: 16px;
+  margin-right: 5px;
+}
 
 /* --- General --- */
 

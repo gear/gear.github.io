@@ -7,10 +7,10 @@ subtitle: I am not a fast learner, but a deep one
 <img class="img-circle" width="20%" hspace="25" style="float: left;" src="http://gear.github.io/img/myface.png">
 
 ## Hoang Nguyen
-<img class="img-logo" src="http://gear.github.io/img/github.png"> [gear on Github](https://github.com/gear)
 Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac.jp/english/)  
 [Complex Network Research Group](https://net-titech.github.io)  
-:`[Complex Network|Machine Learning|Submodularity]` 
+:`[Complex Network|Machine Learning|Submodularity]`   
+<img class="img-logo" src="http://gear.github.io/img/github.png"> [Github: @gear](https://github.com/gear)  
 
 ### education
 - _Master of Engineering_ (MEng) - `2015-2017`.  

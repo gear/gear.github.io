@@ -7,6 +7,7 @@ subtitle: I am not a fast learner, but a deep one
 <img class="img-circle" width="20%" hspace="25" style="float: left;" src="http://gear.github.io/img/myface.png">
 
 ## Hoang Nguyen
+<img class="img-logo" src="http://gear.github.io/img/github.png"> [gear on Github](https://github.com/gear)
 Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac.jp/english/)  
 [Complex Network Research Group](https://net-titech.github.io)  
 :`[Complex Network|Machine Learning|Submodularity]` 
@@ -20,9 +21,20 @@ Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac
 **High School for Gifted Student - Hanoi National University of Education**
 
 ### projects
-<img class="img-logo" src="http://gear.github.io/img/github.png"> [gear on Github](https://github.com/gear)
-
 - _MANE_: Motif-Aware Network Embedding.
+- _CREST-Deep_: Compressing deep neural network by complex network analysis.
+- _2x2MESH-NOC_: Implementation of a 2-by-2 Network On Chip using FPGA technology.
+- _SDC_: Udacity's self-driving car project.
+- _INFECTION_: Augmented reality game with a ball and a projector.
+- _TRAFIC-CLASS_: Classifying trafic with OpenCV2.
+
+### course works
+See [here](http://gear.github.io/courses/).
+
+### awards
+- _MEXT Scholarship_ - `2015`.
+Awarded by the Japanese Ministry of Education, Culture, Sports, Science and Technology for 
+Master studies at Tokyo Institute of Technology.
 
 ### my short story
 

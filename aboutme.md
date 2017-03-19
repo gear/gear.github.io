@@ -4,7 +4,7 @@ title: about me
 subtitle: I am not a fast learner, but a deep one
 ---
 
-<img style="float: right;" src="http://gear.github.io/img/myface.png">
+<img width="20%" style="float: right;" src="http://gear.github.io/img/myface.png">
 
 Tokyo Institute of Technology
 

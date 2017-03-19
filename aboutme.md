@@ -4,8 +4,8 @@ title: about me
 subtitle: I am not a fast learner, but a deep one
 ---
 
-:------------------------------------------------------------------:|:---------------------------------:
-![Will you date me?]({{site.baseurl}}/img/myface.png){:width="20%"} |  Tokyo Insitute of Technology
+:--------------------------------------------------:|:--------------------------------------------------:
+![Will you date me?]({{site.baseurl}}/img/myface.png){:width="20%" .center-small} |  Tokyo Insitute of Technology
 
 
 My name is Hoang NT (Nguyễn Thái Hoàng or Hoang Nguyen), I am a researcher in the field of complex network and machine learning. 

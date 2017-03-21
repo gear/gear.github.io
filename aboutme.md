@@ -21,9 +21,17 @@ Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac
 **High School for Gifted Student - Hanoi National University of Education**
 
 ### projects
-- _MANE_: Motif-Aware Network Embedding.
-- _CREST-Deep_: Compressing deep neural network by complex network analysis.
-- _2x2MESH-NOC_: Implementation of a 2-by-2 Network On Chip using FPGA technology.
+- **MANE**: Motif-Aware Network Embedding. The real world complex networks often have recurring
+patterns known as network motifs. By taking the most significant (measured z-score) motif as
+a guiding pattern in a network algorithm, we improved the accuracy of various machine learning
+algorithms in complex networks.   
+*Hoang Nguyen, Tsuyoshi Murata*. [Motif-Aware Network Embedding](https://rawgit.com/gear/motifwalk/master/research/paper/IJCAI/ijcai17.pdf). _Submitted to IJCAI'17_.
+- **CREST-Deep**: Compressing deep neural network by complex network analysis. This project is funded by JST.
+- **2x2MESH-NOC**: Implementation of a 2-by-2 Network On Chip using FPGA technology. We implemented a fully
+functional 2x2-Mesh Network-on-Chip prototype with 4 processing units (PU) connected by 4 network interface units (NI)
+and 4 network routers.  
+*Hoang Nguyen, Hai Nguyen, Truong Nguyen, Nam Pham-Ngoc*. Network on Chip. Jun 2014. _Undergraduate Thesis - Hanoi University of Science and Technology_. (In Vietnamese, available upon request)
+*Cuong Nguyen, Hoang Nguyen*. Design and evaluation of a pipelined network interface for network on chip applications. August 2014. _Vietnam Telecommunication Journal_. (In Vietnamese, the english draft is available [here]()) 
 - _SDC_: Udacity's self-driving car project.
 - _INFECTION_: Augmented reality game with a ball and a projector.
 - _TRAFIC-CLASS_: Classifying trafic with OpenCV2.

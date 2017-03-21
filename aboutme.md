@@ -31,7 +31,7 @@ algorithms in complex networks.
 functional 2x2-Mesh Network-on-Chip prototype with 4 processing units (PU) connected by 4 network interface units (NI)
 and 4 network routers.  
 <i class="fa fa-file-text"></i> *Hoang Nguyen, Hai Nguyen, Truong Nguyen, Nam Pham-Ngoc*. Network on Chip. Jun 2014. _Undergraduate Thesis - Hanoi University of Science and Technology_. (In Vietnamese, available upon request)   
-<i class="fa fa-file-text"></i> *Cuong Nguyen, Hoang Nguyen*. Design and evaluation of a pipelined network interface for network on chip applications. August 2014. _Vietnam Telecommunication Journal_. (In Vietnamese, the english draft is available [here](https://www.dropbox.com/s/qzftx8ee98ibkiu/atc14_en.pdf?dl=0)) 
+<i class="fa fa-file-text"></i> *Cuong Nguyen, Hoang Nguyen, Nam Pham-Ngoc*. Design and evaluation of a pipelined network interface for network on chip applications. _Vietnam Telecommunication Journal_. October 2014. (In Vietnamese, the english draft is available [here](https://www.dropbox.com/s/qzftx8ee98ibkiu/atc14_en.pdf?dl=0)) 
 - **SDC**: Udacity's self-driving car project.
 - **INFECTION**: Augmented reality game with a ball and a projector.
 - **TRAFIC-CLASS**: Classifying trafic with OpenCV2.

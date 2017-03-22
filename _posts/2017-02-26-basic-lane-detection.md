@@ -5,6 +5,8 @@ title: Finding Lane Lines on the Road
 subtitle: Getting started with OpenCV
 ---
 
+<i class="fa fa-github"></i> [p1-lanelines on Github](https://github.com/gear/CarND/tree/master/lanelines-p1)
+
 ---
 ## OpenCV Toolbox
 
@@ -117,18 +119,43 @@ lane lines detection on static image is shown below.
 The pipeline showed in the previous session performs well on test
 images and videos. However, with the challenge video, it failed to
 detect the lane lines for some brief moments when the lighting varies.
-Furthermore, in all videos, the lane lines drawn   
+Furthermore, in all videos, the lane lines between frame doesn't have
+smooth transitions. To address this problem, we have several approaches:
 
-###2. Identify potential shortcomings with your current pipeline
+1. Limit the movement of lines between frames. We specify a limit
+$\alpha$ for the displacement of two lines between adjacent frames. The
+next frame's line is computed as: $x_t = x_{t-1} + \min{(\alpha, x_t -
+x_{t-1})}$
+2. Store previous lines in a fixed-size buffer, add new line to the
+buffer for every frame. The output is the weighted average of all the
+lines in the buffer.
+3. Similar to the second approach, but instead of storing line points,
+we store the lines' co-linear vectors. The next line's co-linear vector
+is the weighted average of the vectors stored in the buffer.
 
+The videos result for each of the approach will be updated soon. TODO:
+Upload videos.
 
-One potential shortcoming would be what would happen when ...
+We have some minor bugs during the implementation of of the buffered
+pipeline. Firstly, when the buffer is empty, the pipeline should not
+draw the line. In one of our implementation, a default line is drawn
+when the buffer is empty, this design decision makes it hard to debug
+the program. Secondly, when no line is detected from the frame, the
+algorithm should still return a line from the buffer. However, if there
+are many "no line" frames, there is a chance that there isn't any lane
+lines on the road. Our current buffer implementation hasn't taken care
+of this situation.
 
-Another shortcoming could be ...
+### Unnecessary operations
 
+For the current testing data (images and videos), extracting the region
+of interest and lane line colors is enough for line detection.
 
-###3. Suggest possible improvements to your pipeline
+![Result on image]({{site.baseurl}}/img/only_color.png){:width="70%" .center-small}
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+As the picture above has shown, only yellow (left) and white (right)
+color filter is enough to give us a substantially clear image of lane
+lines. This output here can be put directly to the Hough Line detection
+(without masking with the original image or Canny edge detection) to
+obtain the lane lines. At this stage, we don't know if performing Canny
+edge detection is necessary (i.e. makes the pipeline more robust).

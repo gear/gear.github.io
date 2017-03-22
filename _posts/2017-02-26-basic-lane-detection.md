@@ -53,7 +53,7 @@ area in front of a car. The following list describes our pipeline:
 
 ## Reflection
 
-### Color space
+### Color space and region of interest
 
 The first pipeline we came up with in this project simply converts the
 input to gray scale, detect edges by Canny algorithm, and then draw all
@@ -65,9 +65,59 @@ the road can potentially disturb the pipeline's robustness.
 
 The unused information in our first pipeline is: 1. The region of
 interest, and 2. The color of the lane lines. By extracting the region
-of interest, we eliminate unnecessary computation.
+of interest, we eliminate unnecessary computation:
 
-![OpenCV Image]({{site.baseurl}}/img/focus_region.png){:width="50%" .center-small}
+![Focus region]({{site.baseurl}}/img/focus_region.png){:width="70%" .center-small}
+
+In addition to extracting the region of interest, we also filtered out
+unwanted colors. By default, the image output of `cv2.imread` is a GBR
+image. This color representation makes it hard to filter a certain
+color since all three values (G,B,R) of a pixel represents color.
+Therefore, we convert the image to HSV color space
+(Hue, Saturation, Value). In HSV images, a pixel contains the color
+(hue), the "amount" of that color (saturation), and its brightness
+(value). This color representation enable us to specify the colors we
+want to extract. To exact colors, the rule of thumb is to range
+&plusmn;10 in the hue value as following:
+
+```python
+hue_range = 10  # Increase for wider color selection
+# rgb_color is the (R,G,B) tuple value of the color we want to filter
+pixel = np.uint8([[rgb_color]])  # One pixel image
+hsv_pixel = cv2.cvtColor(pixel, cv2.COLOR_RGB2HSV)  # Convert to HSV
+hue = hsv_pixel[0,0,0]  # Get the hue value of the input (R,G,B)
+lowb = np.array((hue-hue_range, 100, 100), dtype=np.uint8)
+upb = np.array((hue+hue_range, 255, 255), dtype=np.uint8)
+return lowb, upb  # Lower and upper bound for color filtering
+```
+
+To exact black or white color, the code is different since it depends
+on the saturation and value rather than the hue.
+
+```python
+sensitivity = 30
+lowwhite = np.array((0,0,255-sensitivity), dtype=np.uint8)
+upwhite = np.array((255,sensitivity,255), dtype=np.uint8)
+return lowwhite, upwhite  # Lower and upper bound for color filtering
+```
+
+After selecting only the region of interest and the colors, we have
+the following result:
+
+![Focus region]({{site.baseurl}}/img/filtered_roi.png){:width="70%" .center-small}
+
+The image above is a binary image which can be used as a mask to
+extract the lane lines from the original image. The example of our
+lane lines detection on static image is shown below.
+
+![Result on image]({{site.baseurl}}/img/result_lanelines.png){:width="70%" .center-small}
+
+###  Buffered pipeline
+
+The pipeline showed in the previous session performs well on test
+images and videos. However, with the challenge video, it failed to
+detect the lane lines for some brief moments when the lighting varies.
+Furthermore, in all videos, the lane lines drawn   
 
 ###2. Identify potential shortcomings with your current pipeline
 

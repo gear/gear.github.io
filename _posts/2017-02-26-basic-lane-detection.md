@@ -151,7 +151,7 @@ of this situation.
 For the current testing data (images and videos), extracting the region
 of interest and lane line colors is enough for line detection.
 
-![Result on image]({{site.baseurl}}/img/only_color.png){:width="70%" .center-small}
+![Result on image]({{site.baseurl}}/img/only_color.png)
 
 As the picture above has shown, only yellow (left) and white (right)
 color filter is enough to give us a substantially clear image of lane

@@ -5,6 +5,20 @@
   display: block;
   margin: auto;
 }
+.img-circle {
+  border-radius: 40%;
+  margin-top: 5px;
+}
+.img-logo {
+  height: 16px;
+  margin-right: 5px;
+}
+
+/* --- No space paragraph --- */
+.sp {
+  line-height: 1.25;
+  margin: 0px 0;
+}
 
 /* --- General --- */
 
@@ -19,7 +33,7 @@ body {
 }
 p {
   line-height: 1.5;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 p a {
   /* text-decoration: underline */

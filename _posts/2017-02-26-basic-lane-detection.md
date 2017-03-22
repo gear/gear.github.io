@@ -11,7 +11,7 @@ OpenCV is an image processing toolbox originally developed in C++.
 In Python, an OpenCV image is a `numpy` array (2D or 3D depending
 on the type of image).  
 
-[OpenCV Image]({site.baseurl}/img/image_coo.png)
+![OpenCV Image]({{site.baseurl}}/img/image_coo.png)
 
 
 ##Writeup Template

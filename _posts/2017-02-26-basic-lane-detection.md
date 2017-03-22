@@ -123,9 +123,9 @@ Furthermore, in all videos, the lane lines between frame doesn't have
 smooth transitions. To address this problem, we have several approaches:
 
 1. Limit the movement of lines between frames. We specify a limit
-$\alpha$ for the displacement of two lines between adjacent frames. The
-next frame's line is computed as: $x_t = x_{t-1} + \min{(\alpha, x_t -
-x_{t-1})}$
+$$\alpha$$ for the displacement of two lines between adjacent frames. The
+next frame's line is computed as: $$x_t = x_{t-1} + \min{(\alpha, x_t -
+x_{t-1})}$$
 2. Store previous lines in a fixed-size buffer, add new line to the
 buffer for every frame. The output is the weighted average of all the
 lines in the buffer.

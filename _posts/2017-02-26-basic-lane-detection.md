@@ -158,4 +158,6 @@ color filter is enough to give us a substantially clear image of lane
 lines. This output here can be put directly to the Hough Line detection
 (without masking with the original image or Canny edge detection) to
 obtain the lane lines. At this stage, we don't know if performing Canny
-edge detection is necessary (i.e. makes the pipeline more robust).
+edge detection is necessary (i.e. makes the pipeline more robust)  :confused:.
+
+Thanks for reading! :sunny:

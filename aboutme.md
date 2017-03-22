@@ -14,7 +14,7 @@ Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac
 
 ### <i class="fa fa-graduation-cap"></i> education
 - _Master of Engineering_ (MEng) - `2015-2017`.  
-**Tokyo Institute of Technology**. Grade: 2.92/3.00 (Japanese system)
+**Tokyo Institute of Technology**. Grade: 3.00/3.00 ([Japanese system](https://en.wikipedia.org/wiki/Academic_grading_in_Japan))
 - _Bachelor of Engineering_ (BEng) - `2009-2014`.  
 **Hanoi University of Science and Technology**. Grade: 3.21/4.00 (Top 10%)
 - _High School Diploma_ - `2006-2009`.  

@@ -130,7 +130,8 @@ DEPENDENCIES
   execjs
   github-pages
   jekyll-paginate
+  jemoji
   therubyracer
 
 BUNDLED WITH
-   1.12.5
+   1.14.6

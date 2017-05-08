@@ -22,7 +22,7 @@ something new. For GPU (Cuda) programming, it helps a lot when I finally
 see the connection between programming abstraction (grid, block, threads) and
 hardware abstraction (streaming multiprocessor, streaming processor).
 
-![GPU Software vs Hardware]({{site.baseurl}}/img/gpu-software-hardware.svg)
+![GPU Software vs Hardware]({{site.baseurl}}/img/gpu-software-hardware.png)
 
 ### Thinking the programmer's way
 
@@ -35,7 +35,7 @@ To put it simply, __block__ can be think of as a computing unit.
 Your GPU program (or function, or __kernel__) is executed by threads in a
 __block__.
 
-![GPU grids and blocks]({{site.baseurl}}/img/gpu-grid-block.svg)
+![GPU grids and blocks]({{site.baseurl}}/img/gpu-grid-block.png)
 
 The diagram above depicts the hierarchy of computation in a GPU. Although block
 is an intermediate concept ("smaller" than grid, "bigger" than warp), I think
@@ -50,7 +50,7 @@ _device code_. The execution of _device code_ is called __kernel launch__,
 where a kernel is a "small" function that can be mapped onto the GPU and
 executed in parallel.
 
-![GPU program anatomy]({{site.baseurl}}/img/gpu-prog-anatomy.svg)
+![GPU program anatomy]({{site.baseurl}}/img/gpu-prog-anatomy.png)
 
 A basic kernel in CUDA starts with the keyword `__global__`, meaning the
 function is available for both host and device.

@@ -110,6 +110,12 @@ cudaAddVectors<<<gridSize, blockSize>>>(a_mem, b_mem, c_mem);
  */
 ```
 
+_Note_: The parameter of kernel launch will be addressed in later post. For now,
+we only need to know the first 2 specify number of blocks (gridSize) and number
+of threads per block (blockSize). The other two parameters specify the size of
+shared memory per block and the associated stream. More detail can be found in
+the CUDA [documentation](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#execution-configuration).
+
 In summary, we have a few keywords in this section:
 - `block`: The basic computing unit containing threads that execute `kernels`.
 - `kernel`: The function that will be run in parallel on GPU.

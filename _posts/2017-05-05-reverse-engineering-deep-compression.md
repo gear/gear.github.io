@@ -31,7 +31,7 @@ values (no compressing for bias), `spm_stream` contains the integer encoding
 for each non-zero elements in the weight matrix, and `ind_stream` contains the
 index for each non-zero elements.
 
-![Binary file]({{site.baseurl}}/img/han_compressed_structure.png){: width="60%" .center-small}
+![Binary file]({{site.baseurl}}/img/han_compressed_structure.png)
 
 In the figure above, each part name is given corresponding to the naming in
 the provided `decode.py` file. Below the name is the size of the array (we will

@@ -152,7 +152,8 @@ multiple running streams of zeros.
 ## Discussion
 
 Taking a look at the weight value distribution of each layers gives some insight
-about the design decision for the compressed file.
+about the design decision for the compressed file. (For more layer encoding and
+clustering: [weight-clustering-notebook](https://github.com/net-titech/CREST-Deep-M/blob/master/notebooks/weight-clustering.ipynb))
 
 ![Violin]({{site.baseurl}}/img/alexnet-weights-violin-plot.bin)
 

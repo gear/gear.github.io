@@ -184,7 +184,7 @@ I find studying an example Makefile is the best way to learn compilation for a
 new framework.
 
 ```make
-# Link all runtime (rt) libraries
+# Link all runtime (rt) libraries (cudart)
 LD_FLAGS = -lrt
 # CUDA code generation floags
 GENCODE_FLAGS := -gencode arch=compute_20,code=sm20 # Compute capacity 2.0

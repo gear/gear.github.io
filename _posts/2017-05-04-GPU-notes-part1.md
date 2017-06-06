@@ -11,7 +11,7 @@ It is always exciting to start programming, whether it is a new language or a
 whole new scheme. This post is my mental image of (Nvidia) GPU programming; it
 belongs to my series of GPU Programming Notes:
 1. Part 1: Nvidia GPU programming mental image. (this post)
-2. [Part 2: Kernels and Shared Memory.]({{site.baseurl}}) (coming soon)
+2. [Part 2: Shared Memory and popular algorithms.]({{site.baseurl}}) (coming soon)
 3. [Part 3: 2d convolutional neural network.]({{site.baseurl}}) (coming soon)
 4. Coming later.
 
@@ -168,7 +168,8 @@ we think in software abstraction). It is very much like RAM in normal computer.
 This memory is the slowest memory in a GPU.
 
 Faster memory compared to global memory is Cache (L1 and L2), shared memory,
-local memory, and register. Register is extremely fast (few nanosecond access time). 32 or 64 32-bit registers are available to a thread. L1 and shared memory
+local memory, and register. Register is extremely fast (few nanosecond access time).
+32 or 64 32-bit registers are available to a thread. L1 and shared memory
 are built with the same hardware. Their sizes are configurable. In GTX 1080 Ti,
 shared memory has maximum size of 96KB. Shared memory management is one of the
 optimization methods. Local memory is extra storage for registers, L2 is
@@ -244,3 +245,5 @@ Elements.
 ### 1D Convolution
 
 Sounds.
+
+## References

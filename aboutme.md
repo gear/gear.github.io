@@ -7,10 +7,10 @@ subtitle: I am not a fast learner, but a deep one
 <img class="img-circle" width="20%" hspace="25" style="float: left;" src="http://gear.github.io/img/myface.png">
 
 ## Hoang Nguyen
-Master student (2nd year) @ [Tokyo Institute of Technology](http://www.titech.ac.jp/english/)  
-[Complex Network Research Group](https://net-titech.github.io)  
-:`[Complex Network|Machine Learning|Submodularity]`   
-<i class="fa fa-github"></i> [Github: @gear](https://github.com/gear)  
+Machine Learning Engineer @ [WebSoSanh](https://websosanh.vn/)
+:`[Representation Learning|Entity Disambiguiation]`   
+<i class="fa fa-github"></i> [Github: @gear](https://github.com/gear)
+<i class="fa fa-linkedin"></i> [LinkedIn: /hoang-nt](https://linkedin.com/in/hoang-nt)  
 
 ### <i class="fa fa-graduation-cap"></i> education
 - _Master of Engineering_ (MEng) - `2015-2017`.  
@@ -43,15 +43,3 @@ See [here](http://gear.github.io/courses/).
 - _MEXT Scholarship_ - `2015`.
 Awarded by the Japanese Ministry of Education, Culture, Sports, Science and Technology for 
 Master studies at Tokyo Institute of Technology.
-
-### my short story
-
-My name is Hoang NT (Nguyễn Thái Hoàng or Hoang Nguyen), I am a researcher in the field 
-of complex network and machine learning.  I was born in Hanoi, Vietnam. Growing up I 
-thought that I would become a doctor. Back then, due to the lack of child-friendly 
-entertainment methods, I had to read Easten medical books and old physics books translated 
-from Russian. Back in the days, Newton and Einstein were my inspiration to study physics. 
-During undergrad, I discovered the wonderful world of MIT OpenCourseWare, and my breath 
-was taken away by lectures from Walter Lewin, Gilbert Strangs, and Pattrick Henry Winston. 
-Today, I am doing my best to study with the hope that one day I can become a professor 
-who can deliver kick-ass lectures.

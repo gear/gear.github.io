@@ -13,6 +13,9 @@
   height: 16px;
   margin-right: 5px;
 }
+.img-right {
+  float: right;
+}
 
 /* --- No space paragraph --- */
 .sp {

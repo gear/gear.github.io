@@ -1,18 +1,22 @@
 ---
 layout: post
 type: math
-title: Empirical Risk Minimization
+title: Convex Optimization
 subtitle: Some intuitions and problems
 ---
 
-I remember the confusion I had when professor [Osamu Watanabe](http://www.is.titech.ac.jp/~watanabe/)
-first gave me the [Occam's razor problem](https://cdn.rawgit.com/gear/Assignments/master/fmcs_a1.pdf). 
-With that confusion, I start to love the exciting world of theoretical machine learning. This post is 
-about ERM scheme and some proofs around it. This post is my understanding of the second chapter
-in the book **Under standing machine learning: From theory of algorithm** by Shai Shalev-Shwartz and 
-Shai Ben-David.
+## Convex optimization and related problems
 
-## Playground
+Formally, a convex optimization problem is an optimization problem of the form:
+
+$$
+\left\{ 
+\begin{array}{c}
+\left\lVert\alpha_1\right\rVert_2 = 1 \\ 
+z_1 = \alpha_1 \mathbf{x} = \sum_{j=1}^p \alpha_{1j} \mathbf{x}_j \text{ has the largest variance.} %_
+\end{array}
+\right. 
+$$ 
 
 Here are some notations and scheme for our playground:
 
@@ -141,10 +145,55 @@ is bounded by the probability of getting a misleading training dataset.
 the probability of getting that set. Use $$ (1-x) \le e^{-x} $$.
 - Finally show that:
 
-$$ \mathcal{D}^m(\{S|_x : L_{D,f}(h_S) > \epsilon \}) \le \| \mathcal{H}_{bad} \|  e^{-\epsilon m} $$ %_
+$$ \mathcal{D}^m(\{S|_x : L_{D,f}(h_S) > \epsilon \}) \le \| \mathcal{H}_{bad} \|  e^{-\epsilon m} $$ 
 
 We call the set of _missleading_ examples $$M$$. This set contains sets of training
 dataset $$S$$ that can lead to a bad hypothesis:
 
 $$ M = \{S|_x : \exists h \in \mathcal{H}_{bad}, L_S(h) = 0 \}$$
 
+TODO: ADD EX
+<!--
+## Here is a secondary heading
+
+Here's a useless table:
+ 
+| Number | Next number | Previous number |
+| :------ |:--- | :--- |
+| Five | Six | Four |
+| Ten | Eleven | Nine |
+| Seven | Eight | Six |
+| Two | Three | One |
+ 
+
+How about a yummy crepe?
+
+![Crepe](http://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg)
+
+Here's a code chunk:
+
+~~~
+var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+~~~
+
+And here is the same code with syntax highlighting:
+
+```javascript
+var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+```
+
+And here is the same code yet again but with line numbers:
+
+{% highlight javascript linenos %}
+var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+{% endhighlight %}
+-->

@@ -8,10 +8,13 @@ subtitle: I am not a fast learner, but a deep one
 
 ## Hoang Nguyen
 <a href="https://github.com/gear" target="_blank"><i class="fa fa-github fa-2x"></i></a> &nbsp; &nbsp; <a href="https://linkedin.com/in/hoang-nt" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a> &nbsp; &nbsp; <a href="https://twitter.com/hoang_titech" target="_blank"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; &nbsp; <a href="https://facebook.com/popApple" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>   
-Machine Learning Engineer @ [WebSoSanh](https://websosanh.vn/)  
+Ph.D. Student @ [TiTech](https://www.titech.ac.jp/english/)
+Part-time Researcher @ Discrete Optimization Unit, [RIKEN AIP](https://aip.riken.jp/)
 [My CV]({{site.url}}/assets/docs/HoangNguyen_CV_Jan2018.pdf) (Updated January 2018)  
 
 ### <i class="fa fa-graduation-cap"></i> education
+- _Doctor of Philosophy_ (PhD) - `2018-2021`.
+**Tokyo Institute of Technology**. 
 - _Master of Engineering_ (MEng) - `2015-2017`.  
 **Tokyo Institute of Technology**. Grade: 3.00/3.00 ([Japanese system](https://en.wikipedia.org/wiki/Academic_grading_in_Japan))
 - _Bachelor of Engineering_ (BEng) - `2009-2014`.  
@@ -33,15 +36,19 @@ and 4 network routers.
 <i class="fa fa-file-text"></i> *Cuong Nguyen, Hoang Nguyen, Nam Pham-Ngoc*. Design and evaluation of a pipelined network interface for network on chip applications. _Vietnam Telecommunication Journal_. October 2014. (In Vietnamese, the english draft is available [here]({{site.url}}/assets/docs/atc14_en.pdf)) 
 
 ### <i class="fa fa-briefcase"></i> experience
-- _Machine Learning Engineer_ - `2018-Present`.  
+- _Part-time Researcher_ - `2019-Present`.
+**RIKEN Advanced Intelligence Project**. Extremal graph theory and discrete optimization research. 
+- _Machine Learning Engineer_ - `2018-2019`.  
 **WebSoSanh, JSC**. Design and engineer machine learning solutions for product classification and entity disambiguiation. Implementation and unit test are in Python.
-- _Software Engineer Intern_ - `2014-2015`.  
-**Donuts Hanoi Co., Ltd**. Develop a mobile game in C++. 
 
 ### <i class="fa fa-university"></i> course work
 See [here](http://gear.github.io/courses/).
 
 ### <i class="fa fa-trophy"></i> awards
-- _MEXT Scholarship_ - `2015`.
+- _MEXT SGU Schlarship_ - `2019-2020`.
+Awarded by the Department of Computer Science - Tokyo Institute of Technology and the Japanese Ministry of Education, Culture, Sports, Science and Technology.
+- _MEXT SGU Schlarship_ - `2018`.
+Awarded by the Department of Computer Science - Tokyo Institute of Technology and the Japanese Ministry of Education, Culture, Sports, Science and Technology.
+- _MEXT Scholarship_ - `2015-2017`.
 Awarded by the Japanese Ministry of Education, Culture, Sports, Science and Technology for 
 Master studies at Tokyo Institute of Technology.

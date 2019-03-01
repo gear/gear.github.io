@@ -8,8 +8,8 @@ subtitle: I am not a fast learner, but a deep one
 
 ## Hoang Nguyen
 <a href="https://github.com/gear" target="_blank"><i class="fa fa-github fa-2x"></i></a> &nbsp; &nbsp; <a href="https://linkedin.com/in/hoang-nt" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a> &nbsp; &nbsp; <a href="https://twitter.com/hoang_titech" target="_blank"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; &nbsp; <a href="https://facebook.com/popApple" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>   
-Ph.D. Student @ [TiTech](https://www.titech.ac.jp/english/)
-Part-time Researcher @ Discrete Optimization Unit, [RIKEN AIP](https://aip.riken.jp/)
+Ph.D. Student @ [TiTech](https://www.titech.ac.jp/english/)  
+Part-time Researcher @ Discrete Optimization Unit, [RIKEN AIP](https://aip.riken.jp/)  
 [My CV]({{site.url}}/assets/docs/HoangNguyen_CV_Jan2018.pdf) (Updated January 2018)  
 
 ### <i class="fa fa-graduation-cap"></i> education

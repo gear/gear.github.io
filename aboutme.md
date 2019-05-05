@@ -16,13 +16,16 @@ Part-time Researcher @ Discrete Optimization Unit, [RIKEN AIP](https://aip.riken
 - _Doctor of Philosophy_ (PhD) - `2018-2021`.
 **Tokyo Institute of Technology**. 
 - _Master of Engineering_ (MEng) - `2015-2017`.  
-**Tokyo Institute of Technology**. Grade: 3.00/3.00 ([Japanese system](https://en.wikipedia.org/wiki/Academic_grading_in_Japan))
+**Tokyo Institute of Technology**. 
 - _Bachelor of Engineering_ (BEng) - `2009-2014`.  
-**Hanoi University of Science and Technology**. Grade: 3.21/4.00 (Top 10%)
+**Hanoi University of Science and Technology**.
 - _High School Diploma_ - `2006-2009`.  
 **High School for Gifted Student - Hanoi National University of Education**
 
 ### <i class="fa fa-tasks"></i> projects
+- **Theoretical framework for Graph Embedding and Graph Signal Processing** (2019-2020): Develop theoretical framework to under Graph Embedding techniques and their connections to Graph Signal Processing at the Discrete Optimization Unit, RIKEN AIP. 
+- **Weakly Supervised Learning on Graphs** (2019-2021): Study GNN learning in incomplete data environment at Tokyo Institute of Technology. 
+- **CREST-Deep** (2019-2021): Develop graph neural network models for video classification at Tokyo Institute of Technology. 
 - **MAGE**: Motif-Aware Graph Embedding. The real world complex networks often have recurring
 patterns known as network motifs. By taking the most significant (measured by z-score) motif as
 a guiding pattern in a network algorithm, we improved the accuracy of various machine learning

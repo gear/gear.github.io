@@ -4,6 +4,8 @@ title: my publications
 subtitle: Machine Learning
 ---
 
+<i class="fa fa-file-text"></i> *Hoang NT and Takanori Maehara*. [Revisiting Graph Neural Networks: All We Have is Low-Pass Filters](http://arxiv.org/abs/1905.09550). [arxiv](http://arxiv.org/abs/1905.09550). _Undereview_. [Github](https://github.com/gear/gfnn).
+
 <i class="fa fa-file-text"></i> *Hoang NT, Jun Jin Choong, Tsuyoshi Murata*. [Learning Graph Neural Networks with Noisy Labels](https://openreview.net/forum?id=r1xOmNmxuN). [arxiv](https://arxiv.org/pdf/1905.01591.pdf). _Appear at ICLR 2019 Limited Labeled Data (LLD) Workshop_. [Poster](https://github.com/gear/published_papers/raw/master/ICLR_2019_LLD_Workshop_weakly_supervised_gnn_poster/poster_portrait.pdf).
 
 <i class="fa fa-file-text"></i> *Hoang Nguyen, Tsuyoshi Murata*. [Motif-Aware Network Embedding]({{site.url}}/assets/docs/motif-aware-graph-final.pdf). _Paper and oral presentation at IJCAI 2017 ReLiG Workshop_.

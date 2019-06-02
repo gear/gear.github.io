@@ -7,7 +7,8 @@ subtitle: I am not a fast learner, but a deep one
 <img class="img-circle" width="20%" hspace="25" style="float: left;" src="http://gear.github.io/img/myface.png">
 
 ## Hoang Nguyen
-<a href="https://github.com/gear" target="_blank"><i class="fa fa-github fa-2x"></i></a> &nbsp; &nbsp; <a href="https://linkedin.com/in/hoang-nt" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a> &nbsp; &nbsp; <a href="https://scholar.google.co.jp/citations?user=iuSBSHsAAAAJ&hl=en" target="_blank"><i class="fa fa-graduation-cap fa-2x"></i></a>
+<a href="https://github.com/gear" target="_blank"><i class="fa fa-github fa-2x"></i></a> &nbsp; &nbsp; <a href="https://linkedin.com/in/hoang-nt" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a> &nbsp; &nbsp; <a href="https://scholar.google.co.jp/citations?user=iuSBSHsAAAAJ&hl=en" target="_blank"><i class="fa fa-graduation-cap fa-2x"></i></a> &nbsp; &nbsp; <a href="https://dblp.uni-trier.de/pers/hd/n/NT:Hoang" target="_blank"><i class="fa fa-atom fa-2x"></i></a>    
+
 Ph.D. Student @ [TiTech](https://www.titech.ac.jp/english/)  
 Part-time Researcher @ Discrete Optimization Unit, [RIKEN AIP](https://aip.riken.jp/)  
 [My CV]({{site.url}}/assets/docs/HoangNT_Mar19.pdf) (Updated March 2019)

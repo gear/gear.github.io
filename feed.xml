@@ -1,20 +1,90 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:dc="https://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Gearons</title>
+    <description></description>
+    <link>https://gearons.org/</link>
+    <atom:link href="https://gearons.org//feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>Irregularity-Aware Graph Fourier Transforms</title>
+        <description></description>
+        <pubDate>Sun, 19 May 2019 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/irregularity-gft</link>
+        <guid isPermaLink="true">https://gearons.org//posts/irregularity-gft</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Code snippets for pytorch</title>
+        <description></description>
+        <pubDate>Fri, 04 Jan 2019 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/pytorch-notes</link>
+        <guid isPermaLink="true">https://gearons.org//posts/pytorch-notes</guid>
+      </item>
+    
+      <item>
+        <title>Szemeredi's Regularity Lemma</title>
+        <description>Terence Tao revisited the Regularity Lemma.</description>
+        <pubDate>Fri, 02 Nov 2018 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/szemeredi-regularity-tao</link>
+        <guid isPermaLink="true">https://gearons.org//posts/szemeredi-regularity-tao</guid>
+      </item>
+    
+      <item>
+        <title>Tensorizing Recurrent Neural Nets</title>
+        <description></description>
+        <pubDate>Fri, 02 Feb 2018 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/tlstm</link>
+        <guid isPermaLink="true">https://gearons.org//posts/tlstm</guid>
+      </item>
+    
+      <item>
+        <title>Introducing chalk</title>
+        <description>Chalk is a high quality, completely customizable, performant and 100% free blog template for Jekyll.</description>
+        <pubDate>Sat, 23 Dec 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/introducing-chalk</link>
+        <guid isPermaLink="true">https://gearons.org//posts/introducing-chalk</guid>
+      </item>
+    
+      <item>
+        <title>How to configure Chalk</title>
+        <description>Learn more about the config file for Chalk and how to set it up properly.</description>
+        <pubDate>Fri, 22 Dec 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/configuring-chalk</link>
+        <guid isPermaLink="true">https://gearons.org//posts/configuring-chalk</guid>
+      </item>
+    
+      <item>
+        <title>Chalk sample post with all elements</title>
+        <description>Have a look at all the predesigned elements you can use in Chalk.</description>
+        <pubDate>Thu, 21 Dec 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/chalk-sample-post-with-all-elements</link>
+        <guid isPermaLink="true">https://gearons.org//posts/chalk-sample-post-with-all-elements</guid>
+      </item>
+    
+      <item>
+        <title>Deep compression case study - AlexNet</title>
+        <description>In this post, we study the result of Song Hans' work on AlexNet.</description>
+        <pubDate>Fri, 05 May 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/reverse-engineering-deep-compression</link>
+        <guid isPermaLink="true">https://gearons.org//posts/reverse-engineering-deep-compression</guid>
+      </item>
+    
+      <item>
+        <title>GPU Programming Notes - Part 1</title>
+        <description></description>
+        <pubDate>Thu, 04 May 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/gpu-notes-part1</link>
+        <guid isPermaLink="true">https://gearons.org//posts/gpu-notes-part1</guid>
+      </item>
+    
+      <item>
+        <title>Install caffe-GPU on Ubuntu-16.04</title>
+        <description></description>
+        <pubDate>Thu, 30 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://gearons.org//posts/caffe-gpu-installation</link>
+        <guid isPermaLink="true">https://gearons.org//posts/caffe-gpu-installation</guid>
+      </item>
+    
   </channel>
 </rss>

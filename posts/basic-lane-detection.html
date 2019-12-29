@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | Finding Lane Lines on the Road</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Finding Lane Lines on the Road">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/basic-lane-detection">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/basic-lane-detection">
+  <meta name="twitter:title" content="Finding Lane Lines on the Road">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+             
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&amp;hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Finding Lane Lines on the Road</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    February 26, 2017
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><i class="fa fa-github"></i> <a href="https://github.com/gear/CarND/tree/master/lanelines-p1">p1-lanelines on Github</a></p>
+
+<hr>
+<h2 id="opencv-toolbox">OpenCV Toolbox</h2>
+
+<p>OpenCV is an image processing toolbox originally developed in C++.
+In Python, an OpenCV image is a <code class="highlighter-rouge">numpy</code> array (2D or 3D depending
+on the type of image). The figure below depicts the coordination
+used in OpenCV. For example, if we have a numpy array <code class="highlighter-rouge">img</code> describing
+an OpenCV image, then <code class="highlighter-rouge">img[0,0]</code> stores the data for top left
+pixel having the coordinate <code class="highlighter-rouge">(x=0,y=0)</code>. Following this system, the
+bottom right corner <code class="highlighter-rouge">img[-1,-1]</code> has the coordinate
+<code class="highlighter-rouge">(x=img.shape[1]-1, y=img.shape[0]-1)</code> in OpenCV.</p>
+
+<p><img src="/img/image_coo.png" alt="OpenCV Image" width="50%" class="center-small"></p>
+
+<p>OpenCV provides various tools for us to “get our hand dirty”
+with images. Generally, there are two main groups: image drawing and
+image transformation. <a href="http://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html">Drawing on images in OpenCV</a> is quite simple
+and straight forward (except for the ellipse <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">) as most drawing
+function is in the form:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="n">cv2</span><span class="o">.</span><span class="p">(</span><span class="n">img_to_draw_on</span><span class="p">,</span> <span class="n">starting_point</span><span class="p">,</span> <span class="o">**</span><span class="n">others_arguments</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="line-detection-pipeline">Line Detection Pipeline</h2>
+
+<p>The main tool to detect lines in an image is a technique named
+<em>Hough Transformation</em>. It is called <em>transformation</em> because
+it transforms the representation of a line to a pair of line angle
+and line distance to the origin. The detail and tutorial of
+Hough Transformation is provided
+<a href="http://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/hough_lines/hough_lines.html">here</a>. To reduce the computation and increase
+the accuracy of the line detection pipeline, we focus only on the
+area in front of a car. The following list describes our pipeline:</p>
+
+<ol>
+  <li>
+<strong>Extract the region of interest (ROI)</strong>. In this case, the ROI is a trapezoid in front of the car.</li>
+  <li>
+<strong>Create a color mask</strong>. Lucky for us, the lane lines of interest only have white or yellow colors. Therefore, extracting only yellow and white color will greatly reduce the computation for unwanted objects in the image.</li>
+  <li>
+<strong>Canny edge detection</strong>. Performing the Canny edge detection algorithm on the color filtered image greatly reduces number of points needed to process in the next step.</li>
+  <li>
+<strong>(Probabilistic) Hough line transform</strong>. Given a set of points from edge detection, we detect lines using Hough transformation.</li>
+  <li>
+<strong>Split lines into left and right set</strong>. The output of Hough line transformation is a set of lines, represented by two points <code class="highlighter-rouge">(x1,y1)</code> and <code class="highlighter-rouge">(x2,y2)</code>. For each pair of points in the returned set, we split them into left lane points and right lane points by its coefficient.</li>
+  <li>
+<strong>Fitting lines to left and right points</strong>. We get two lines for left lane and right lane by fitting a line to each set of points. The output of OpenCV’s line fitting algorithm is a 4-tuple: <code class="highlighter-rouge">(x0, y0, vx, vy)</code>, where <code class="highlighter-rouge">(x0,y0)</code> is a point on the line and <code class="highlighter-rouge">(vx,xy)</code> is the line’s co-linear vector.</li>
+  <li>
+<strong>Drawing lines onto the image</strong>. To draw a line onto an image, we need two points (start and end). We can compute these points for drawing from the output of step 6 and a specified drawing zone (the trapezoid ROI for example).</li>
+</ol>
+
+<hr>
+
+<h2 id="reflection">Reflection</h2>
+
+<h3 id="color-space-and-region-of-interest">Color space and region of interest</h3>
+
+<p>The first pipeline we came up with in this project simply converts the
+input to gray scale, detect edges by Canny algorithm, and then draw all
+line that Hough transformation returns. This approach is unstable since
+it depends heavily on the high and low threshold of the Canny algorithm.
+Although using a slight Gaussian blur on the gray scale image can
+reduce noise and improve the quality of the pipeline, imperfection on
+the road can potentially disturb the pipeline’s robustness.</p>
+
+<p>The unused information in our first pipeline is: 1. The region of
+interest, and 2. The color of the lane lines. By extracting the region
+of interest, we eliminate unnecessary computation:</p>
+
+<p><img src="/img/focus_region.png" alt="Focus region" width="70%" class="center-small"></p>
+
+<p>In addition to extracting the region of interest, we also filtered out
+unwanted colors. By default, the image output of <code class="highlighter-rouge">cv2.imread</code> is a GBR
+image. This color representation makes it hard to filter a certain
+color since all three values (G,B,R) of a pixel represents color.
+Therefore, we convert the image to HSV color space
+(Hue, Saturation, Value). In HSV images, a pixel contains the color
+(hue), the “amount” of that color (saturation), and its brightness
+(value). This color representation enable us to specify the colors we
+want to extract. To exact colors, the rule of thumb is to range
+±10 in the hue value as following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hue_range</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Increase for wider color selection
+# rgb_color is the (R,G,B) tuple value of the color we want to filter
+</span><span class="n">pixel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([[</span><span class="n">rgb_color</span><span class="p">]])</span>  <span class="c1"># One pixel image
+</span><span class="n">hsv_pixel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">pixel</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HSV</span><span class="p">)</span>  <span class="c1"># Convert to HSV
+</span><span class="n">hue</span> <span class="o">=</span> <span class="n">hsv_pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get the hue value of the input (R,G,B)
+</span><span class="n">lowb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">hue</span><span class="o">-</span><span class="n">hue_range</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">upb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">hue</span><span class="o">+</span><span class="n">hue_range</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">lowb</span><span class="p">,</span> <span class="n">upb</span>  <span class="c1"># Lower and upper bound for color filtering
+</span></code></pre></div></div>
+
+<p>To exact black or white color, the code is different since it depends
+on the saturation and value rather than the hue.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sensitivity</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">lowwhite</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="o">-</span><span class="n">sensitivity</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">upwhite</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span><span class="n">sensitivity</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">lowwhite</span><span class="p">,</span> <span class="n">upwhite</span>  <span class="c1"># Lower and upper bound for color filtering
+</span></code></pre></div></div>
+
+<p>After selecting only the region of interest and the colors, we have
+the following result:</p>
+
+<p><img src="/img/filtered_roi.png" alt="Focus region" width="70%" class="center-small"></p>
+
+<p>The image above is a binary image which can be used as a mask to
+extract the lane lines from the original image. The example of our
+lane lines detection on static image is shown below.</p>
+
+<p><img src="/img/result_lanelines.png" alt="Result on image" width="70%" class="center-small"></p>
+
+<h3 id="buffered-pipeline">Buffered pipeline</h3>
+
+<p>The pipeline showed in the previous session performs well on test
+images and videos. However, with the challenge video, it failed to
+detect the lane lines for some brief moments when the lighting varies.
+Furthermore, in all videos, the lane lines between frame doesn’t have
+smooth transitions. To address this problem, we have several approaches:</p>
+
+<ol>
+  <li>Limit the movement of lines between frames. We specify a limit
+<script type="math/tex">\alpha</script> for the displacement of two lines between adjacent frames. The
+next frame’s line is computed as: <script type="math/tex">x_t = x_{t-1} + \min{(\alpha, x_t -
+x_{t-1})}</script>
+</li>
+  <li>Store previous lines in a fixed-size buffer, add new line to the
+buffer for every frame. The output is the weighted average of all the
+lines in the buffer.</li>
+  <li>Similar to the second approach, but instead of storing line points,
+we store the lines’ co-linear vectors. The next line’s co-linear vector
+is the weighted average of the vectors stored in the buffer.</li>
+</ol>
+
+<p>The videos result for each of the approach will be updated soon. TODO:
+Upload videos.</p>
+
+<p>We have some minor bugs during the implementation of of the buffered
+pipeline. Firstly, when the buffer is empty, the pipeline should not
+draw the line. In one of our implementation, a default line is drawn
+when the buffer is empty, this design decision makes it hard to debug
+the program. Secondly, when no line is detected from the frame, the
+algorithm should still return a line from the buffer. However, if there
+are many “no line” frames, there is a chance that there isn’t any lane
+lines on the road. Our current buffer implementation hasn’t taken care
+of this situation.</p>
+
+<h3 id="unnecessary-operations">Unnecessary operations</h3>
+
+<p>For the current testing data (images and videos), extracting the region
+of interest and lane line colors is enough for line detection.</p>
+
+<p><img src="/img/only_color.png" alt="Result on image" class="center-small"></p>
+
+<p>As the picture above has shown, only yellow (left) and white (right)
+color filter is enough to give us a substantially clear image of lane
+lines. This output here can be put directly to the Hough Line detection
+(without masking with the original image or Canny edge detection) to
+obtain the lane lines. At this stage, we don’t know if performing Canny
+edge detection is necessary (i.e. makes the pipeline more robust)  <img class="emoji" title=":confused:" alt=":confused:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f615.png" height="20" width="20">.</p>
+
+<p>Thanks for reading! <img class="emoji" title=":sunny:" alt=":sunny:" src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png" height="20" width="20"></p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Finding+Lane+Lines+on+the+Road%20-%20https://gearons.org//posts/basic-lane-detection" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/basic-lane-detection" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

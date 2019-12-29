@@ -1,0 +1,18 @@
+// =============================================================================
+// Fonts
+// =============================================================================
+
+@charset "UTF-8";
+
+// CMU
+// =============================================================================
+@font-face {
+   font-family: 'CMU Serif Roman';
+   src: asset_url('cmu/cmunrm.ttf') format('truetype');
+}
+
+@font-face {
+   font-family: 'CMU Sans Serif Roman';
+   src: asset_url('cmu/cmunss.ttf') format('truetype');
+}
+

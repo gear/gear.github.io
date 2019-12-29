@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | Motif-Aware Graph Embedding</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Motif-Aware Graph Embedding">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/mage">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/mage">
+  <meta name="twitter:title" content="Motif-Aware Graph Embedding">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+             
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&amp;hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Motif-Aware Graph Embedding</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    September 5, 2016
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      7 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><img src="/img/mage_example.png" alt="It's like this"></p>
+
+<p>As an electronics engineering major, I initially thought of “embedding” as a kind of small
+sub-systems used as a small computer. Later, graph theory gives me
+another view of “embedding”:</p>
+
+<blockquote>
+  <p>Graph embedding of a graph <script type="math/tex">G</script> on a surface <script type="math/tex">\Sigma</script> is a representation
+of <script type="math/tex">G</script> on <script type="math/tex">\Sigma</script> in which points of <script type="math/tex">\Sigma</script> are associated to vertices
+and simple arcs are associated to edges such that connectivity is preserved and
+there is no over-lapping between edges.</p>
+</blockquote>
+
+<p>This view of “embedding” is more abstract, and somewhat more fun. I understand it
+as the act of “drawing” a graph onto another surface (or space). It is well known
+that any <a href="https://en.wikipedia.org/wiki/Planar_graph">planar graph</a> can be embedded
+on a 2D surface, and any graph can be embedded on a 3D “surface”. However, recently,
+the word “embedding” seems to mean something more concrete to a machine learning practitioner:</p>
+
+<blockquote>
+  <p>Embedding, as in “word embedding”, refers to a set of modeling and feature learning
+techniques that map structured tokens to vectors of real numbers.</p>
+</blockquote>
+
+<p>I think embedding <strong>is</strong> dimensionality reduction or representation learning,
+just another different fancy name. Maybe, in the context of natural language processing
+and graph processing, we call dimensionality reduction embedding <img class="emoji" title=":ok_hand:" alt=":ok_hand:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44c.png" height="20" width="20">.</p>
+
+<h2 id="background">Background</h2>
+
+<p>There were many <a href="https://arxiv.org/abs/1206.5538">representation learning</a>
+algorithms in the field of machine learning. One of the most famous method is
+<a href="http://ai.stanford.edu/~ang/papers/nips01-spectral.pdf">Spectral Clustering</a>
+in which the <em>similarity</em> of data is preserved while the dimensionality is reduced.
+More recently, the <a href="https://lvdmaaten.github.io/tsne/">t-SNE</a> algorithm is widely used
+for data visualization. The general objective of t-SNE is somewhat similar to
+Spectral Clustering. However, instead of dealing with large matrix computation,
+the authors solved the embedding problem by minimizing a loss function defined
+for the representations of each data point in two spaces (original data space and
+the embedding space). The result of t-SNE is a 2D or 3D representation of
+high dimensional data.</p>
+
+<p>Similar to the t-SNE technique, <a href="https://arxiv.org/abs/1403.6652">DeepWalk</a> was
+proposed by Perozzi et al at KDD’14. DeepWalk and other algorithms inspired by
+it were based on the <a href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">Skipgram</a> model proposed by Mikolov et al in 2013.
+By observing the similarity between the vertex frequencies distribution on random walks
+in a graph and the word frequency distribution in text, Perozzi et al proposed
+that we can use random walks on a graph to generate “sentences”, and then learn
+the node representation using the Skipgram model. The slide
+for my talk introducing DeepWalk at The University of Tokyo can be found <a href="https://gearons.org//assets/docs/DeepWalk_2016_UTokyo.pdf">here</a>.</p>
+
+<p>As mentioned above, <em>Deepwalk</em> is an algorithm that uses the word2vec
+software package on a generated artificial text. The “text” here is 
+generated by performing random walks on graphs. Such idea is simple
+and effective.</p>
+
+<p><img src="https://gearons.org//img/deepwalk_dist.png" alt="Power law">
+<em>The power law is observed in both domains. This observation can be the motivation for Deepwalk.</em></p>
+
+<p>Denote a random walk starting from vertex <script type="math/tex">i</script> is <script type="math/tex">W(v_i)</script>. The set containing
+all random walks is denoted <script type="math/tex">\mathbf{C} = \cup_{i \in V} W(v_i)</script> with <script type="math/tex">V</script> is the vertex set.
+Under this notations, the optimization problem is formulated in the same way as the skipgram model:</p>
+
+<script type="math/tex; mode=display">\text{min}_{\Phi} = - \log P({v_{i-w}...v_{i+w}} | \Phi(v_i))</script>
+
+<p>In the optimization problem above, <script type="math/tex">\Phi(v_i)</script> is the mapping from a vertex to its vector
+representation. The probability is assumed to be able to factor as:</p>
+
+<script type="math/tex; mode=display">P({v_{i-w}...v_{i+w}} | \Phi(v_i)) = \Pi_{j \in \text{window}(i)} P(v_j | \Phi(v_i))</script>
+
+<p><img src="https://gearons.org//img/deepwalk_example.png" alt="Deepwalk">
+<em>Demonstration of how Deepwalk works.</em></p>
+
+<p>From here there are two problems need to be solved:</p>
+
+<ol>
+  <li>How to construct the formula for <script type="math/tex">P(v_j \mid \Phi(v_i))</script>.</li>
+  <li>How to efficiently learn and compute the conditional probability.</li>
+</ol>
+
+<p>For the first problem, two embedding matrices are introduced. The first matrix
+is <script type="math/tex">\Phi_C</script> - the context matrix storing the embedding of the centered vertices (<script type="math/tex">v_i</script>). 
+The second matrix is <script type="math/tex">\Phi_E</script> - the embedding matrix storing surround vertices’ embedding vectors.
+These two matrices are jointly-learned as the algorithm scans the corpus.</p>
+
+<p>There are two popular solutions for the second problem: hierarchical softmax and negative sampling 
+(my personal favorite learning algorithm). <a href="https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf">Hierarchical softmax</a>
+is a decomposition technique that computes the conditional probability using a binary tree. In this technique,
+we first organize the words (in our context they are graph vertices) into the leaves of a binary tree. Then, the
+conditional probability <script type="math/tex">P(v_j \mid v_i)</script> is given by the probability of a random walk starts at the root node
+and ends at the leave node representing <script type="math/tex">v_j</script>. The probability of turning left or right is computed with vector
+for <script type="math/tex">v_j</script> and vectors associated with the intermediate binary tree nodes. We can compute the probability as:</p>
+
+<script type="math/tex; mode=display">P(w|w_i) = \Pi^{L(w)-1}_{j-1} \sigma([n(w,j+1) = ch(n(w,j))] \cdot v^\top_{n(w,j)}v_{w_i})</script>
+
+<p>where <script type="math/tex">[\cdot]</script> is a condition evaluation operator that returns 1 if true and -1 otherwise and <script type="math/tex">\sigma</script> is
+the sigmoid function. The detail of this function is explained in
+<a href="http://web.stanford.edu/class/cs224n/syllabus.html">Stanford’s CS224n course</a>. I highly recommend reading
+the material provided there. Their lecture notes are extremely well-written (thank you Stanford! <img class="emoji" title=":thumbsup:" alt=":thumbsup:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png" height="20" width="20">).</p>
+
+<p><img src="https://gearons.org//img/hs.png" alt="Hierarchical Softmax"></p>
+
+<p>This picture is an attempt to visualize how hierarchical softmax works. At the first step of the algorithm,
+tokens (words or vertices) are assigned to the leaves of a binary tree. This assignment can utilize Huffman
+coding for minimum path length (frequent tokens get shorter paths from root). The root node and leave nodes
+of the binary tree are just placeholder. The algorithm keeps two sets of learn-able vectors: 1. The embedding
+vectors associated with each token (not on the tree), and 2. The vectors associated with the internal nodes
+of the binary tree (blue nodes in the figure above). When we need to compute a conditional probability, say
+<script type="math/tex">P(a \mid b)</script>, the embedding vector of <script type="math/tex">b</script> and the internal node vectors will be used. For each internal
+node, we take the inner-product of <script type="math/tex">v_b</script> and its associated vector then apply the <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a> to the scalar result. The output of the sigmoid functions are interpreted
+as the probability of going <strong>left</strong> from that node. Finally, the conditional probability <script type="math/tex">P(a \mid b)</script> equals
+the probability of going from root node to leaf node <script type="math/tex">a</script>. Note that due to the property of binary trees, the
+probability is naturally normalized (P(going left) + P(going right) = 1).</p>
+
+<p>Intuitively, I think of negative sampling as “pushing away” bad samples and “pulling in” good samples in the
+embedding vector spaces. When the algorithm “sees” a pair of vertices that are supposed to be close to each
+other, it updates the vectors to maximize the inner product. On the other hand, when the algorithm is given 
+a pair of negative samples which is generated from some distribution, it tries to minimize the inner product.
+Under the hood, this algorithm optimize a objective that discriminate “true” samples (samples from our dataset)
+against “negative” samples (samples generated from some distribution). Negative sampling rises from a technique
+named <a href="http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">Noise Contrastive Estimation</a>. NCE deals with
+the intractable normalization term in unnormalized parametric statistical models. Instead of computing the 
+normalization term directly, NCE views the normalization term as a learn-able variable. Then, the problem of 
+learning the model parameters and the normalization term is posed as a linear regression to discriminate true
+data samples and generated (negative) data samples. Such technique shows great time-performance trade-off.</p>
+
+<h2 id="our-method">Our method</h2>
+
+<p>Having introduced the background of representation learning for nodes in graphs based on word2vec, I will introduce
+our insight and attempt to improve Deepwalk. First, some analogues:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"><strong>Text</strong></th>
+      <th style="text-align: left"><strong>Graph</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><em>Element</em></td>
+      <td style="text-align: left">Word</td>
+      <td style="text-align: left">Vertex</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><em>(Semi) Structure</em></td>
+      <td style="text-align: left">Sentences, grammar</td>
+      <td style="text-align: left">Connections, subgraphs (motifs)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><em>Distribution</em></td>
+      <td style="text-align: left">Power law (frequency)</td>
+      <td style="text-align: left">Power law (degree)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is a common knowledge that “friends of friends are friends”. In network science, this phenomenon can be captured
+by the statistic of a subgraph in the shape of a triangle.</p>
+
+<p><img src="https://gearons.org//img/all_3.png" alt="Size 3 motifs"></p>
+
+<p>While simple friendships are represented by triangles, I am curious about other types of subgraphs and their 
+functionalities in a network. More specifically, I am interested in how communities are formed. My hypothesis
+is that the simple recurring subgraphs (from now I call them <em>motifs</em>) are the building blocks for communities.
+Then, I investigated the <a href="http://stattrek.com/statistics/dictionary.aspx?definition=z-score">z-scores</a> for 
+each directed size-3 motifs on a <a href="http://networkrepository.com/polblogs.php">benchmark network dataset</a>.</p>
+
+<p><img src="https://gearons.org//img/polblogs.jpg" alt="Polblogs z-scores"></p>
+
+<p>For each motifs in the vertical axis, I first compute its z-score for the whole network. Then, I exacted three 
+sub-networks: Intra communities (2 networks for each label) and inter-communities (contains only inter-community
+links). The z-scores for each networks is reported in the figure above. We are particularly interested in motifs
+that has high z-scores for intra-communities, but low z-scores for inter-communities. These motifs are likely to
+be the patterns that <em>build</em> communities.</p>
+
+<p>From this insight, we propose <em>motifwalk</em>. Our method aims to improve the result of DeepWalk through context manipulation.
+More conretely, instead of only perform random walk, we propose the concept of
+biased walk for context generation.</p>
+
+<blockquote>
+  <p>Definition: <strong>biased walk</strong> - A random walk in which the next vertices is chosen based on a pre-defined probability distribution.</p>
+</blockquote>
+
+<p>Keeping the same learning process as DeepWalk, we propose to generate the artificial context that favor a certain 
+motifs. In such way, nodes within a community are more likely to be closer in the embedding space. The motifs pattern
+for the biased random walk are selected based on some knowledge about the network or the z-score. Motif selection is
+so far the weakest point of my proposed model as I have not come up with a concrete method of motif selection.</p>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>I conducted experiment on several benchmark networks. The f1-macro score for <a href="http://socialcomputing.asu.edu/datasets/BlogCatalog3">Blogcatalog3</a> and Cora is presented here:</p>
+
+<p><img src="https://gearons.org//img/bc_motifwalk.png" alt="blogcatalog and cora" height="80%" class="small-center"></p>
+
+<p>The random walk on blogcatalog is the triangle motif, while on cora it is the bi-fan motif (size-4). The embedding
+is learned by a word2vec model implemented using tensorflow.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Motif-Aware+Graph+Embedding%20-%20https://gearons.org//posts/mage" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/mage" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | The phi accrual failure detector</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="The phi accrual failure detector">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/phifail">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/phifail">
+  <meta name="twitter:title" content="The phi accrual failure detector">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script> 
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>The phi accrual failure detector</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    November 15, 2016
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>This post is the summary of the paper: <em><strong>The <script type="math/tex">\varphi</script> accrual failure detector</strong></em> by 
+N. Hayashibara, X. Défago, and T.Katayama. In Proc. 23rd IEEE Intl. Symp. on Reliable 
+Distributed Systems (SRDS’04), pp. 66-78, Florianópolis, Brazil, October 2004. IEEE CS Press.</p>
+
+<p>More at: <a href="http://www.coord.c.titech.ac.jp/">D2S Laboratory</a></p>
+
+<hr />
+
+<h2 id="problem-definition">Problem definition</h2>
+
+<p>Detecting failure in a distributed system setting is a desirable task for many
+obvious reasons. This paper introduces an implementation of an adaptive (accrual) 
+failure detector. In this <script type="math/tex">\varphi</script> accrual failure detector, the conditions of 
+the network is accumulated and used to update the probabilistic model for failure 
+suspicion. Compares to the existing models in 2004, which output of suspicion level 
+is binary, this implementation has the advantage of returning a real-value suspicion level.
+The authors compared their implementation to <a href="http://chenfd">Chen Fault Detection</a>
+and <a href="http://bertier">Bertier Fault Detection</a>. For the benchmark scheme, they 
+set up two computers between Japan and Switzerland transferring “heart beat” signal
+from Japan. They then later analyzed the collected data over a week and reported
+the result.</p>
+
+<ul>
+  <li><strong>Input</strong>: A set of master processes <script type="math/tex">\mathcal{M}</script> and a set of worker 
+processes <script type="math/tex">\mathcal{W}</script>. The master processes are in charge of monitoring the 
+worker processes.</li>
+  <li><strong>Output</strong>: An indicator of failure for each worker processes.</li>
+  <li><strong>Assumption</strong>: In this paper, for the shake of simplicity, the authors assumed
+that the master processes will never crash. Furthermore, only one worker and one 
+master scheme was discussed in this paper.</li>
+</ul>
+
+<h2 id="notations">Notations</h2>
+
+<p><em>Note: The setting in this paper is sending heart beat signals from Japan to Switzerland.</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Notation</th>
+      <th style="text-align: left">Explaination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\varphi</script></td>
+      <td style="text-align: left">Suspection value. Higher value means the higher chance the failure happened.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\Phi</script></td>
+      <td style="text-align: left">Hyperparameter. Threshold for <script type="math/tex">\varphi</script>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\Delta_i</script></td>
+      <td style="text-align: left">“Heart beat” signal period.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\Delta_{to}</script></td>
+      <td style="text-align: left">Timeout for transmission.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\Delta_{tr}</script></td>
+      <td style="text-align: left">Average transmission time experienced by the messages.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\alpha</script></td>
+      <td style="text-align: left"><script type="math/tex">\Delta_{tr} \approx \Delta_{i} + \alpha</script></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">q</script></td>
+      <td style="text-align: left">Master process that monitors other process for failure dection.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">p</script></td>
+      <td style="text-align: left">Worker process that sends “heart beat” signals.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">T_D</script></td>
+      <td style="text-align: left">Time until q begins to suspect p permanently in case of failure happened.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\lambda_M</script></td>
+      <td style="text-align: left">Average mistake rate at which a failure detector generates wrong suspicions.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">\lozenge P</script></td>
+      <td style="text-align: left">Eventually perfect failure detector class.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">susp\_level_p(t)</script></td>
+      <td style="text-align: left">Suspicion level of p at time t.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">T_{high}</script></td>
+      <td style="text-align: left">Dynamic threshold upperbounds <script type="math/tex">susp\_level_p</script>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">T_{low}</script></td>
+      <td style="text-align: left">Dynamic threshold lowerbounds <script type="math/tex">susp\_level_p</script>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">T_{last}</script></td>
+      <td style="text-align: left">The time when thest most recent heart beat was received.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">t_{now}</script></td>
+      <td style="text-align: left">The current time.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><script type="math/tex">P_{later}(t)</script></td>
+      <td style="text-align: left">The probability that the next heart beat will arrive after <script type="math/tex">t</script> time unit since the last one.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="method">Method</h2>
+
+<p>As mentioned above, this paper proposed an abstract accrual failure detector
+and a simple implementation of the idea with only 2 processes. This figure 
+illustrates the differences in the conventional failure detection architecture
+and the proposed accrual failure detection architecture.</p>
+
+<p><img src="/img/phifail_istructure.png" alt="Accrual Structure" width="100%" /></p>
+
+<p>The main different in the proproposed architecture is the ability to return
+many suspicion levels instead of just binary levels. This scheme enable the system
+to perform many action as well as adaptive action based on the suspicion input
+level. In the proposed architecture, the <em>suspicion level</em> is represented by
+a value called <script type="math/tex">\varphi</script>. The suspicion level is defined by a logarithmic scale:</p>
+
+<script type="math/tex; mode=display">\varphi(t_{now}) \triangleq -\log_{10}(P_{later}(t_{now} - T_{last}))</script>
+
+<p>This formula is intuitive in the sense that it penaltize the delay <script type="math/tex">t_{now} - T_{last}</script>
+by a log scale of some pre-defined probabilistic model <script type="math/tex">P_{later}(t)</script>. In this 
+paper, the authors defined a threshold <script type="math/tex">\Phi</script> for <script type="math/tex">\varphi</script>. Since this <script type="math/tex">\varphi</script>
+variable is computed in the log-scale, <script type="math/tex">\Phi</script> also has logarithmic meaning. Each of
+the unit step increase of <script type="math/tex">\Phi</script> will lead to ten times confident interval of
+failure detection. However, this fact only means that the confident about a failure 
+dection is high, it doesn’t take into account the <em>speed</em> of the dectection.</p>
+
+<p>The probabilistic model is given by the formula:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align} P_{later}(t) &= \frac{1}{\sigma \sqrt{2\pi}} \int_{t}^{+\infty} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx \\ &= 1 - F(t) \end{align} %]]></script>
+
+<p>Note that the formula above is just the implementation of the abstract accrual 
+failure detector in this paper. Theoretically speaking, we can choose any computable
+<script type="math/tex">P_{later}{t}</script> that is suitable to our need. The picture below demonstrate this
+probabilistic model.</p>
+
+<p><img src="/img/phifail_plater.png" alt="iCDFt" width="50%" class="center-small" /></p>
+
+<p>Until this point, we have the suspicion level <script type="math/tex">\varphi</script> and the probabilistic
+model for computing <script type="math/tex">\varphi</script>. In order to adapt the network condition
+into the failure detection scheme, the authors created a sized window with size
+<script type="math/tex">WS</script>. When the heart beat signal is arrived, it time stamp is stored into
+the window. The mean <script type="math/tex">\mu</script> and variance <script type="math/tex">\sigma^2</script> of the data in the
+window is maintained as the window received new data. In addtion, there are
+two variable keeping track of sum and sum of square of all element in 
+the window are also maintained for computation convenient. The dataflow
+of the proposed implementation:</p>
+
+<p><img src="/img/phifail_flow.png" alt="Flow" /></p>
+
+<p>The dataflow figure above captured all the essential steps of the proposed
+algorithm. From the network, heartbest signal is collected and its time period
+is stored in the sampling window. To my understanding, the sampling window
+is a FIFO unit that removes oldest data when new data is added. The mean and
+variance for the probabilistic model <script type="math/tex">P_{later}(t)</script> is then computed using
+the data in the sampling window. At every time step, the value of <script type="math/tex">\varphi</script>
+is computed using the probabilistic model, the time of last arrival and the 
+current time. This value <script type="math/tex">\varphi</script> will then be used in different application
+for various action. For example, in <em>action 1</em>, the threshold for <script type="math/tex">\varphi</script> is
+<script type="math/tex">\Phi_1</script>. Let’s say in this moment, <script type="math/tex">\varphi > \Phi_1</script>, hence the machine will
+perform <em>action 1</em> (e.g. warning, reallocate resources, etc.). On the other hand,
+<em>action 2</em> has the threshold of <script type="math/tex">\Phi_2</script>, which is larger than <script type="math/tex">\varphi</script> at
+the moment, hence no action is performed. More interestingly, the multi-level 
+suspicion <script type="math/tex">\varphi</script> enables the use of parametric action, which means the machine
+doesn’t have to behave in a binary manner (performs action or not), but it can 
+perform actions to a certain degree adapting to the current situation.</p>
+
+<h2 id="experiment">Experiment</h2>
+
+<p>As mentioned above, the setting for experiment is a heartbeat signal transmission
+between Switzerland and Japan. Three failure detection schemes are compared: Chen FD,
+Bertier FD, and (this) <script type="math/tex">\phi</script> FD. The window size of 1,000 is used for all failure
+detectors. In this paper, the authors conducted 4 experiments:</p>
+
+<ul>
+  <li>Exp1: Average mistake rate <script type="math/tex">\lambda_M</script>. This experiment aims to provide some reasoning
+between the average mistake rate and the threshold <script type="math/tex">\Phi</script>.</li>
+  <li>Exp2: Average detection time <script type="math/tex">T_D</script>. In this experiment, the relation between average
+detection time and the threshold is studied. Consistent with what I mentioned above,
+while the average mistake rate <script type="math/tex">\lambda_M</script> decreased with high threshold (8-12), 
+the detection time is increased significantly.</li>
+  <li>Exp3: Effect of window size. The window size is plotted against the mistake rate.
+There are three lines representing 3 values of <script type="math/tex">\Phi</script>: 1,3,5. The result showed that
+larger widnow size leads to lower mistake rate. The result for different values of <script type="math/tex">\Phi</script>
+is also consistent with experiment 2.</li>
+  <li>Exp4: Comparision with Chen FD and Bertier FD. The authors conducted two experiment in
+this category. First experiment is comparision in the internet setting and the second is
+in the LAN setting. In both experiment, <script type="math/tex">\phi</script> FD outperformed the other two methods.</li>
+</ul>
+
+<p>More detail is provided in the authors’ paper.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This post only provides very high level abstraction of the authors’ work. I left out
+many discussion on the propertiesof failure detector, time period or heartbeat signal
+and the effect of network delay. Nevertheless, the results provided in this paper
+showed that the new scheme doesn’t imply additional cost in term of performance while
+it yields much better deteciton results under the authors’ benchmark. On another note,
+the authors also stated that based on their experimental result, it was sufficient to
+use normal distribution for the probabilistic model.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=The+phi+accrual+failure+detector%20-%20https://gearons.org//posts/phifail" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/phifail" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

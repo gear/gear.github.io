@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | Empirical Risk Minimization</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Empirical Risk Minimization">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/erm">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/erm">
+  <meta name="twitter:title" content="Empirical Risk Minimization">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script> 
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Empirical Risk Minimization</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    November 28, 2015
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>I remember the confusion I had when professor <a href="http://www.is.titech.ac.jp/~watanabe/">Osamu Watanabe</a>
+first gave me the <a href="https://cdn.rawgit.com/gear/Assignments/master/fmcs_a1.pdf">Occam’s razor problem</a>. 
+With that confusion, I start to love the exciting world of theoretical machine learning. This post is 
+about ERM scheme and some proofs around it. This post is my understanding of the second chapter
+in the book <strong>Under standing machine learning: From theory of algorithm</strong> by Shai Shalev-Shwartz and 
+Shai Ben-David.</p>
+
+<h2 id="playground">Playground</h2>
+
+<p>Here are some notations and scheme for our playground:</p>
+
+<ul>
+  <li>Data space: <script type="math/tex">\mathcal{X}</script> - Where we “draw” data samples.</li>
+  <li>Data distribution: <script type="math/tex">\mathcal{D}</script> - How the data in <script type="math/tex">\mathcal{X}</script> is distributed.</li>
+  <li>Label space: <script type="math/tex">\mathcal{Y}</script> - Where we have the labels for our samples.</li>
+  <li>Labeling function: <script type="math/tex">f: \mathcal{X} \mapsto \mathcal{Y}</script> - Given a data sample, return its true label.</li>
+  <li>Training set: <script type="math/tex">S</script> of size <script type="math/tex">size(S) = m</script> - The set of training samples and its training labels.</li>
+  <li>Hypotheses class: <script type="math/tex">\mathcal{H}</script> - A finite set of hypotheses <script type="math/tex">h</script>.</li>
+  <li>Hypothesis: <script type="math/tex">h</script> - An estimation of <script type="math/tex">f</script>, <script type="math/tex">h</script> is the result of some learning algorithm and <script type="math/tex">S</script>. 
+Also called “prediction rule” in this post.</li>
+  <li><strong>Our task</strong>: Given a training set <script type="math/tex">S</script>, we do not know <script type="math/tex">D</script> or <script type="math/tex">f</script> for all data points, how do
+we argue about the <em>quality</em> of the learned hypothesis <script type="math/tex">h</script> compared to <script type="math/tex">f</script>?</li>
+</ul>
+
+<h2 id="measuring-risk-on-the-training-dataset">Measuring risk on the training dataset</h2>
+
+<p>Suppose you are a hero going on an adventure, then suddenly the Orange Monster
+appears, gives you a bunch of… emails and challenges you to mark which email
+is an important email. The Orange Monster knows the <strong>true</strong> labeling of each
+email it gave you, it just wants to test your wisdom. Let’s say you invented
+some way (let’s call that way <script type="math/tex">h</script> - stands for <em>hypothesis</em>) to mark the 
+emails. How do you or the Orange Monster evaluate your solution? Obviously 
+(or empirically), you would take the number of <em>incorrect</em> solution, divide
+it to the total number of emails (<script type="math/tex">m</script>). And that is how you compute the
+Empirical Risk. Machine learning works in a similar way, if you give it a
+bunch of emails and ask it to classify which email is spam email, the machine
+will need some kind of evaluation to measure its own prediction. However,
+both we and the machines do not know about the true distribution of emails.
+Unfortunately we can only evaluate our predictions on the data given to us.
+Our journey begins when we think: “Hmm, so how much the empirical risk can
+tell us about the performance of our prediction algorithm on the real data
+population?”.</p>
+
+<p><img src="/img/erm_mailbot.png" alt="ERM Robots" /></p>
+
+<p>Empirical Risk Minimization (ERM) is a class of algorithm that returns the hypothesis <script type="math/tex">h</script>
+that minimizes <script type="math/tex">L_S(h)</script> given a set of training samples <script type="math/tex">S</script>. The empirical risk is 
+defined as:</p>
+
+<script type="math/tex; mode=display">L_S(h) = \frac{|\{i \in [m]: h(x_i) \neq f(x_i)\}|}{m}</script>
+
+<p>This formula can be read as: The <em>empirical risk</em> is the number of samples (<script type="math/tex">x_i</script>) at which our 
+predictor <script type="math/tex">h</script> doesn’t match with the true labeling function <script type="math/tex">f</script> (subscript S denotes the risk is based
+on the training set <script type="math/tex">S</script> of size <script type="math/tex">m</script> only). In this scheme, we are given a set of hypotheses
+<script type="math/tex">\mathcal{H}</script>, a data space <script type="math/tex">\mathcal{X}</script>, a distribution <script type="math/tex">\mathcal{D}</script> over the data space
+<script type="math/tex">\mathcal{X}</script>, and a labeling function <script type="math/tex">f: \mathcal{X} \mapsto \mathcal{Y}</script> that labels a
+data samples to its “true” label. <strong>An algorithm is called ERM when it returns the hypothesis
+that minimizes the empirical risk</strong>. In another word, empirical risk can be viewed as the loss
+over the training data <script type="math/tex">S</script>. It is possible that  The weakness of <em>empirical risk</em> 
+(or empirical loss) is when the
+training samples set <script type="math/tex">S</script> contains only <em>misleading samples</em>.</p>
+
+<p><img src="/img/erm_misleading.png" alt="Unlucky samples" /></p>
+
+<p>Idealistically, we want to know the <strong>error of a prediction rule</strong> <script type="math/tex">L_{D,f}(h)</script>. This term
+can be interpreted as the error of predictor <script type="math/tex">h</script> over (evaluated on) the data distribution <script type="math/tex">D</script> 
+and the labeling function <script type="math/tex">f</script> (the true loss!). However, the data distribution <script type="math/tex">D</script> and the true 
+labeling function <script type="math/tex">f</script> typically are not available in practice. Therefore, we have to rely on the 
+empirical risk, which is evaluated on the training data <script type="math/tex">S</script>. By definition, the (true) <strong>error
+of a prediction rule</strong> is:</p>
+
+<script type="math/tex; mode=display">L_{D,f}(h) = \underset{x \sim \mathcal{D}} P [h(x) \neq f(x)] = \mathcal{D}(\{x : h(x) \neq f(x)\})</script>
+
+<p>The error of a prediction rule is the probability that the prediction rule returns a wrong label, 
+given a data sample <script type="math/tex">x_i</script> from <script type="math/tex">\mathcal{D}</script>.</p>
+
+<h2 id="overfitting-in-erm">Overfitting in ERM</h2>
+
+<p>Since the risk (loss) is measured on the training data <script type="math/tex">S</script>, ERM is prone to over
+fitting. Simply speaking, the output hypothesis <script type="math/tex">h</script> from ERM can just map training
+samples to training labels. If such hypothesis is chosen, the risk empirical <script type="math/tex">L_S(h)</script> will 
+be 0, but the prediction rule error is not guaranteed to be “small”. In other words, we do 
+not know if we have a “good” hypothesis or just an overfitting hypothesis over <script type="math/tex">S</script>. 
+It is proven that the infinite polynomial threshold-based hypothesis class can always
+overfit the training data.</p>
+
+<h2 id="bound-for-bad-training-samples">Bound for “bad” training samples</h2>
+
+<p>To address the case where the empirical risk is 0 but the hypothesis is “bad”, let’s call the
+minimum acceptable <em>true</em> risk <script type="math/tex">L_{D,f}(h)</script> epsilon (<script type="math/tex">\epsilon</script>), and have two 
+assumption about the data distribution and the hypothesis class:</p>
+
+<ul>
+  <li>Each data sample in <script type="math/tex">S</script> is distributed independently and identically (i.i.d.).</li>
+  <li>There exists <script type="math/tex">h^* \in \mathcal{H}</script> s.t. <script type="math/tex">L_{D,f}(h^*) = 0</script> (Realizability Assumption).</li>
+</ul>
+
+<p>We care (or worry) about the case where <script type="math/tex">L_S(h) = 0</script>, but <script type="math/tex">L_{D,f}(h) > \epsilon</script>, 
+which means even the predictor (hypothesis) that yeilds the smallest empirical loss is 
+still not good enough for the whole data prediciton.</p>
+
+<script type="math/tex; mode=display">L_S(h_{bad}) = L_S(h^*) = 0, \mbox{but}</script>
+
+<script type="math/tex; mode=display">L_{D,f}(h) > \epsilon \ge L_{D,f}(h^*)</script>
+
+<p>Let’s call the class of bad hypotheses <script type="math/tex">\mathcal{H}_{bad}</script>, which contains the hypotheses
+that has the error prediction rule (<script type="math/tex">L_{D,f}(h)</script>) larger than <script type="math/tex">\epsilon</script> for some
+defined <script type="math/tex">\epsilon</script>. Now, we would like to know <strong>how likely an ERM algorithm will
+choose one of the bad hypotheses</strong>. Formally, we would like to bound the probability
+of getting the sample set <script type="math/tex">S|_x</script> that leads to a bad hypothesis 
+<script type="math/tex">h_S \in \mathcal{H}_{bad}</script>:</p>
+
+<script type="math/tex; mode=display">\mathcal{D}^m ( \{ S\mid_x : L_{D,f}(h_S) > \epsilon \} )</script>
+
+<script type="math/tex; mode=display">\mathcal{H}_{bad} = \{ h \in \mathcal{H} : L_{D,f}(h) > \epsilon \}</script>
+
+<p>In here, we analyze the effect of the sample size <script type="math/tex">m</script> to the probability of 
+getting a bad hypothesis from the ERM learning scheme. To be clear, in here,
+<strong>bad hypothesis</strong> means the hypothesis that gives high error rate; <strong>bad training
+dataset</strong> means the training dataset that makes ERM returns a bad hypothesis, and
+<strong>misleading training dataset</strong> means the training dataset that have zero empirical
+risk. The quick outline of the development for the upper bound is as follow:</p>
+
+<p><img src="/img/emr_bad.png" alt="Bad Samples lead to bad hypothesis" /></p>
+
+<!--
+TODO: Add image describe the bad samples and bad hypothesis scheme here
+-->
+
+<ul>
+  <li>Prove that the sets of bad training datasets is a subset of set of all 
+misleading training datasets.</li>
+  <li>Expand set of all misleading training datasets by union of bad training 
+datasets corresponding to each bad hypothesis.</li>
+  <li>The probability of getting a bad training dataset (hence bad hypothesis)
+is bounded by the probability of getting a misleading training dataset.</li>
+  <li>Bound the probability of getting a misleading training dataset by union bound.</li>
+  <li>Fix a misleading training set and a distribution, use i.i.d. assumption to bound 
+the probability of getting that set. Use <script type="math/tex">(1-x) \le e^{-x}</script>.</li>
+  <li>Finally show that:</li>
+</ul>
+
+<p><script type="math/tex">\mathcal{D}^m(\{S\mid_x : L_{D,f}(h_S) > \epsilon \}) \le \| \mathcal{H}_{bad} \|  e^{-\epsilon m}</script> %_</p>
+
+<p>We call the set of <em>missleading</em> examples <script type="math/tex">M</script>. This set contains sets of training
+dataset <script type="math/tex">S</script> that can lead to a bad hypothesis:</p>
+
+<script type="math/tex; mode=display">M = \{S\mid_x : \exists h \in \mathcal{H}_{bad}, L_S(h) = 0 \}</script>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Empirical+Risk+Minimization%20-%20https://gearons.org//posts/erm" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/erm" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

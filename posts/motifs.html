@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | Network Motifs</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Network Motifs">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/motifs">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/motifs">
+  <meta name="twitter:title" content="Network Motifs">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script> 
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Network Motifs</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    January 1, 2017
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      4 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>This post contains some of my short articles and reading list about network motif
+and its application.</p>
+
+<hr />
+
+<h2 id="what-are-network-motifs">What are network motifs?</h2>
+
+<p><img src="/img/motif_triangles.png" alt="Motifs" width="70%" class="center-small" /></p>
+
+<p>Network motif can be seen as a subgraph pattern of a complex network (Milo 2002). 
+For example, in a citation network, if we consider three adjacent nodes, 
+we can find the patterns where two nodes point to the other one or one nodes points 
+to the other two quite frequently. In biology system studies, researchers care 
+about such statistically significant motifs. Systems such as gene transcription 
+network or ecological food web exhibits a significant motifs count (for some motifs) 
+compared to a random network with the same number nodes and links (Milo 2002).
+The correlation (and whether it is causation) of a statistical significant motif 
+and the fucntionality of the network is an active area of research. It’s worth to
+mention that a motif usually contains 3 to 5 nodes in most studies.</p>
+
+<p>Being extensively studied in biology, network motif is assumed to be the result
+of a biological system’s functionality (ref Milo, Alon). Recently, network motifs
+are also considered into social network and graph-structured data analysis (ref Leskovec).
+With the same assumption as in previous researches, the community structure of a complex
+network (or graph-structured data) is assumed to be the result of some underlying 
+<em>mesoscopic</em> scale interaction between nodes. Personally, I am very excited about
+this approach. As mentioned in (Milo 2002), the motifs can be the building blocks 
+for complex systems and understanding network motifs may show us insightful information
+about the complex systems.</p>
+
+<p><em>mesoscopic</em>? While microscopic analysis considers node properties and pair-wise
+interations and macroscopic gives us the overall quantitative view, <em>mesoscopic</em>
+analysis studies the network structures on an intermediate scale (subgraphs, motifs 
+interactions). (Barabasi 2016)</p>
+
+<h2 id="motif-metrics">Motif metrics</h2>
+
+<p>With the motif scheme in mind, the very first thing we want to know is given a
+motif (one of the figure below), how can we tell this motif is <em>significant</em>?.
+One approach to this problem is to compare the motif count between the given
+network and a random network of the same order (same number of nodes). I wonder
+which type of motif statistic or random network is the best for comparision…</p>
+
+<h3 id="z-score">z-score</h3>
+
+<p>z-score measures the different between the number of a motif type found in the network
+we need to analyse and the mean number of that motif in random networks of the 
+same order (i.e. number of nodes and edges). The tool I used for graph motif analysis 
+is a Python package called <code class="highlighter-rouge">graph-tool</code>. Since motif analysis is a demanding task,
+running undirected-size-4 motif z-score on Blogcatalog3 (~300k edges) takes almost 2
+weeks on my lab machine (single thread). However, there is a trick to <em>force</em> <code class="highlighter-rouge">graph-tool</code>
+to use multiple-cores processing mentioned <a href="https://git.skewed.de/count0/graph-tool/issues/366">here</a>.</p>
+
+<p>The selection of the graph random-rewire algorithm is also an open question in 
+complex network research. In my work, I settle with the configuration model for
+random graph generation. However, other random graph models such as block model could
+be better for a certain type of motif. Professor Barabasi also mentioned about
+this matter in his slide (Barabasi 2016). <code class="highlighter-rouge">graph-tool</code> also provides the implementations of 
+some popular random graph rewiring functions.</p>
+
+<h2 id="references">References</h2>
+
+<h3 id="network-motifs-in-biological-systems">Network motifs in biological systems</h3>
+
+<ol>
+  <li>Milo, Ron, et al. “Network motifs: simple building blocks of complex networks.” <em>Science</em> 298.5594 (2002): 824-827.</li>
+  <li>Milo, Ron, et al. “Superfamilies of evolved and designed networks.” <em>Science</em> 303.5663 (2004): 1538-1542.</li>
+  <li>Alon, Uri. “Network motifs: theory and experimental approaches.” <em>Nature Reviews Genetics</em> 8.6 (2007): 450-461.</li>
+  <li>Mangan, Shmoolik, et al. “The incoherent feed-forward loop accelerates the response-time of the gal system of Escherichia coli.” <em>Journal of molecular biology</em> 356.5 (2006): 1073-1081,</li>
+  <li>Lee, Tong Ihn, et al. “Transcriptional regulatory networks in Saccharomyces cerevisiae.” <em>Science</em> 298.5594 (2002): 799-804.</li>
+  <li>Wuchty, Stephan, Zoltán N. Oltvai, and Albert-László Barabási. “Evolutionary conservation of motif constituents in the yeast protein interaction network.” <em>Nature genetics</em> 35.2 (2003): 176-179,</li>
+  <li>Conant, Gavin C., and Andreas Wagner. “Convergent evolution of gene circuits.” <em>Nature genetics</em> 34.3 (2003): 264-266.</li>
+  <li>Sporns, Olaf, and Rolf Kötter. “Motifs in brain networks.” <em>PLoS Biol</em> 2.11 (2004): e369,</li>
+  <li>Alon, Uri. An introduction to systems biology: design principles of biological circuits. CRC press, 2006.</li>
+  <li>van den Heuvel, Martijn P., et al. “High-cost, high-capacity backbone for global brain communication.” Proceedings of the National Academy of Sciences 109.28 (2012): 11372-11377.</li>
+</ol>
+
+<h3 id="network-motifs-in-sociological-systems">Network motifs in sociological systems</h3>
+
+<ol>
+  <li>Saracco, Fabio, et al. “Detecting early signs of the 2007-2008 crisis in the world trade.”. <em>arXix</em> (2015), <a href="https://arxiv.org/pdf/1508.03533v3.pdf">link</a>.</li>
+</ol>
+
+<h3 id="network-motifs-in-computational-graph-theory">Network motifs in computational graph theory</h3>
+
+<ol>
+  <li>Wong, Elisabeth, et al. “Biological network motif detection: principles and practice.” <em>Briefings in bioinformatics</em> (2011): bbr033.</li>
+  <li>Benson, Austin R., David F. Gleich, and Jure Leskovec. “Higher-order organization of complex networks.” <em>Science</em> 353.6295 (2016): 163-166.</li>
+</ol>
+
+<h3 id="lectures">Lectures</h3>
+
+<ol>
+  <li>Barabasi, Albert-Laszlo. “Motifs.” Network Science course lecture slide (Fall 2016), <a href="http://barabasilab.neu.edu/courses/phys5116/content/Motifs_2016.pdf">link</a>.</li>
+</ol>
+
+<h3 id="software-and-datasets">Software and datasets</h3>
+
+<ol>
+  <li>Aric A. Hagberg, Daniel A. Schult and Pieter J. Swart, “Exploring network structure, dynamics, and function using NetworkX”, in Proceedings of the 7th Python in Science Conference (SciPy2008), Gäel Varoquaux, Travis Vaught, and Jarrod Millman (Eds), (Pasadena, CA USA), pp. 11–15, Aug 2008.</li>
+  <li>Shannon, Paul, et al. “Cytoscape: a software environment for integrated models of biomolecular interaction networks.” <em>Genome Research</em> 13.11 (2003): 2498-2504.</li>
+</ol>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Network+Motifs%20-%20https://gearons.org//posts/motifs" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/motifs" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

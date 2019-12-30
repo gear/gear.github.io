@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | GPU Programming Notes - Part 1</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="GPU Programming Notes - Part 1">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/gpu-notes-part1">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/gpu-notes-part1">
+  <meta name="twitter:title" content="GPU Programming Notes - Part 1">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script> 
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&amp;hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>GPU Programming Notes - Part 1</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    May 4, 2017
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      7 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>May the 4th be with you.</p>
+
+<p>It is always exciting to start programming, whether it is a new language or a
+whole new scheme. This post is my mental image of (Nvidia) GPU programming; it
+belongs to my series of GPU Programming Notes:</p>
+<ol>
+  <li>Part 1: Nvidia GPU programming mental image. (this post)</li>
+  <li>
+<a href="">Part 2: Shared Memory and popular algorithms.</a> (coming soon)</li>
+  <li>
+<a href="">Part 3: 2d convolutional neural network.</a> (coming soon)</li>
+  <li>Coming later.</li>
+</ol>
+
+<h2 id="programming-abstraction-and-hardware-abstraction">Programming Abstraction and Hardware Abstraction</h2>
+
+<p>I personally find it easier to have a concrete mental image when I learn
+something new. For GPU (Cuda) programming, it helps a lot when I finally
+see the connection between programming abstraction (grid, block, threads) and
+hardware abstraction (streaming multiprocessor, streaming processor).</p>
+
+<p><img src="/img/gpu-software-hardware.png" alt="GPU Software vs Hardware"></p>
+
+<h3 id="thinking-the-programmers-way">Thinking the programmer’s way</h3>
+
+<p>The first concept in GPU programming is <strong>block</strong>. Sometimes we might hear
+parallel computing people talk about <em>blocking</em>. I think it depends on the
+context to know whether <em>blocking</em> means synchronization (as in threads
+synchronization), or “trying with different block sizes to increase performance”
+(as in telling the GPU to run with <em>this number</em> of blocks).
+To put it simply, <strong>block</strong> can be think of as a computing unit.
+Your GPU program (or function, or <strong>kernel</strong>) is executed by threads in a
+<strong>block</strong>.</p>
+
+<p><img src="/img/gpu-grid-block.png" alt="GPU grids and blocks"></p>
+
+<p>The diagram above depicts the hierarchy of computation in a GPU. Although block
+is an intermediate concept (“smaller” than grid, “bigger” than warp), I think
+it is the most important. To the extent of my experience so far, one need
+to think how his/her kernel (program) will be executed on a block first, then
+the rest will come easier.</p>
+
+<p>As a convention, the GPU(s) on a machine is called <strong>device(s)</strong>, the machine
+itself (containing CPU and main memory) is called <strong>host</strong>. In a computation
+program, the <em>host code</em> handles data input, memory allocation, and invoke the
+<em>device code</em>. The execution of <em>device code</em> is called <strong>kernel launch</strong>,
+where a kernel is a “small” function that can be mapped onto the GPU and
+executed in parallel.</p>
+
+<p><img src="/img/gpu-prog-anatomy.png" alt="GPU program anatomy"></p>
+
+<p>A basic kernel in CUDA starts with the keyword <code class="highlighter-rouge">__global__</code>, meaning the
+function is available for both host and device.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Define a kernel */</span>
+<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">cudaAddVectors</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+  <span class="n">c</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="cm">/* Launch a kernel */</span>
+<span class="n">cudaAddVectors</span><span class="o">&lt;&lt;&lt;</span><span class="n">grid_dim</span><span class="p">,</span> <span class="n">block_dim</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">a_mem</span><span class="p">,</span> <span class="n">b_mem</span><span class="p">,</span> <span class="n">c_mem</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In the example above, the function which will be ran on GPU is <code class="highlighter-rouge">cudaAddVectors</code>.
+Each function (kernel) is assigned to a thread (within a block), we
+have built-in variables to uniquely identify the threads, some of them are:
+<code class="highlighter-rouge">threadIdx</code>, <code class="highlighter-rouge">blockIdx</code>, and <code class="highlighter-rouge">blockDim</code>. <code class="highlighter-rouge">threadIdx</code> is a unique thread
+identifier within a block. <code class="highlighter-rouge">blockIdx</code> is a unique block identifier with in a
+grid. <code class="highlighter-rouge">blockDim</code> is the number of threads defined in a block, this number is
+defined in the second parameter of kernel launch (in <code class="highlighter-rouge">&lt;&lt;&lt; &gt;&gt;&gt;</code>). Programmer uses
+these unique identifier to map the computation to the input array. In the
+example above, each thread is mapped to one array element in each array input.
+The figure below demonstrate the mapping:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            -------------------------------------------------------------
+ Mem. Index | 0| 1| 2| 3| 4| 5| 6| 7| 8| 9|10|11|12|13|14|15|16|17|18|19|
+            -------------------------------------------------------------
+            -------------------------------------------------------------
+ThreadIdx.x | 0| 1| 2| 3| 4| 0| 1| 2| 3| 4| 0| 1| 2| 3| 4| 0| 1| 2| 3| 4|
+            -------------------------------------------------------------
+                                                             blockDim = 5
+            ---------------+--------------+--------------+---------------
+ BlockIdx.x |      0       |      1       |      2       |      3       |
+            ---------------+--------------+--------------+---------------
+</code></pre></div></div>
+
+<p>It is clear from the example above that <code class="highlighter-rouge">index = blockIdx.x * blockDim.x +
+threadIdx.x</code>. Since we define <code class="highlighter-rouge">blockDim=5</code>, each block has 5 threads. The <code class="highlighter-rouge">.x</code>
+is the x axis of each variable. In CUDA, every computation unit is up to
+3D-index. Behind the scene, everything is 1D. However, sometimes it is more
+convenient to have 2D or 3D indexing depending on the application. In the code
+snippet above, a kernel call is parameterized with two integers: <code class="highlighter-rouge">grid_dim</code> and
+<code class="highlighter-rouge">block_dim</code>. <code class="highlighter-rouge">grid_dim</code> is the number of blocks, while <code class="highlighter-rouge">block_dim</code> is the number
+of threads per block. All these are in <code class="highlighter-rouge">.x</code> axis. To explicitly specify
+<code class="highlighter-rouge">gridDim</code> and <code class="highlighter-rouge">blockDim</code>, we can use the provided <code class="highlighter-rouge">dim3</code> datatype:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dim3</span> <span class="nf">blockSize</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// C++ syntax to create block of shape (64,16,1)</span>
+<span class="n">dim3</span> <span class="n">gridSize</span> <span class="o">=</span> <span class="p">{</span><span class="mi">64</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// C syntax to create grid of shape (64,64,1)</span>
+<span class="n">cudaAddVectors</span><span class="o">&lt;&lt;&lt;</span><span class="n">gridSize</span><span class="p">,</span> <span class="n">blockSize</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">a_mem</span><span class="p">,</span> <span class="n">b_mem</span><span class="p">,</span> <span class="n">c_mem</span><span class="p">);</span>
+<span class="cm">/* Kernel cudaAddVectors will be mapped to a grid containing 64 blocks
+ * on x axis and y axis (64^2 blocks in total). Each of these blocks has
+ * 64 threads on x axis and 16 threads on y axis.
+ */</span>
+</code></pre></div></div>
+
+<p><em>Note</em>: The parameter of kernel launch will be addressed in later post. For now,
+we only need to know the first 2 specify number of blocks (gridSize) and number
+of threads per block (blockSize). The other two parameters specify the size of
+shared memory per block and the associated stream. More detail can be found in
+the CUDA <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/#execution-configuration">documentation</a>.</p>
+
+<p>In summary, we have a few keywords in this section:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">block</code>: The basic computing unit containing threads that execute <code class="highlighter-rouge">kernels</code>.</li>
+  <li>
+<code class="highlighter-rouge">kernel</code>: The function that will be run in parallel on GPU.</li>
+  <li>
+<code class="highlighter-rouge">device</code>: Usually refers to the GPU and code runs on GPU.</li>
+  <li>
+<code class="highlighter-rouge">host</code>: Usually refers to the CPU and code runs on CPU.</li>
+  <li>
+<code class="highlighter-rouge">thread</code>: The smallest computing unit. Organized as groups of 32 in a block.</li>
+  <li>
+<code class="highlighter-rouge">grid</code>: The computing unit contains blocks.</li>
+</ul>
+
+<h3 id="thinking-the-hard-way-wink">Thinking the “hard” way <img class="emoji" title=":wink:" alt=":wink:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png" height="20" width="20">
+</h3>
+
+<p>As a tech savvy, I enjoy looking at the specification of a new graphic card:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nvidia GeForce GTX 1080 Ti:
+– Graphics Processing Clusters: 6
+– Streaming Multiprocessors: 28
+– CUDA Cores (single precision): 3584
+– Texture Units: 224
+– ROP Units: 88
+– Base Clock: 1480 MHz
+– Boost Clock: 1582 MHz
+– Memory Clock: 5505 MHz
+– Memory Data Rate: 11 Gbps
+– L2 Cache Size: 2816K
+– Total Video Memory: 11264MB GDDR5X
+– Memory Interface: 352-bit
+– Total Memory Bandwidth: 484 GB/s
+– Texture Rate (Bilinear): 331.5 GigaTexels/sec
+– Fabrication Process: 16 nm
+– Transistor Count: 12 Billion
+– Connectors: 3 x DisplayPort, 1 x HDMI
+– Form Factor: Dual Slot
+– Power Connectors: One 6-pin, One 8-pin
+– Recommended Power Supply: 600 Watts
+– Thermal Design Power (TDP): 250 Watts
+– Thermal Threshold: 91° C
+</code></pre></div></div>
+
+<p>The specs above belongs to the new GTX 1080 Ti. It has 28 Streaming
+Multiprocessors (SM). Each streaming multiprocessor has 128 CUDA cores, making
+total of 3584 cores on the device. In the programming abstraction, we think in
+blocks, here, we think in Streaming Multiprocessors. <strong>Behind the scene, the
+computation for each block is mapped to a SM.</strong> These processor can be think of
+as a less complex CPU that can schedule and dispatch multiple threads at one.</p>
+
+<p>About memory, GTX 1080 Ti has a whooping 11GB of global memory (they release it
+right after our lab’s order for Titan X 12GB <img class="emoji" title=":unamused:" alt=":unamused:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f612.png" height="20" width="20">). Global memory, as it
+name, can be accessed by all streaming multiprocessors (hence, all blocks when
+we think in software abstraction). It is very much like RAM in normal computer.
+This memory is the slowest memory in a GPU.</p>
+
+<p>Faster memory compared to global memory is Cache (L1 and L2), shared memory,
+local memory, and register. Register is extremely fast (few nanosecond access time).
+32 or 64 32-bit registers are available to a thread. L1 and shared memory
+are built with the same hardware. Their sizes are configurable. In GTX 1080 Ti,
+shared memory has maximum size of 96KB. Shared memory management is one of the
+optimization methods. Local memory is extra storage for registers, L2 is
+a cache for global and local memory (I do not know in further detail about
+these type of memory).</p>
+
+<p>Knowing the hardware architecture is always helpful for programmer. More
+information on GTX 1080 Ti can be found in the <a href="http://international.download.nvidia.com/geforce-com/international/pdfs/GeForce_GTX_1080_Whitepaper_FINAL.pdf">white paper</a>.</p>
+
+<h2 id="compilation-notes">Compilation Notes</h2>
+
+<p>I find studying an example Makefile is the best way to learn compilation for a
+new framework.</p>
+
+<div class="language-make highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Link all runtime (rt) libraries (cudart)
+</span><span class="nv">LD_FLAGS</span> <span class="o">=</span> <span class="nt">-lrt</span>
+<span class="c"># CUDA code generation floags
+</span><span class="nv">GENCODE_FLAGS</span> <span class="o">:=</span> <span class="nt">-gencode</span> <span class="nb">arch</span><span class="o">=</span>compute_20,code<span class="o">=</span>sm20 <span class="c"># Compute capacity 2.0</span>
+<span class="c"># CUDA paths
+</span><span class="nv">CUDA_PATH</span> <span class="o">=</span> /usr/local/cuda
+<span class="c"># CUDA headers
+</span><span class="nv">CUDA_INC_PATH</span> <span class="o">:=</span> <span class="nv">$(CUDA_PATH)</span>/include
+<span class="c"># CUDA tools binary (e.g. nvcc compiler)
+</span><span class="nv">CUDA_BIN_PATH</span> <span class="o">:=</span> <span class="nv">$(CUDA_PATH)</span>/bin
+<span class="c"># CUDA libraries .so files
+</span><span class="nv">CUDA_LIB_PATH</span> <span class="o">:=</span> <span class="nv">$(CUDA_PATH)</span>/libraries
+
+<span class="c"># C++ compiler
+</span><span class="nv">CC</span> <span class="o">=</span> /usr/bin/g++
+<span class="c"># CUDA compiler
+</span><span class="nv">NVCC</span> <span class="o">=</span> <span class="nv">$(CUDA_BIN_PATH)</span>/nvcc
+<span class="c"># For 64-bit operating system
+</span><span class="nv">NVCCFLAGS</span> <span class="o">:=</span> <span class="nt">-m64</span>
+
+<span class="c"># Grouping of targets
+</span><span class="nv">TARGET</span> <span class="o">=</span> save_the_world
+
+<span class="nl">all</span><span class="o">:</span> <span class="nf">$(TARGET)</span>
+
+<span class="nl">save_the_world</span><span class="o">:</span> <span class="nf">save_the_world_host.cpp utils.cpp save_world.o</span>
+  <span class="err">$(CC)</span> <span class="err">$^</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">-O3</span> <span class="err">$(LDFLAGS)</span> <span class="err">-Wall</span> <span class="err">-I$(CUDA_INC_PATH)</span>
+
+<span class="nl">save_world.o</span><span class="o">:</span> <span class="nf">save_world.cu</span>
+  <span class="err">$(NVCC)</span> <span class="err">$(NVCCFLAGS)</span> <span class="err">-O3</span> <span class="err">$(GENCODE_FLAGS)</span> <span class="err">-I$(CUDA_INC_PATH)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">-c</span> <span class="err">$&lt;</span>  
+
+<span class="c"># $^ - All dependencies
+# $@ - Name of the target
+# $&lt; - First dependency
+</span></code></pre></div></div>
+
+<h3 id="cuda-requirements">Cuda requirements</h3>
+
+<p>Installing CUDA framework is quite simple. The following code install CUDA-8.0.
+Note that we need to have nvidia driver installed before installing CUDA.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update &amp;&amp; sudo apt-get install wget -y --no-install-recommends
+wget "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
+sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+sudo apt-get update
+sudo apt-get install cuda
+</code></pre></div></div>
+
+<h2 id="example">Example</h2>
+
+<p>There are some examples to conclude this note.</p>
+
+<h3 id="element-wise-array-operations">Element-wise Array Operations</h3>
+
+<p>Elements.</p>
+
+<h3 id="1d-convolution">1D Convolution</h3>
+
+<p>Sounds.</p>
+
+<h2 id="references">References</h2>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=GPU+Programming+Notes+-+Part+1%20-%20https://gearons.org//posts/gpu-notes-part1" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/gpu-notes-part1" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

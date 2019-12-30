@@ -4,6 +4,7 @@ blog_theme: light # Or use dark
 name: Gearons
 paginate: 15
 url: https://gearons.org/
+markdown: kramdown
 
 
 # Optional settings

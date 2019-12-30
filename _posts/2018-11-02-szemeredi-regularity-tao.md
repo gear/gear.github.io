@@ -13,10 +13,8 @@ published on arXiv.
 
 ## Draft
 
-Szemeredi Regularity Lemma states that for dense graphs, we can specify an error
-rate \\( 0 < \epsilon < 1 \\) such that the graph can be partitioned into $O{\eps}(1)$ 
-parts. Among these partitions, the edges behaves almost randomly. Such partition
-is called $\eps-$regular. 
+Szemeredi Regularity Lemma states that for dense graphs, we can specify an error rate $0 < \epsilon < 1$  such that the graph can be partitioned into $O(1)$ parts. Among these partitions, the edges behaves almost randomly. Such partition
+is called $\epsilon$-regular. 
 
 In this paper, the author views Szemeredi Regularity Lemma from the information
 theoric perspective. Such point of view not only clarifies the Regularity Lemma,
@@ -54,8 +52,8 @@ RNN where each hidden unit is parameterized by a high rank tensor (≥2)**.
     The tRNN model here has only one hidden layer, but its hidden units are parameterized by a P-by-M matrix rather than
     a single vector. Furthermore, the interaction between hidden units are captured by the convolution operation (defined
     later) to take advantages of the tensor representation. According to the authors, the first dimension of the hidden units is "locally connected" in order to share parameters, while the second dimension is "fully connected" for global interaction. This idea will be clearer when we discuss the convolution. In general, the construction of a hidden unit output is computed as following ($$\circledast$$ is the convolution operator):
-    
-    $$
+   
+   $$
     H^\text{cat}_{t-1, p} = \left\{ 
     \begin{array}{l}
     x_t W^x + b^x, \text{ if } p = 1 \\ 
@@ -67,7 +65,7 @@ RNN where each hidden unit is parameterized by a high rank tensor (≥2)**.
     H_t = \phi(A_t) \\
     y_t = \varphi(h_{t+L-1, p} W^y + b^y)
     \end{array}
-    $$ 
+   $$
 
     Note that the actual output at $$y_t$$ is computed using the last tensor (in this case it is a vector) of 
     the hidden tensor $$H_{t+L-1}$$. As in the figure above, $$y_t$$ is computed from $$h^3_{t+2}$$ - the last 
@@ -108,7 +106,7 @@ A_t \in R^{P \times M^o} \\
 H^\text{cat}_{t-1} \in R^{(P+1) \times M} \\
 W^h \in R^{K \times M^i \times M^o} \\
 b^h \in R^{M^o}
-\end{array} 
+\end{array}
 $$
 
 In here, $$A_t$$ is the activation tensor. $$H^\text{cat}_{t-1}%_$$ represents the concatenation of a hidden unit's 

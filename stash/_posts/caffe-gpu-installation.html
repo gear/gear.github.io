@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Gearons | Install caffe-GPU on Ubuntu-16.04</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Install caffe-GPU on Ubuntu-16.04">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gearons.org//posts/caffe-gpu-installation">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Gearons">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://gearons.org//posts/caffe-gpu-installation">
+  <meta name="twitter:title" content="Install caffe-GPU on Ubuntu-16.04">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://gearons.org//assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://gearons.org//feed.xml" type="application/rss+xml" rel="alternate" title="Gearons Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-b2624f1aef1507a57b8ae1e334ba18341523adcff511393365e33e6c4cdc007b.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-d5cd0e3eaa66b2ed98fb88a8443522c2a074034a960d3e41d1ca589152717bac.css">
+    
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+             
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Gearons">Gearons</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">settings_applications</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://scholar.google.com/citations?user=iuSBSHsAAAAJ&hl=en" rel="noreferrer noopener" target="_blank" title="Google Scholar">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">school</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/gear" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">code</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://steamcommunity.com/id/gearons" rel="noreferrer noopener" target="_blank" title="Steam">
+          <i style="vertical-align: sub; color: #018A7B;" class="material-icons">videogame_asset</i>
+
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Install caffe-GPU on Ubuntu-16.04</h1>
+            <p></p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    March 30, 2017
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      4 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>In this tutorial we install the Caffe version 1.0.0-rc5 from
+<a href="https://github.com/BVLC/caffe">source</a> (check the Makefile for the Caffe
+version).</p>
+
+<h2 id="-hardware"><i class="fa fa-fw fa-desktop"></i> Hardware</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CPU: Intel(R) Core(TM) i7-5960X CPU @ 3.00GHz
+GPU: NVIDIA GeForce GTX 980
+</code></pre></div></div>
+<h2 id="-os"><i class="fa fa-fw fa-linux"></i> OS</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LSB Version:	core-9.20160110ubuntu0.2-amd64:core-9.20160110ubuntu0.2-noarch:printing-9.20160110ubuntu0.2-amd64:printing-9.20160110ubuntu0.2-noarch:security-9.20160110ubuntu0.2-amd64:security-9.20160110ubuntu0.2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.1 LTS
+Release:	16.04
+Codename:	xenial
+</code></pre></div></div>
+<h2 id="-compiler-and-python-environment"><i class="fa fa-fw fa-envira"></i> Compiler and python environment</h2>
+
+<p>Remove anaconda path from <code class="highlighter-rouge">$PATH</code> (we haven’t been able to build with anaconda).
+Make sure we have <code class="highlighter-rouge">gcc-5</code> and <code class="highlighter-rouge">g++-5</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo $PATH  # Should not contain anaconda
+$ gcc --version  # 5.4.0
+$ g++ --version  # 5.4.0
+$ which python   # /usr/bin/python
+</code></pre></div></div>
+
+<h2 id="-install-nvidia-driver-cuda-80-and-cudnn"><i class="fa fa-fw fa-cube"></i> Install Nvidia driver, cuda-8.0 and cudnn</h2>
+
+<p><code class="highlighter-rouge">nvidia-375</code> is the latest driver as of March 2017.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install nvidia-375
+</code></pre></div></div>
+<p>Download <code class="highlighter-rouge">cuda-8.0</code> from Nvidia’s site:
+<a href="https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run">runfile</a>. Change directory to the downloaded file and run with <code class="highlighter-rouge">sudo</code>
+(filename might be different).</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/Download
+$ sudo sh cuda_8.0.61_375.26_linux.run
+</code></pre></div></div>
+<p>After installation, run <code class="highlighter-rouge">nvcc --version</code> to quickly check if everything works so far.
+Sign-up for an Nvidia Developer accound and download <code class="highlighter-rouge">cuDNN-v6.0</code>. Extract the
+downloaded file and copy the contents to the corresponding <code class="highlighter-rouge">cuda-8.0</code> folder.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo cp cudnn/cudnn.h /usr/local/cuda-8.0/include/
+$ sudo cp cudnn/libcudnn* /usr/local/cuda-8.0/lib64/
+</code></pre></div></div>
+
+<h2 id="-install-build-tools"><i class="fa fa-fw fa-wrench"></i> Install build tools</h2>
+
+<p>We use Python2.7 in this tutorial.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential cmake git pkg-config
+sudo apt-get install libleveldb-dev libsnappy-dev libhdf5-serial-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install python-dev  # Python 2.7
+sudo apt-get install python-numpy python-scipy python-pip
+sudo apt-get install libopencv-dev
+</code></pre></div></div>
+<p>We build <code class="highlighter-rouge">protobuf-3.2.0</code> from
+<a href="https://github.com/google/protobuf/archive/v3.2.0.tar.gz">source</a>.
+Extract the downloaded tarball and <code class="highlighter-rouge">cd</code> to the extracted folder.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install autoconf automake libtool curl make unzip
+$ ./autogen.sh
+$ ./configure --prefix=/usr/local/ CC=/usr/bin/gcc
+$ make
+$ make check
+$ sudo make install
+$ sudo ldconfig  # refresh shared library cache
+</code></pre></div></div>
+<p>Note: Add <code class="highlighter-rouge">-j8</code> flag to <code class="highlighter-rouge">make</code> for 8 compile jobs running. Check the installation:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ protoc --version
+</code></pre></div></div>
+<h2 id="-download-caffe-source-code"><i class="fa fa-fw fa-download"></i> Download Caffe source code</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install git  # Run this if git is not installed
+$ sudo apt-get install vim  # Run this if vim is not installed (optional)
+$ git clone https://github.com/BVLC/caffe
+</code></pre></div></div>
+<h2 id="-setting-up-makefileconfigure"><i class="fa fa-fw fa-cog"></i> Setting up Makefile.configure</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd caffe
+$ cp Makefile.config.example Makefile.config
+$ vim Makefile.config  # Replace vim by any text editor
+</code></pre></div></div>
+<p>For GPU build, make sure these fields are correct in <code class="highlighter-rouge">Makefile.config</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE_CUDNN := 1
+CUDA_DIR := /usr/local/cuda
+CUDA_ARCH := -gencode arch=compute_20,code=sm_20 \
+        -gencode arch=compute_20,code=sm_21 \
+        -gencode arch=compute_30,code=sm_30 \
+        -gencode arch=compute_35,code=sm_35 \
+        -gencode arch=compute_50,code=sm_50 \
+        -gencode arch=compute_52,code=sm_52 \
+        -gencode arch=compute_60,code=sm_60 \
+        -gencode arch=compute_61,code=sm_61 \
+        -gencode arch=compute_61,code=compute_61
+BLAS := atlas
+PYTHON_INCLUDE := /usr/include/python2.7 \
+                /usr/lib/python2.7/dist-packages/numpy/core/include \
+                /usr/local/lib/python2.7/dist-packages/numpy/core/include
+PYTHON_LIB := /usr/lib
+WITH_PYTHON_LAYER := 1
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
+BUILD_DIR := build
+DISTRIBUTE_DIR := distribute
+TEST_GPUID := 0
+Q ?= @
+</code></pre></div></div>
+<p>Create symbolic links for <code class="highlighter-rouge">hdf5</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd /usr/lib/x86_64-linux-gnu
+$ sudo ln -s libhdf5_serial.so.8.0.2 libhdf5.so
+$ sudo ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
+</code></pre></div></div>
+<p>It is possible to build with Anaconda by modifying <code class="highlighter-rouge">PYTHON_INCLUDE</code>
+and <code class="highlighter-rouge">PYTHON_LIB</code>.</p>
+<h2 id="-run-build"><i class="fa fa-spinner fa-pulse fa-fw"></i> Run build</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make all -j8
+$ make test
+$ make runtest
+$ make distribute  # To use with python
+</code></pre></div></div>
+<p>There are few possible errors we have encountered:</p>
+<ul>
+  <li><code class="highlighter-rouge">undefined reference to google::protobuf</code>. This error was possibly caused by
+the <code class="highlighter-rouge">protobuf-2.6</code> installed with Ubuntu’s <code class="highlighter-rouge">apt-get</code>. Pay attention to the
+version of <code class="highlighter-rouge">gcc</code> and <code class="highlighter-rouge">g++</code>. We solved this problem by building <code class="highlighter-rouge">protobuf-3.2.0</code>
+using <code class="highlighter-rouge">gcc-5.4.0</code> and <code class="highlighter-rouge">g++-5.4.0</code>. The compiler version should be the same for
+<code class="highlighter-rouge">protobuf</code> and <code class="highlighter-rouge">caffe</code>.</li>
+  <li>If <code class="highlighter-rouge">cuda</code> version is 7.5 (check with <code class="highlighter-rouge">nvcc --version</code>), it is a better idea to
+use <code class="highlighter-rouge">gcc-4.9</code> and <code class="highlighter-rouge">g++-4.9</code>. Another solution (keep using <code class="highlighter-rouge">gcc-5</code> and <code class="highlighter-rouge">g++-5</code>)
+is to modify gcc version fence, <code class="highlighter-rouge">NVCCFLAG</code> and <code class="highlighter-rouge">CXXFLAGS</code> (check the reference).</li>
+  <li>If <code class="highlighter-rouge">make distribute</code> failed to run. It is possibly because some Python components
+are missing. Install <code class="highlighter-rouge">python-pip</code> and use <code class="highlighter-rouge">sudo pip install &lt;missing_component&gt;</code>
+to fix. Also check <code class="highlighter-rouge">PYTHON_INCLUDE</code> in <code class="highlighter-rouge">Makefile.config</code> to see if all paths is
+correct.</li>
+  <li>After <code class="highlighter-rouge">make distribute</code> succeed, include the folder <code class="highlighter-rouge">caffe/python/</code> into
+<code class="highlighter-rouge">PYTHONPATH</code> to use with Python. Install related python packages: <code class="highlighter-rouge">sudo pip install protobuf scikit-image</code>.</li>
+</ul>
+
+<h2 id="-references"><i class="fa fa-fw fa-binoculars"></i> References</h2>
+
+<ol>
+  <li>
+    <p>http://christopher5106.github.io/big/data/2015/07/16/deep-learning-install-caffe-cudnn-cuda-for-digits-python-on-ubuntu-14-04.html</p>
+  </li>
+  <li>
+    <p>https://github.com/google/protobuf/blob/master/src/README.md</p>
+  </li>
+  <li>
+    <p>https://github.com/intel/caffe/wiki/Ubuntu-16.04-or-15.10-Installation-Guide</p>
+  </li>
+</ol>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Install+caffe-GPU+on+Ubuntu-16.04%20-%20https://gearons.org//posts/caffe-gpu-installation" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gearons.org//posts/caffe-gpu-installation" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Opinions are my own. Hoang NT, 2020.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script type="text/javascript" src="/assets/vendor-2c224c53eb697c739f9490c38819a72184f09472739fd9e492272ef174090428.js"></script>
+
+
+  <script type="text/javascript" src="/assets/webfonts-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js"></script>
+
+
+
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
+
+
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
+
+
+
+</body>
+</html>

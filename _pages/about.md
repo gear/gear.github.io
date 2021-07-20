@@ -25,5 +25,6 @@ Currently, I am a viting researcher at the Functional Analytic Unit of RIKEN AIP
 Download my [resume](/assets/pdf/HoangNT_CV.pdf).
 
 My research goal is to understand the limitation and prospect of graph-structured data learning by developing analysis tools from [graphon theory](https://web.cs.elte.hu/~lovasz/) and spectral graph theory.
+All information and opinion on this website is my own.
 
 I enjoy long distance [cycling](https://www.strava.com/athletes/74469543) in Japan.

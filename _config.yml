@@ -11,7 +11,7 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Hoang NT's personal website.
 footer_text: >
    
-icon:  # the emoji used as the favicon
+icon: ⚙️ # the emoji used as the favicon
 url: "https://gearons.org" # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
 last_updated: true # set to true if you want to display last updated in the footer

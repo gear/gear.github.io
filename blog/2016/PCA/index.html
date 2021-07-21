@@ -11,7 +11,7 @@
   Hoang NT
 
 
-  | blog
+  | Principal Component Analysis
 
 </title>
 <meta name="description" content="Hoang NT's personal website.
@@ -37,7 +37,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2016/PCA/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -102,14 +102,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -147,86 +143,68 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>Up Hill</h1>
-    <h2>Breathing is key</h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Principal Component Analysis</h1>
+    <p class="post-meta">November 28, 2016</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/mercer-kernel/">Some notes on Mercer kernels</a></h3>
-        <p class="post-meta">July 20, 2021</p>
-        <p>Mercer kernels and their connections to graph convolution network</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/tLSTM/">Tensorizing Recurrent Neural Nets</a></h3>
-        <p class="post-meta">February 2, 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/reverse-engineering-deep-compression/">Deep compression case study - AlexNet</a></h3>
-        <p class="post-meta">May 5, 2017</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/caffe-gpu-installation/">Install caffe-GPU on Ubuntu-16.04</a></h3>
-        <p class="post-meta">March 30, 2017</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/basic-lane-detection/">Finding Lane Lines on the Road</a></h3>
-        <p class="post-meta">February 26, 2017</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/motifs/">Network Motifs</a></h3>
-        <p class="post-meta">January 1, 2017</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2016/boston-housing/">Mini project - Predicting Boston housing price</a></h3>
-        <p class="post-meta">December 15, 2016</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2016/titanic/">Mini project - Titanic survivors prediction</a></h3>
-        <p class="post-meta">December 9, 2016</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <p>The Principal Component Analysis (<a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>) is a technique used in many fields: data science, signal processing, mechanics, etc. As a student of machine learning, I should take sometime to at least review this technique; and maybe <a href="https://en.wikipedia.org/wiki/Independent_component_analysis">ICA</a> too, in some future posts.</p>
+
+<hr />
+
+<h2 id="reducing-dimensionality">Reducing dimensionality</h2>
+
+<p>With a data science mind set, the key idea of PCA is to reduce the dimensionality of the data while retaining as much variation as possible in the result. Personally, I think of PCA as projecting the “cloud” of data points to a “flat” surface. More technically, PCA is particularly useful when we have a large number of variables. In such situation, we might want to look at the data from a point of view where one direction capture the most variance (the data spread out the most). A picture from <a href="http://setosa.io/ev/principal-component-analysis/">setosa</a> illustrates this idea:</p>
+
+<p><img src="/img/pca_2d.png" alt="PCA 2D" />
+<em>Under the transformation, our data now have large variance on pc1 and small variance on pc2. The data now can be represented only on pc1 without much information loss.</em></p>
+
+<p>Let \(\mathbf{x}\) be a vector containing \(p\) random variables, we define the principal components of \(\mathbf{x}\) as follow:</p>
+
+<ol>
+  <li>
+    <p>Find \(\alpha_1 \in R^p\) such that:</p>
+
+\[\left\{ 
+ \begin{array}{l}
+ \left\lVert\alpha_1\right\rVert_2 = 1 \\ 
+ z_1 = \alpha_1 \mathbf{x} = \sum_{j=1}^p \alpha_{1j} \mathbf{x}_j \text{ has the largest variance.} %_
+ \end{array}
+ \right.\]
+  </li>
+  <li>
+    <p>Next, find \(\alpha_2 \in R^p\) such that:</p>
+
+\[\left\{ 
+ \begin{array}{l}
+ \left\lVert\alpha_2\right\rVert_2 = 1 \\ 
+ z_2 = \alpha_2 \mathbf{x} = \sum_{j=1}^p \alpha_{2j} \mathbf{x}_j \text{ has the largest variance, } z_2 \text{ is uncorrelated with } z_1 %_
+ \end{array}
+ \right.\]
+  </li>
+  <li>
+    <p>Continue doing so, we can define \(\alpha_3; \alpha_4;... ;\alpha_k (k &lt; p)\) to satisfy the condition above.</p>
+  </li>
+</ol>
+
+<h2 id="main-theorem">Main theorem</h2>
+
+<p>Let \(\Sigma\) be the covariance matrix of \(\mathbf{x}\), then \(\alpha_1; \alpha_2;... ;\alpha_k\) are respectively eigenvectors of \(\Sigma\) corresponding with eigenvalues \(\lambda_1; ...; \lambda_k\) (s.t. \(\lambda_1 &gt; ... &gt; \lambda_k\)) and \(V(z_i) = V(\alpha_i \mathbf{x}) = \lambda_i\).</p>
+
+<h2 id="applications">Applications</h2>
+
+<p>PCA is widely used when it comes to data as it gives a general view of the dataset. It is known as the singular value decomposition of data matrix \(\mathbf{X}\), or the eigenvalue decomposition of \(\mathbf{X}^\top\mathbf{X}\) (main theorem).</p>
+
+<p>Take a simple approach to image recognition as an example. If we consider each pixel of a given image is a random variable, then we can compute the covariance matrix. By choosing k-largest eigenvalues and their corresponding eigenvectors, we can have the image in a new space. Interestingly, we can choose k as small as we want, resulting in a compact representation of images. In the newly defined space, every image is represented as a vector. These vectors can be used for similarity comparison. Such approach to image recognition is naïve and not effective in many cases. However, it gives a baseline and an example of the PCA technique.</p>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

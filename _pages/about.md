@@ -20,7 +20,7 @@ social: true  # includes social icons at the bottom of the page
 I am a PhD candidate at the School of Computing, Tokyo Institute of Technology.
 My research interests include machine learning for graphs and kernel methods.
 I am extremely fortunate to work with Dr. [Takanori Maehara](http://www.prefield.com/) at the RIKEN Center for Advanced Intelligence Project since 2019 on graph embedding theory.
-Currently, I am a viting researcher at the Functional Analytic Unit of RIKEN AIP, hosted by Dr. [Ha Quang Minh](http://www.haquangminh.info/).
+Currently, I am a visiting researcher at the Functional Analytic Unit of RIKEN AIP, hosted by Dr. [Ha Quang Minh](http://www.haquangminh.info/).
 
 Download my [resume](/assets/pdf/HoangNT_CV.pdf).
 

@@ -1,13 +1,19 @@
 ---
-layout: post
-type: mini-project
+layout: distill
 title: Finding Lane Lines on the Road
-subtitle: Getting started with OpenCV
+description: Getting started with OpenCV
+date: 2017-02-26
+
+authors:
+  - name: Hoang NT
+    url: "/"
+    affiliations:
+      name: Titech
 ---
 
-<i class="fa fa-github"></i> [p1-lanelines on Github](https://github.com/gear/CarND/tree/master/lanelines-p1)
+[p1-lanelines on Github](https://github.com/gear/CarND/tree/master/lanelines-p1)
 
----
+
 ## OpenCV Toolbox
 
 OpenCV is an image processing toolbox originally developed in C++.
@@ -19,18 +25,27 @@ pixel having the coordinate `(x=0,y=0)`. Following this system, the
 bottom right corner `img[-1,-1]` has the coordinate
 `(x=img.shape[1]-1, y=img.shape[0]-1)` in OpenCV.
 
-![OpenCV Image]({{site.baseurl}}/img/image_coo.png){:width="50%" .center-small}
+<div class="row mt-3">
+     <div class="col-sm mt-3 mt-md-0">
+         <img class="img-fluid rounded z-depth-0 centering-img" src="{{ site.baseurl }}/assets/img/image_coo.png" width="50%" data-zoomable>
+     <div>
+ </div>             
+<div class="caption">
+OpenCV Image
+</div>
 
 OpenCV provides various tools for us to "get our hand dirty"
 with images. Generally, there are two main groups: image drawing and
-image transformation. [Drawing on images in OpenCV](http://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html) is quite simple
+image transformation. 
+[Drawing on images in OpenCV](http://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html) is quite simple
 and straight forward (except for the ellipse :smile:) as most drawing
 function is in the form:
 
-```python
-import cv2
-cv2.(img_to_draw_on, starting_point, **others_arguments)
-```
+<d-code block language="python">
+ import cv2
+ cv2.(img_to_draw_on, starting_point, **others_arguments)
+</d-code>
+
 
 ## Line Detection Pipeline
 
@@ -82,7 +97,7 @@ Therefore, we convert the image to HSV color space
 want to extract. To exact colors, the rule of thumb is to range
 &plusmn;10 in the hue value as following:
 
-```python
+<d-code block language="python">
 hue_range = 10  # Increase for wider color selection
 # rgb_color is the (R,G,B) tuple value of the color we want to filter
 pixel = np.uint8([[rgb_color]])  # One pixel image
@@ -91,17 +106,17 @@ hue = hsv_pixel[0,0,0]  # Get the hue value of the input (R,G,B)
 lowb = np.array((hue-hue_range, 100, 100), dtype=np.uint8)
 upb = np.array((hue+hue_range, 255, 255), dtype=np.uint8)
 return lowb, upb  # Lower and upper bound for color filtering
-```
+</d-code>
 
 To exact black or white color, the code is different since it depends
 on the saturation and value rather than the hue.
 
-```python
+<d-code block language="python">
 sensitivity = 30
 lowwhite = np.array((0,0,255-sensitivity), dtype=np.uint8)
 upwhite = np.array((255,sensitivity,255), dtype=np.uint8)
 return lowwhite, upwhite  # Lower and upper bound for color filtering
-```
+</d-code>
 
 After selecting only the region of interest and the colors, we have
 the following result:
@@ -123,7 +138,7 @@ Furthermore, in all videos, the lane lines between frame doesn't have
 smooth transitions. To address this problem, we have several approaches:
 
 1. Limit the movement of lines between frames. We specify a limit
-$$\alpha$$ for the displacement of two lines between adjacent frames. The
+$\alpha$ for the displacement of two lines between adjacent frames. The
 next frame's line is computed as: $$x_t = x_{t-1} + \min{(\alpha, x_t -
 x_{t-1})}$$
 2. Store previous lines in a fixed-size buffer, add new line to the

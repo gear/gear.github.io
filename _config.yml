@@ -72,7 +72,7 @@ panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
 # -----------------------------------------------------------------------------
 
 blog_name: my way  # your blog must have a name for it to show up in the nav bar
-blog_description: "to say the things he truely feels"
+blog_description: "to say the things he truly feels"
 permalink: /blog/:year/:title/
 
 # Pagination

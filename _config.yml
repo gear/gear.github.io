@@ -71,8 +71,8 @@ panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Up Hill  # your blog must have a name for it to show up in the nav bar
-blog_description: Breathing is key
+blog_name: My Way  # your blog must have a name for it to show up in the nav bar
+blog_description: "to say the things he truely feels"
 permalink: /blog/:year/:title/
 
 # Pagination

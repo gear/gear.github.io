@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description: ML Engineer at <a href="https://www.smartnews.com/">SmartNews, Inc.</a>.
+description: ML Engineer at <a href="https://www.smartnews.com/">SmartNews, Inc.</a>
 
 profile:
   align: right

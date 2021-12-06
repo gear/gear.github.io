@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description: Graph Learning Researcher
+description: I like graphs
 
 profile:
   align: right

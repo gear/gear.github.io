@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description: I like graphs
+description: I like graphs.
 
 profile:
   align: right
@@ -16,7 +16,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-In my free time, I do research on machine learning for graphs and kernel methods.
+I do research on machine learning for graphs and kernel methods.
 I am extremely fortunate to work with Dr. [Takanori Maehara](http://www.prefield.com/) at the RIKEN Center for Advanced Intelligence Project since 2019 on graph learning theory.
 
 Download my [resume](/assets/pdf/HoangNT_CV.pdf).

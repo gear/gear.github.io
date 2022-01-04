@@ -28,7 +28,7 @@ bottom right corner `img[-1,-1]` has the coordinate
 <div class="row mt-3">
      <div class="col-sm mt-3 mt-md-0">
          <img class="img-fluid rounded z-depth-0 centering-img" src="{{ site.baseurl }}/assets/img/image_coo.png" width="50%" data-zoomable>
-     <div>
+     </div>
  </div>             
 <div class="caption">
 OpenCV Image
@@ -84,7 +84,7 @@ The unused information in our first pipeline is: 1. The region of
 interest, and 2. The color of the lane lines. By extracting the region
 of interest, we eliminate unnecessary computation:
 
-![Focus region]({{site.baseurl}}/img/focus_region.png){:width="70%" .center-small}
+![Focus region]({{site.baseurl}}/assets/img/focus_region.png){:width="70%" .center-small}
 
 In addition to extracting the region of interest, we also filtered out
 unwanted colors. By default, the image output of `cv2.imread` is a GBR
@@ -121,13 +121,13 @@ return lowwhite, upwhite  # Lower and upper bound for color filtering
 After selecting only the region of interest and the colors, we have
 the following result:
 
-![Focus region]({{site.baseurl}}/img/filtered_roi.png){:width="70%" .center-small}
+![Focus region]({{site.baseurl}}/assets/img/filtered_roi.png){:width="70%" .center-small}
 
 The image above is a binary image which can be used as a mask to
 extract the lane lines from the original image. The example of our
 lane lines detection on static image is shown below.
 
-![Result on image]({{site.baseurl}}/img/result_lanelines.png){:width="70%" .center-small}
+![Result on image]({{site.baseurl}}/assets/img/result_lanelines.png){:width="70%" .center-small}
 
 ###  Buffered pipeline
 
@@ -166,7 +166,7 @@ of this situation.
 For the current testing data (images and videos), extracting the region
 of interest and lane line colors is enough for line detection.
 
-![Result on image]({{site.baseurl}}/img/only_color.png){:.center-small}
+![Result on image]({{site.baseurl}}/assets/img/only_color.png){:.center-small}
 
 As the picture above has shown, only yellow (left) and white (right)
 color filter is enough to give us a substantially clear image of lane

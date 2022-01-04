@@ -8,7 +8,7 @@ comments: true
 In this post, we study the result of Song Hans' work on AlexNet. Since the
 encrypting code is not provided, we analyze the decompression code provided
 on the author's
-[github repository](https://github.com/songhan/Deep-Compression-AlexNet) to
+[github repository](https://github.com/songhan/Deep-Compression-AlexNet =120x30) to
 have a clear understanding of the compression scheme. There are two main
 techniques contribute to the small size of the compressed AlexNet:
 1. Values clustering - Instead of having different values for each weight
@@ -31,12 +31,19 @@ values (no compressing for bias), `spm_stream` contains the integer encoding
 for each non-zero elements in the weight matrix, and `ind_stream` contains the
 index for each non-zero elements.
 
-![Binary file]({{site.baseurl}}/img/han_compressed_structure.png)
+<div class="row mt-3">
+	<div class="col-sm mt-3 mt-md-0">
+		<img class="img-fluid rounded z-depth-0" src="{{site.baseurl}}/assets/img/han_compressed_structure.png" data-zoomable>
+    	</div>
+</div>
+<div class="caption">
+Binary File Format
+</div>
 
 In the figure above, each part name is given corresponding to the naming in
 the provided `decode.py` file. Below the name is the size of the array (we will
 provide details in the following sections). Yellow stands for `unsigned integer`
-data type, blue stands for `float` data type.
+data type, blue stands for `float` data type.  
 
 ## Header
 
@@ -155,7 +162,7 @@ Taking a look at the weight value distribution of each layers gives some insight
 about the design decision for the compressed file. (For more layer encoding and
 clustering: [weight-clustering-notebook](https://github.com/net-titech/CREST-Deep-M/blob/master/notebooks/weight-clustering.ipynb))
 
-![Violin]({{site.baseurl}}/img/alexnet-weights-violin-plot.bin)
+![Violin]({{site.baseurl}}/assets/img/alexnet-weights-violin-plot.bin)
 
 The first thing we can observe here is the difference between the standard 
 deviation of convolutional layers (`conv`) versus fully connected layers (`fc`).

@@ -19,8 +19,6 @@ social: true  # includes social icons at the bottom of the page
 I am working as a machine learning engineer at SmartNews, Inc.
 In my free time, I do research on machine learning for graphs and kernel methods with my mentor Dr. [Takanori Maehara](http://www.prefield.com/).
 
-Download my [resume](/assets/pdf/HoangNT_CV.pdf).
-
 My personal goal is to understand the limitation and prospect of graph-structured data learning by developing analysis tools from [graphon theory](https://web.cs.elte.hu/~lovasz/) and spectral graph theory.
 All information and opinions on this website are my own.
 

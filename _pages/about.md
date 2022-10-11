@@ -19,7 +19,7 @@ social: true  # includes social icons at the bottom of the page
 I enjoy research on machine learning for graphs (thanks to my mentor, Dr. [Takanori Maehara](http://www.prefield.com/)).
 
 My personal goal is to understand the limitation and prospect of graph-structured data learning by developing analysis tools from [graphon theory](https://web.cs.elte.hu/~lovasz/) and spectral graph theory. I have a master's degree in Computer Science from Tokyo Institute of Technology, sponsored by Japanese Government's MEXT scholarship. Before that, I obtained a bachelor's degree in Computer Engineering and Telecommunication from Hanoi University of Science and Technology (native name: "Bach Khoa Ha Noi", meaning "Hanoi polytechnique").
-Currently, I am interested in methods for automated graph generation with applications in drug discovery and general artificial intelligence.
+Currently, I am working on ML-based methods for detecting breast cancer from ring echo ultrasound imaging at [Lily Medtech](https://www.lilymedtech.com/en/).
 
 I enjoy long distance [cycling](https://www.strava.com/athletes/74469543) in Japan. Please feel free to ping me (`me` at `gearons.org`) for research discussions or cycling trips.
 

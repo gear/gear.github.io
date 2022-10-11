@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Hoang NT
+
+
+  | Deep compression case study - AlexNet
+
+</title>
+<meta name="description" content="Hoang NT's personal website.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="/assets/css/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2017/reverse-engineering-deep-compression/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9D9WKRW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-N8K9D9WKRW');
+</script>
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://gearons.org/">
+       Hoang NT
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Deep compression case study - AlexNet</h1>
+    <p class="post-meta">May 5, 2017</p>
+  </header>
+
+  <article class="post-content">
+    <p>In this post, we study the result of Song Hans’ work on AlexNet. Since the
+encrypting code is not provided, we analyze the decompression code provided
+on the author’s
+<a href="https://github.com/songhan/Deep-Compression-AlexNet =120x30">github repository</a> to
+have a clear understanding of the compression scheme. There are two main
+techniques contribute to the small size of the compressed AlexNet:</p>
+<ol>
+  <li>Values clustering - Instead of having different values for each weight
+matrix, each layer is limited to have only 256 distinct values (convolutional)
+or distinct 16 values (fully connected). These values is encoded using 8-bit
+integer and 4-bit integer respectively.</li>
+  <li>Running sum encoding for the indexing array - Each weight is stored as a
+sparse array (only non-zero elements are stored). To avoid large indexing
+values (up to several millions), the index array is stored by the difference of
+the non-zero index and the array index only. (This scheme enables Huffman Coding
+to be effective later).</li>
+</ol>
+
+<h2 id="binary-file-layout">Binary file layout</h2>
+
+<p>The provided binary file <code class="language-plaintext highlighter-rouge">AlexNet_compressed.net</code> is organized into a header
+containing the number of non-zero elements in each layers <code class="language-plaintext highlighter-rouge">nz_num</code> and a body
+containing data for each layer. Each layer has 4 main parts: <code class="language-plaintext highlighter-rouge">codebook</code>
+contains the distinct float values of the layer, <code class="language-plaintext highlighter-rouge">bias</code> contains the bias
+values (no compressing for bias), <code class="language-plaintext highlighter-rouge">spm_stream</code> contains the integer encoding
+for each non-zero elements in the weight matrix, and <code class="language-plaintext highlighter-rouge">ind_stream</code> contains the
+index for each non-zero elements.</p>
+
+<div class="row mt-3">
+	<div class="col-sm mt-3 mt-md-0">
+		<img class="img-fluid rounded z-depth-0" src="/assets/img/han_compressed_structure.png" data-zoomable="" />
+    	</div>
+</div>
+<div class="caption">
+Binary File Format
+</div>
+
+<p>In the figure above, each part name is given corresponding to the naming in
+the provided <code class="language-plaintext highlighter-rouge">decode.py</code> file. Below the name is the size of the array (we will
+provide details in the following sections). Yellow stands for <code class="language-plaintext highlighter-rouge">unsigned integer</code>
+data type, blue stands for <code class="language-plaintext highlighter-rouge">float</code> data type.</p>
+
+<h2 id="header">Header</h2>
+
+<p>The file header contains 8 32-bit unsigned integers representing the number of
+non-zero elements in each layer. There are 8 layers in AlexNet. In the
+decompression code, this array is named <code class="language-plaintext highlighter-rouge">nz_num</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">layers</span> <span class="o">=</span> <span class="p">[</span><span class="s">'conv1'</span><span class="p">,</span> <span class="s">'conv2'</span><span class="p">,</span> <span class="s">'conv3'</span><span class="p">,</span> <span class="s">'conv4'</span><span class="p">,</span> <span class="s">'conv5'</span><span class="p">,</span> <span class="s">'fc6'</span><span class="p">,</span> <span class="s">'fc7'</span><span class="p">,</span> <span class="s">'fc8'</span><span class="p">]</span>
+<span class="c1"># Get 8 uint32 values from fin (AlexNet_compressed)
+</span><span class="n">nz_num</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">uint32</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">))</span>
+<span class="n">nz_num</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">29388</span><span class="p">,</span> <span class="mi">118492</span><span class="p">,</span> <span class="mi">309138</span><span class="p">,</span> <span class="mi">247913</span><span class="p">,</span> <span class="mi">163904</span><span class="p">,</span> <span class="mi">4665474</span><span class="p">,</span> <span class="mi">1959380</span><span class="p">,</span> <span class="mi">1061645</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">uint32</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="compressed-data-for-each-layer">Compressed data for each layer</h2>
+
+<p>There are two types of layers in AlexNet namely convolutional and fully
+connected. As we mentioned above, each convolutional layer has 256 distinct
+values, while each fully connected has 16 distinct values. These distinct values
+are stored in <code class="language-plaintext highlighter-rouge">codebook</code> section as 32-bit floats. The encoding is stored as
+8-bit or 4-bit unsigned integers. We take the first convolutional layer <code class="language-plaintext highlighter-rouge">conv1</code>
+as an example.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Per layer storage layout
++----------+----------+---------------+---------------+
+| codebook |  biases  |   ind_stream  |   spm_stream  |
++----------+----------+---------------+---------------+
+</code></pre></div></div>
+
+<p>Since <code class="language-plaintext highlighter-rouge">conv1</code> is a convolutional layer, each elements in the weight matrix is
+encoded using 8-bit. The <code class="language-plaintext highlighter-rouge">codebook</code> has size 256 (of 32-bit floats):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Read codebook from file, codebook_size=256 in this case
+</span><span class="n">codebook</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">codebook_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Bias for each convolution is read and copy to the network. In this case, there
+are 96 32-bit floats biases corresponding to 96 convolutional kernels. No
+compression was done for biases.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">net</span><span class="p">.</span><span class="n">params</span><span class="p">[</span><span class="n">layer</span><span class="p">][</span><span class="mi">1</span><span class="p">].</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">copyto</span><span class="p">(</span><span class="n">net</span><span class="p">.</span><span class="n">params</span><span class="p">[</span><span class="n">layer</span><span class="p">][</span><span class="mi">1</span><span class="p">].</span><span class="n">data</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The majority of information is stored in <code class="language-plaintext highlighter-rouge">ind_stream</code> and <code class="language-plaintext highlighter-rouge">spm_stream</code>. In the
+decoding process, <code class="language-plaintext highlighter-rouge">ind_stream</code> is read as an array of unsigned 8-bit integers.
+This array stores the indices of non-zero elements in the flattened weight
+matrix. To save storage space, <code class="language-plaintext highlighter-rouge">ind_stream</code> is actually stored as 4-bit
+integers. Thefore, each 8-bit is read as two 4-bit indices. Furthermore, the
+indexing is stored as the difference between a running sum of indices. The
+following example will make it clear:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="c1"># Only store indices of non-zero elements
+</span><span class="n">ind_stream</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># Store the difference of a running sum
+# We can get back the original index as follow:
+</span><span class="n">ind</span> <span class="o">=</span> <span class="n">ind_stream</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># [1, 1, 1, 4, 2]
+</span><span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 7, 9] - Accumulating sum
+</span><span class="n">ind</span> <span class="o">=</span> <span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># [0, 1, 2, 6, 8]
+</span><span class="n">ind</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="c1"># The original indexing  
+</span></code></pre></div></div>
+
+<p>The recovering process for 4-bit indexing from 8-bit indexing is simply using
+bit shift:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># In here, num_nz is the number of non zero elements
+</span><span class="n">ind</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_nz</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ind_stream</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ind</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_nz</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ind_stream</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The second large chunk of memory is stored at <code class="language-plaintext highlighter-rouge">spm_stream</code>. <code class="language-plaintext highlighter-rouge">spm_stream</code> stores
+the indexing to the <code class="language-plaintext highlighter-rouge">codebook</code>, which stores the real value of weights. <code class="language-plaintext highlighter-rouge">conv1</code>
+has 256 distinct values, hence <code class="language-plaintext highlighter-rouge">spm_stream</code> is an array of 8-bit unsigned
+integers.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create the numpy array of size num_nz fill with zeros
+</span><span class="n">spm</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_nz</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">spm</span> <span class="o">=</span> <span class="n">spm_stream</span>
+</code></pre></div></div>
+
+<p>In the case of the fully connected layer, only 16 distinct values are used.
+Therefore, only 4-bit is needed per element:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spm</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_nz</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">spm</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_nz</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">spm_stream</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># last 4-bit
+</span><span class="n">spm</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_nz</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">spm_stream</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># first 4-bit
+</span></code></pre></div></div>
+
+<p>Each element of <code class="language-plaintext highlighter-rouge">spm_stream</code> points to the real values in <code class="language-plaintext highlighter-rouge">codebook</code>. For
+example, if we need <code class="language-plaintext highlighter-rouge">data[i]</code>, where <code class="language-plaintext highlighter-rouge">i</code> is inferred from <code class="language-plaintext highlighter-rouge">ind_stream</code>, we
+look it up at <code class="language-plaintext highlighter-rouge">spm[i]</code>, then <code class="language-plaintext highlighter-rouge">data[i] = codebook[spm[i]]</code>. In here, we can
+clearly see that the values of fully connected layers are divided into 16 bins,
+and that of convolutional layers are divided into 256 bins. This is where the
+main compression at.</p>
+
+<h2 id="huffman-coding">Huffman coding</h2>
+
+<p>Although the code provided by the author does not implement Huffman coding, we
+can see that Huffman coding can help to reduce the coding length for
+<code class="language-plaintext highlighter-rouge">spm_stream</code>. According to Hans, the compressed model’s size is
+further reduced by 1MB with the use of Huffman coding. Furthermore, it is also
+possible to compress the size of <code class="language-plaintext highlighter-rouge">ind_stream</code> due to the fact that it has
+multiple running streams of zeros.</p>
+
+<h2 id="discussion">Discussion</h2>
+
+<p>Taking a look at the weight value distribution of each layers gives some insight
+about the design decision for the compressed file. (For more layer encoding and
+clustering: <a href="https://github.com/net-titech/CREST-Deep-M/blob/master/notebooks/weight-clustering.ipynb">weight-clustering-notebook</a>)</p>
+
+<p><img src="/assets/img/alexnet-weights-violin-plot.bin" alt="Violin" /></p>
+
+<p>The first thing we can observe here is the difference between the standard 
+deviation of convolutional layers (<code class="language-plaintext highlighter-rouge">conv</code>) versus fully connected layers (<code class="language-plaintext highlighter-rouge">fc</code>).
+Moreover, the value ranges of convolutional layers are also much larger than
+that of fully connected layers. This observation suggests that we need to have
+a “finer” quantization for convolutional layers. As it turned out, to preserve
+the accuracy, we need to quantize the weights of a convolutional layer by 256 values; 
+but we only need 16 discrete values for a fully connected to preserve the accuracy.
+This design decision is good for two reasons:</p>
+<ol>
+  <li>Larger coverage for convolutional layers. These layers are small in size (less than
+a million parameter each) so we can afford to encode them using 8-bits (256 values).</li>
+  <li>Save storage space for fully connected layers. Since a fully connected layer has 
+up to 25 millions parameter, storing each value as a 4-bits value greatly helped 
+to compress the size.</li>
+</ol>
+
+<p>In a note on this compression scheme, there are several interesting points to discuss:</p>
+
+<ul>
+  <li>Pruning parameter. We do not know the pruning threshold and the number of
+pruning-retraining processes. We are implementing our own pruning-clustering
+and codebook-training on Caffe.</li>
+  <li>The sensitivity of quantization to the convolutional kernels. It seems that
+fully connected layers are more robust to quantization (limited number of
+distinct values than the convolutional kernels). We need to study the robustness
+of the pruning and quantization process with respect to the number of discrete values
+and the sensitivity of the values in codebook to the extracted model’s accuracy.</li>
+  <li>The main storage lies at <code class="language-plaintext highlighter-rouge">ind_stream</code> (non-zero index) and <code class="language-plaintext highlighter-rouge">spm_stream</code>
+(look-up keys for real values in <code class="language-plaintext highlighter-rouge">codebook</code>). Can we further compress these
+data? One idea is to short the <code class="language-plaintext highlighter-rouge">codebook</code> such that the key values preserve
+the locality of stored values (similar keys store similar values). From here,
+we can store <code class="language-plaintext highlighter-rouge">spm_stream</code> in a lossy integer format (inspired by Fourier
+transformation). However, the effect of Huffman coding might be broken in this
+scheme.</li>
+</ul>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2022 Hoang  NT.
+    
+    
+    
+    Last updated: October 11, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>

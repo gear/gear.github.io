@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Hoang NT
+
+
+  | Brain network construction from EEG data
+
+</title>
+<meta name="description" content="Hoang NT's personal website.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="/assets/css/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2015/bnet/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9D9WKRW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-N8K9D9WKRW');
+</script>
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://gearons.org/">
+       Hoang NT
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Brain network construction from EEG data</h1>
+    <p class="post-meta">December 23, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <p><em>Note: Due to some unavailibity in resources, I have stopped working
+on this project. However, I will continue in the future when I have better
+knowledge, tools, and connection to tackle the problem here. Also, some
+content will still be udpated. 2016/06/16.</em></p>
+
+<p>I think the mystery of networks is the mystery of human brains. I have three
+point of views about the human brain: biological neuronal network, brain functional
+network, and artifical neural network modeling. In order to understand how
+a brain works, we need to understand not only the individual operation of a single
+biological neuron, but also their operation as a complex network. One of the limitation
+we have today in brain research is the level of detail we can get from our
+own brain. For example, even the most advanced technique such as BOLD fMRI can only produce 
+macro-level data (compared to neuronal level). On the other hand, abeit the scale,
+data received from brain imaging techniques is extremely noisy. Recent advancements in
+deep neural network have shown promising result in learning underlying structure in
+noisy data. However, deep neural network requires special machines and the model 
+is very task-specific (not flexible). Another more traditional approach is to apply
+statistical learning techniques on brain data. In this project, I am particularly
+interested in applying probabilistic inferencing to infer functional connection from
+the EEG data. <strong>The main target of the project is to provide researcher and medical
+doctor with a programmable tool that given a brain parcellation and EEG settings,
+it can accurately infers the functional connection between regions of the brain.</strong></p>
+
+<h2 id="repositories">Repositories</h2>
+
+<ul>
+  <li>Main: <a href="https://github.com/gear/EEGNet">EEGNet</a></li>
+  <li>Codles’s <a href="https://github.com/codles/EEG.jl">EEG.jl</a></li>
+  <li>Sam81’s <a href="https://github.com/sam81/BrainWave.jl">BrainWave</a></li>
+</ul>
+
+<h2 id="update">Update</h2>
+
+<ul>
+  <li>2016/05/31: I presented our project idea at <a href="http://www.complexity.es/netsci2016brain">Brain Network Satellite NetSci’16</a>. <a href="https://github.com/gear/EEGNet/raw/master/EEGNet.pdf">Slide</a>. My blog post about NetSci’16 can be found <a href="http://gear.github.io/2016-06-06-netsci16/">here</a>.</li>
+  <li>2016/05/20: I presented our project idea in the lab’s seminar. <a href="https://github.com/gear/EEGNet/raw/master/Seminar_EEGNet.pdf">Slide</a></li>
+</ul>
+
+<h2 id="reading-list">Reading list</h2>
+
+<h3 id="biological-neural-network-and-neuroscience-research">Biological neural network and neuroscience research</h3>
+
+<ul>
+  <li><strong>Principles of Neural Science</strong>. Eric R. Kandel, James H. Schwartz, Thomas M. Jessell, Steven A. Siegelbaum, A. J. Hudspeth. McGraw-Hill Education / Medical. 5th edition, 2012.</li>
+  <li><strong>Theoretical Neuroscience</strong>. Dayan, P. and Abbot, L.F. MIT Press. 2001.</li>
+  <li><strong>Research topics in Neuroscience</strong>. <a href="https://ocw.mit.edu/courses/brain-and-cognitive-sciences/9-95-a-research-topics-in-neuroscience-january-iap-2003/related-resources/">Resource list</a>. MIT OCW, 2003.</li>
+  <li><strong>Temporal contiguity requirement for long-term associative potentiation/depression in the hippocampus</strong>. W.B. Levy, O. Steward. Neuroscience. 1983.</li>
+  <li><strong>A neuronal learning rule for sub-millisecond temporal coding</strong>. Gerstner W, Kempter R, van Hammen JL, Wagner H. Nature 386. September 1996.</li>
+  <li><strong>Competitive Hebbian learning through spike-timing-dependent synaptic plasticity</strong>. Song S, Miller KD, Abbott LF. Nature Neuroscience 3. September 2000.</li>
+  <li><strong>Multiple neural spike train data analysis: State-of-the-art and future challenges</strong>. Brown EN, Kass RE, Mitra PP. Nature Neuroscience 7. 2004.</li>
+  <li><strong>Spike Timing-Dependent Plasticity: A Hebbian Learning Rule</strong>. Natalia Caporale and Yang Dan. Annual Review of Neuroscience. July 2008.</li>
+  <li><strong>Spike-Based Image Processing: Can We Reproduce Biological Vision in Hardware?</strong>. Thorpe, Simon J; Fusiello, Andrea; Murino, Vittorio; Cucchiara, Rita. ECCV. 2012.</li>
+  <li><strong>A multi-modal parcellation of human cerebral cortex</strong>. Matthew F. Glasser,  Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub,  Kamil Ugurbil,  Jesper Andersson, Christian F. Beckmann,  Mark Jenkinson, Stephen M. Smith, and David C. Van Essen. Nature 536. August 2016.</li>
+</ul>
+
+<h3 id="brain-functional-network-network-science-and-information-theory">Brain functional network, network science, and information theory</h3>
+
+<ul>
+  <li><strong>Information Theory, Inference, and Learning Algorithms</strong>. MacKay, David J.C. Cambridge University Press. 2003.</li>
+  <li><strong>Connectionist models of cognition</strong>. Thomas, M.S.C and McClelland, J.L. The Cambridge handbook of computational psychology - Cambridge University Press. 2008.</li>
+  <li><strong>The probabilistic mind: Prospect for Bayesian cognitive science</strong>. Chater, N. and Oaksford, M. Oxford University Press. 2008.</li>
+  <li><strong>Theory of probability</strong>. De Finetti, B. New York: Wiley. 1992.</li>
+  <li><strong>Decomposing Data Using ICA</strong>. Swartz Center for Computational Neuroscience. Chapter 9.</li>
+  <li><strong>Imaging Brain Dynamics Using Independent Component Analysis</strong>. Tzyy-Ping Jung et al. Procedding of the IEEE. July 2001.</li>
+  <li><strong>Fundamentals of EEG Measurement</strong>. M. Teplan. Measurement Science Review vol 2. 2002.</li>
+  <li><strong>Aberrant “Default Model” Functional Connectivity in Schizophrenia</strong>. Abigail G. Garrity Godfrey D. Pearlson, M.D. Kristen McKierman, Dan Lloyd, Kent A. Kiehl, Vince D. Calhoun. The American Journal of Psychiatry. March 2007.</li>
+  <li><strong>EEG-Based Functional Brain Networks: Does the Network Size Matter?</strong>. Amir Joudaki, Niloufar Salehi, Mahdi Jalili, Maria G. Knyazeva. PLOS one. April 2012.</li>
+  <li><strong>The default network and self-generated thought: Component processes, dynamic control, and clinical relevance</strong>. Andrews-Hanna, Jessica R; Smallwood, Jonathan; Spreng, R. Nathan. Annals of the New York Academy of Sciences 1316. May 2014.</li>
+  <li><strong>The structural-functional connectome and the default mode network of the human brain</strong>. Andreas Horn, Dirk Ostwald, Marco Reisert, Felix Blandenburg. NeuroImage. 2014.</li>
+  <li><strong>ICA model order selection of task co-activation networks</strong>. Kimberly L. Ray, D. Reese McKay, Peter M. Fox, Michael C. Riedel, Angela M. Uecker, Christian F. Beckmann, Stephen M. Smith, Pter T. Fox, and Angela R. Laird. Frontiers in Neuroscience 10. December 2013.</li>
+</ul>
+
+<h3 id="artificial-intelligence-machine-learning-and-esp-deep-learning">Artificial intelligence, Machine learning, and (esp.) Deep learning</h3>
+
+<ul>
+  <li><a href="http://www.asimovinstitute.org/neural-network-zoo/">The Asimov Institute’s Neural Network Zoo</a></li>
+  <li>The Deep Learning book that everyone talks about. (Goodfellow, Bengio, and Courville)</li>
+  <li><strong>Real-time classification and sensor fusion with a spiking deep belief network</strong>. O’Connor, Peter; Neil, Daniel; Liu, Shih-Chii; Delbruck, Tobi; Pfeiffer, Michael. Neuromorphic Engineering 7. 2013.</li>
+  <li><strong>Artificial Intelligence: A modern approach</strong>. Russell, S. and Norvig, P. Prentice Hall. 2010.</li>
+</ul>
+
+<h3 id="julia-and-probabilistic-programming">Julia and Probabilistic programming</h3>
+
+<ul>
+  <li><a href="http://probabilistic-programming.org/wiki/Home">Probabilistic Programming</a></li>
+  <li><a href="http://julialang.org/">Julia Progamming Language</a></li>
+  <li><a href="http://www.kurzweilai.net/short-probabilistic-programming-machine-learning-code-replaces-complex-programs-for-computer-vision-tasks">Short probabilistic programming machine-learning code replaces complex programs for computer-vision task</a></li>
+  <li><strong>Picture: an imperative probabilistic programming language for scene perception</strong>. Kulkarni, T., Kohli, P., Tenenbaum, J., Mansinghka. CVPR revision. 2016.</li>
+  <li><strong>Probabilistic machine learning and artificial intelligence</strong>. Zoubin Ghahramani. Nature 521. May 2015.</li>
+</ul>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2022 Hoang  NT.
+    
+    
+    
+    Last updated: October 11, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>

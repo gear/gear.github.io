@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Hoang NT
+
+
+  | The phi accrual failure detector
+
+</title>
+<meta name="description" content="Hoang NT's personal website.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="/assets/css/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2016/phifail/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9D9WKRW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-N8K9D9WKRW');
+</script>
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "The phi accrual failure detector",
+      "description": "An adaptive failure detection scheme",
+      "published": "November 15, 2016",
+      "authors": [
+        
+        {
+          "author": "Hoang NT",
+          "authorURL": "/",
+          "affiliations": [
+            {
+              "name": "Titech",
+              "url": ""
+            }
+          ]
+        }
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://gearons.org/">
+       Hoang NT
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="post distill">
+
+      <d-title>
+        <h1>The phi accrual failure detector</h1>
+        <p>An adaptive failure detection scheme</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>This post is the summary of the paper: <em><strong>The $\varphi$ accrual failure detector</strong></em> by 
+N. Hayashibara, X. Défago, and T.Katayama. In Proc. 23rd IEEE Intl. Symp. on Reliable 
+Distributed Systems (SRDS’04), pp. 66-78, Florianópolis, Brazil, October 2004. IEEE CS Press.</p>
+
+<p>More at: <a href="http://www.coord.c.titech.ac.jp/">D2S Laboratory</a></p>
+
+<hr />
+
+<h2 id="problem-definition">Problem definition</h2>
+
+<p>Detecting failure in a distributed system setting is a desirable task for many
+obvious reasons. This paper introduces an implementation of an adaptive (accrual) 
+failure detector. In this \(\varphi\) accrual failure detector, the conditions of 
+the network is accumulated and used to update the probabilistic model for failure 
+suspicion. Compares to the existing models in 2004, which output of suspicion level 
+is binary, this implementation has the advantage of returning a real-value suspicion level.
+The authors compared their implementation to <a href="http://chenfd">Chen Fault Detection</a>
+and <a href="http://bertier">Bertier Fault Detection</a>. For the benchmark scheme, they 
+set up two computers between Japan and Switzerland transferring “heart beat” signal
+from Japan. They then later analyzed the collected data over a week and reported
+the result.</p>
+
+<ul>
+  <li><strong>Input</strong>: A set of master processes \(\mathcal{M}\) and a set of worker 
+processes \(\mathcal{W}\). The master processes are in charge of monitoring the 
+worker processes.</li>
+  <li><strong>Output</strong>: An indicator of failure for each worker processes.</li>
+  <li><strong>Assumption</strong>: In this paper, for the shake of simplicity, the authors assumed
+that the master processes will never crash. Furthermore, only one worker and one 
+master scheme was discussed in this paper.</li>
+</ul>
+
+<h2 id="notations">Notations</h2>
+
+<p><em>Note: The setting in this paper is sending heart beat signals from Japan to Switzerland.</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Notation</th>
+      <th style="text-align: left">Explaination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">\(\varphi\)</td>
+      <td style="text-align: left">Suspection value. Higher value means the higher chance the failure happened.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\Phi\)</td>
+      <td style="text-align: left">Hyperparameter. Threshold for \(\varphi\).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\Delta_i\)</td>
+      <td style="text-align: left">“Heart beat” signal period.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\Delta_{to}\)</td>
+      <td style="text-align: left">Timeout for transmission.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\Delta_{tr}\)</td>
+      <td style="text-align: left">Average transmission time experienced by the messages.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\alpha\)</td>
+      <td style="text-align: left">\(\Delta_{tr} \approx \Delta_{i} + \alpha\)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(q\)</td>
+      <td style="text-align: left">Master process that monitors other process for failure dection.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(p\)</td>
+      <td style="text-align: left">Worker process that sends “heart beat” signals.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(T_D\)</td>
+      <td style="text-align: left">Time until q begins to suspect p permanently in case of failure happened.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\lambda_M\)</td>
+      <td style="text-align: left">Average mistake rate at which a failure detector generates wrong suspicions.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\lozenge P\)</td>
+      <td style="text-align: left">Eventually perfect failure detector class.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\mathrm{susp\_level\_p}(t)\)</td>
+      <td style="text-align: left">Suspicion level of p at time t.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(T_{high}\)</td>
+      <td style="text-align: left">Dynamic threshold upperbounds \(susp\_level_p\).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(T_{low}\)</td>
+      <td style="text-align: left">Dynamic threshold lowerbounds \(susp\_level_p\).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(T_{last}\)</td>
+      <td style="text-align: left">The time when thest most recent heart beat was received.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(t_{now}\)</td>
+      <td style="text-align: left">The current time.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(P_{later}(t)\)</td>
+      <td style="text-align: left">The probability that the next heart beat will arrive after \(t\) time unit since the last one.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="method">Method</h2>
+
+<p>As mentioned above, this paper proposed an abstract accrual failure detector
+and a simple implementation of the idea with only 2 processes. This figure 
+illustrates the differences in the conventional failure detection architecture
+and the proposed accrual failure detection architecture.</p>
+
+<div class="row mt-3">
+     <div class="col-sm mt-3 mt-md-0"> 
+         <img class="img-fluid rounded z-depth-0" src="/assets/img/phifail_istructure.png" data-zoomable="" />
+     </div>
+ </div>
+<div class="caption">
+Accrual Structure
+</div>
+
+<p>The main different in the proproposed architecture is the ability to return
+many suspicion levels instead of just binary levels. This scheme enable the system
+to perform many action as well as adaptive action based on the suspicion input
+level. In the proposed architecture, the <em>suspicion level</em> is represented by
+a value called $\varphi$. The suspicion level is defined by a logarithmic scale:</p>
+
+\[\varphi(t_{now}) \triangleq -\log_{10}(P_{later}(t_{now} - T_{last}))\]
+
+<p>This formula is intuitive in the sense that it penaltize the delay $t_{now} - T_{last}$
+by a log scale of some pre-defined probabilistic model $P_{later}(t)$. In this 
+paper, the authors defined a threshold $\Phi$ for $\varphi$. Since this $\varphi$
+variable is computed in the log-scale, $\Phi$ also has logarithmic meaning. Each of
+the unit step increase of $\Phi$ will lead to ten times confident interval of
+failure detection. However, this fact only means that the confident about a failure 
+dection is high, it doesn’t take into account the <em>speed</em> of the dectection.</p>
+
+<p>The probabilistic model is given by the formula:</p>
+
+\[\begin{align} P_{later}(t) &amp;= \frac{1}{\sigma \sqrt{2\pi}} \int_{t}^{+\infty} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx \\ &amp;= 1 - F(t) \end{align}\]
+
+<p>Note that the formula above is just the implementation of the abstract accrual failure detector in this paper. Theoretically speaking, we can choose any computable $P_{later}{t}$ that is suitable to our need. The picture below demonstrate this probabilistic model.</p>
+
+<div class="row mt-3">
+     <div class="col-sm mt-3 mt-md-0">                                            
+         <img class="centering-img img-fluid rounded z-depth-0" src="/assets/img/phifail_plater.png" width="50%" data-zoomable="" />
+     </div>
+ </div>
+<div class="caption">
+iCDFt
+</div>
+
+<p>Until this point, we have the suspicion level $\varphi$ and the probabilistic
+model for computing $\varphi$. In order to adapt the network condition
+into the failure detection scheme, the authors created a sized window with size
+\(WS\). When the heart beat signal is arrived, it time stamp is stored into
+the window. The mean $\mu$ and variance $\sigma^2$ of the data in the
+window is maintained as the window received new data. In addtion, there are
+two variable keeping track of sum and sum of square of all element in 
+the window are also maintained for computation convenient. The dataflow
+of the proposed implementation:</p>
+
+<div class="row mt-3">
+     <div class="col-sm mt-3 mt-md-0">                                            
+         <img class="img-fluid rounded z-depth-0" src="/assets/img/phifail_flow.png" data-zoomable="" />
+     </div>
+ </div>
+<div class="caption">
+Flow
+</div>
+
+<p>The dataflow figure above captured all the essential steps of the proposed
+algorithm. From the network, heartbest signal is collected and its time period
+is stored in the sampling window. To my understanding, the sampling window
+is a FIFO unit that removes oldest data when new data is added. The mean and
+variance for the probabilistic model $P_{later}(t)$ is then computed using
+the data in the sampling window. At every time step, the value of $\varphi$
+is computed using the probabilistic model, the time of last arrival and the 
+current time. This value $\varphi$ will then be used in different application
+for various action. For example, in <em>action 1</em>, the threshold for $\varphi$ is
+$\Phi_1$. Let’s say in this moment, $\varphi &gt; \Phi_1$, hence the machine will
+perform <em>action 1</em> (e.g. warning, reallocate resources, etc.). On the other hand,
+<em>action 2</em> has the threshold of $\Phi_2$, which is larger than $\varphi$ at
+the moment, hence no action is performed. More interestingly, the multi-level 
+suspicion $\varphi$ enables the use of parametric action, which means the machine
+doesn’t have to behave in a binary manner (performs action or not), but it can 
+perform actions to a certain degree adapting to the current situation.</p>
+
+<h2 id="experiment">Experiment</h2>
+
+<p>As mentioned above, the setting for experiment is a heartbeat signal transmission
+between Switzerland and Japan. Three failure detection schemes are compared: Chen FD,
+Bertier FD, and (this) $\phi$ FD. The window size of 1,000 is used for all failure
+detectors. In this paper, the authors conducted 4 experiments:</p>
+
+<ul>
+  <li>Exp1: Average mistake rate $\lambda_M$. This experiment aims to provide some reasoning
+between the average mistake rate and the threshold $\Phi$.</li>
+  <li>Exp2: Average detection time $T_D$. In this experiment, the relation between average
+detection time and the threshold is studied. Consistent with what I mentioned above,
+while the average mistake rate $\lambda_M$ decreased with high threshold (8-12), 
+the detection time is increased significantly.</li>
+  <li>Exp3: Effect of window size. The window size is plotted against the mistake rate.
+There are three lines representing 3 values of $\Phi$: 1,3,5. The result showed that
+larger widnow size leads to lower mistake rate. The result for different values of $\Phi$
+is also consistent with experiment 2.</li>
+  <li>Exp4: Comparision with Chen FD and Bertier FD. The authors conducted two experiment in
+this category. First experiment is comparision in the internet setting and the second is
+in the LAN setting. In both experiment, $\phi$ FD outperformed the other two methods.</li>
+</ul>
+
+<p>More detail is provided in the authors’ paper.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This post only provides very high level abstraction of the authors’ work. I left out
+many discussion on the propertiesof failure detector, time period or heartbeat signal
+and the effect of network delay. Nevertheless, the results provided in this paper
+showed that the new scheme doesn’t imply additional cost in term of performance while
+it yields much better deteciton results under the authors’ benchmark. On another note,
+the authors also stated that based on their experimental result, it was sufficient to
+use normal distribution for the probabilistic model.</p>
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2022 Hoang  NT.
+    
+    
+    
+    Last updated: October 11, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
+
+</html>
